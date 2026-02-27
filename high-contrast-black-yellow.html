@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>High Contrast Black & Yellow UI</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --yellow: #FFE600;
+            --black: #000000;
+            --dark: #0a0a0a;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--black);
+            color: white;
+            min-height: 100vh;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem 4rem;
+            border-bottom: 2px solid #1a1a1a;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.4rem;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--yellow);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0;
+            list-style: none;
+        }
+
+        .nav-links a {
+            display: block;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            padding: 0.5rem 1.25rem;
+            transition: all 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--yellow);
+        }
+
+        .nav-btn {
+            background: var(--yellow);
+            color: var(--black) !important;
+            font-weight: 700 !important;
+            padding: 0.55rem 1.25rem;
+        }
+
+        .nav-btn:hover {
+            background: #fff700 !important;
+            color: var(--black) !important;
+        }
+
+        .hero {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 5rem 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            min-height: 90vh;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #111;
+            border: 1px solid #222;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 0.5rem 1rem;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .hero-tag span {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: var(--yellow);
+            border-radius: 50%;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1)
+            }
+
+            50% {
+                opacity: 0.5;
+                transform: scale(1.5)
+            }
+        }
+
+        h1 {
+            font-size: clamp(3.5rem, 6vw, 6rem);
+            font-weight: 700;
+            line-height: 0.95;
+            letter-spacing: -3px;
+            margin-bottom: 2rem;
+        }
+
+        h1 .yellow {
+            color: var(--yellow);
+        }
+
+        h1 .outline {
+            -webkit-text-stroke: 2px white;
+            color: transparent;
+        }
+
+        .hero-desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.55);
+            max-width: 420px;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-yellow {
+            background: var(--yellow);
+            color: var(--black);
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            padding: 0.9rem 2rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-yellow:hover {
+            background: #fff700;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(255, 230, 0, 0.3);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: white;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 0.9rem 2rem;
+            border: 1px solid #333;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-ghost:hover {
+            border-color: white;
+        }
+
+        .hero-right {
+            position: relative;
+        }
+
+        .big-number {
+            font-size: 14rem;
+            font-weight: 700;
+            line-height: 1;
+            color: #0f0f0f;
+            letter-spacing: -10px;
+            position: absolute;
+            top: -2rem;
+            right: -1rem;
+            z-index: 0;
+        }
+
+        .product-card {
+            position: relative;
+            z-index: 1;
+            background: #0d0d0d;
+            border: 1px solid #1f1f1f;
+            padding: 2.5rem;
+        }
+
+        .product-badge {
+            background: var(--yellow);
+            color: var(--black);
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 0.3rem 0.75rem;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+
+        .product-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-sub {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.45);
+            margin-bottom: 2rem;
+        }
+
+        .product-price {
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: -2px;
+            line-height: 1;
+            margin-bottom: 0.3rem;
+        }
+
+        .product-price sup {
+            font-size: 1.5rem;
+            vertical-align: super;
+        }
+
+        .price-note {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.35);
+            margin-bottom: 2rem;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 2.5rem;
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .product-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.88rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .product-features li::before {
+            content: '▸';
+            color: var(--yellow);
+        }
+
+        .ticker {
+            background: var(--yellow);
+            padding: 0.75rem 0;
+            overflow: hidden;
+            white-space: nowrap;
+            margin-top: 3rem;
+        }
+
+        .ticker-inner {
+            display: inline-block;
+            animation: ticker 20s linear infinite;
+        }
+
+        .ticker-text {
+            font-weight: 700;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--black);
+            padding-right: 4rem;
+        }
+
+        @keyframes ticker {
+            from {
+                transform: translateX(0)
+            }
+
+            to {
+                transform: translateX(-50%)
+            }
+        }
+
+        .work {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 4rem 6rem;
+        }
+
+        .work-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #1a1a1a;
+            padding-bottom: 1rem;
+        }
+
+        .work-header h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .work-number {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.35);
+        }
+
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: #1a1a1a;
+        }
+
+        .work-item {
+            background: var(--black);
+            padding: 2.5rem 2rem;
+            cursor: pointer;
+            transition: background 0.25s;
+            position: relative;
+            overflow: hidden;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .work-item::after {
+            content: '→';
+            position: absolute;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            color: var(--yellow);
+            font-size: 1.2rem;
+            opacity: 0;
+            transition: opacity 0.25s, transform 0.25s;
+            transform: translateX(-5px);
+        }
+
+        .work-item:hover {
+            background: #0d0d0d;
+        }
+
+        .work-item:hover::after {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .work-cat {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--yellow);
+            margin-bottom: 0.5rem;
+        }
+
+        .work-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .work-year {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.3);
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">BLK<span>•</span>YLW</div>
+        <ul class="nav-links">
+            <li><a href="#">Work</a></li>
+            <li><a href="#">Studio</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Journal</a></li>
+            <li><a href="#" class="nav-btn">Let's Talk</a></li>
+        </ul>
+    </nav>
+    <section class="hero">
+        <div>
+            <div class="hero-tag"><span></span> Available for Projects</div>
+            <h1>Bold<br><span class="yellow">Creative</span><br><span class="outline">Studio</span></h1>
+            <p class="hero-desc">We craft high-impact digital experiences for brands that refuse to blend in. Maximum
+                contrast. Maximum clarity. Maximum impact.</p>
+            <div class="hero-btns">
+                <a href="#" class="btn-yellow">View Our Work</a>
+                <a href="#" class="btn-ghost">Start a Project →</a>
+            </div>
+        </div>
+        <div class="hero-right">
+            <div class="big-number">97</div>
+            <div class="product-card">
+                <div class="product-badge">Featured</div>
+                <div class="product-name">Brand Identity Kit</div>
+                <div class="product-sub">Complete visual system for ambitious brands</div>
+                <div class="product-price"><sup>$</sup>4,800</div>
+                <div class="price-note">One-time project fee, starts at</div>
+                <ul class="product-features">
+                    <li>Logo system + variations</li>
+                    <li>Brand color palette</li>
+                    <li>Typography hierarchy</li>
+                    <li>Brand guidelines PDF</li>
+                    <li>Social media templates</li>
+                </ul>
+                <a href="#" class="btn-yellow" style="display:block; text-align:center;">Get a Quote →</a>
+            </div>
+        </div>
+    </section>
+    <div class="ticker">
+        <div class="ticker-inner">
+            <span class="ticker-text">Brand Identity</span>
+            <span class="ticker-text">Web Design</span>
+            <span class="ticker-text">Motion Graphics</span>
+            <span class="ticker-text">UI/UX Design</span>
+            <span class="ticker-text">Art Direction</span>
+            <span class="ticker-text">Brand Identity</span>
+            <span class="ticker-text">Web Design</span>
+            <span class="ticker-text">Motion Graphics</span>
+            <span class="ticker-text">UI/UX Design</span>
+            <span class="ticker-text">Art Direction</span>
+        </div>
+    </div>
+    <section class="work">
+        <div class="work-header">
+            <h2>Selected Work</h2><span class="work-number">06 Projects</span>
+        </div>
+        <div class="work-grid">
+            <div class="work-item">
+                <div class="work-cat">Brand Identity</div>
+                <div class="work-title">Apex Financial Rebrand</div>
+                <div class="work-year">2026</div>
+            </div>
+            <div class="work-item">
+                <div class="work-cat">Web Design</div>
+                <div class="work-title">Nexus Tech Landing Page</div>
+                <div class="work-year">2025</div>
+            </div>
+            <div class="work-item">
+                <div class="work-cat">Motion</div>
+                <div class="work-title">Product Launch Animation Series</div>
+                <div class="work-year">2025</div>
+            </div>
+            <div class="work-item">
+                <div class="work-cat">UI/UX</div>
+                <div class="work-title">Obsidian SaaS Dashboard</div>
+                <div class="work-year">2025</div>
+            </div>
+            <div class="work-item">
+                <div class="work-cat">Brand System</div>
+                <div class="work-title">Volta Electric Brand Suite</div>
+                <div class="work-year">2024</div>
+            </div>
+            <div class="work-item" style="background:#0d0d0d;">
+                <div style="font-size:0.75rem;color:rgba(255,255,255,0.3);margin-bottom:0.5rem;">More coming</div>
+                <div class="work-title" style="color:var(--yellow)">View All Projects →</div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

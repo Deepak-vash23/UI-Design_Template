@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outline-Only UI</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            color: #080808;
+            min-height: 100vh;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem 4rem;
+            border-bottom: 2px solid #080808;
+        }
+
+        .logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0;
+            list-style: none;
+        }
+
+        .nav-links li {
+            border-left: 1px solid #080808;
+        }
+
+        .nav-links li:last-child {
+            border-right: 1px solid #080808;
+        }
+
+        .nav-links a {
+            display: block;
+            color: #080808;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            padding: 0.5rem 1.5rem;
+            transition: all 0.25s;
+        }
+
+        .nav-links a:hover {
+            background: #080808;
+            color: white;
+        }
+
+        .btn-outline {
+            display: inline-block;
+            border: 2px solid #080808;
+            color: #080808;
+            background: transparent;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.7rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.25s;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-outline:hover {
+            background: #080808;
+            color: white;
+        }
+
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            border: 1px solid #080808;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 0.4rem 1rem;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.8rem, 5vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -2px;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 .hollow {
+            -webkit-text-stroke: 2px #080808;
+            color: transparent;
+        }
+
+        .hero-p {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.8;
+            font-weight: 300;
+            max-width: 380px;
+            margin-bottom: 2.5rem;
+        }
+
+        .pill-row {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .pill {
+            border: 1px solid #ccc;
+            font-size: 0.78rem;
+            color: #555;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+
+        .pill:hover {
+            border-color: #080808;
+            color: #080808;
+        }
+
+        .pricing {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 4rem 6rem;
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .pricing-header h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 0.75rem;
+        }
+
+        .pricing-header p {
+            color: #777;
+            font-size: 0.95rem;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            border: 2px solid #080808;
+        }
+
+        .plan {
+            padding: 2.5rem;
+            border-right: 1px solid #080808;
+            transition: background 0.25s;
+            cursor: pointer;
+        }
+
+        .plan:last-child {
+            border-right: none;
+        }
+
+        .plan:hover {
+            background: #f9f9f7;
+        }
+
+        .plan.featured {
+            border: 3px solid #080808;
+            margin: -2px;
+            position: relative;
+            z-index: 1;
+            background: #080808;
+            color: white;
+        }
+
+        .plan-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .plan.featured .plan-name {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .plan-price {
+            font-family: 'Syne', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -2px;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-per {
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 2rem;
+        }
+
+        .plan.featured .plan-per {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .plan-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.88rem;
+            color: #444;
+        }
+
+        .plan.featured .plan-features li {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .plan-features li::before {
+            content: '—';
+            color: #080808;
+            font-weight: 700;
+        }
+
+        .plan.featured .plan-features li::before {
+            color: white;
+        }
+
+        .plan-btn {
+            display: block;
+            text-align: center;
+            border: 2px solid #080808;
+            padding: 0.85rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            text-decoration: none;
+            color: #080808;
+            transition: all 0.25s;
+        }
+
+        .plan-btn:hover {
+            background: #080808;
+            color: white;
+        }
+
+        .plan.featured .plan-btn {
+            border-color: white;
+            color: white;
+        }
+
+        .plan.featured .plan-btn:hover {
+            background: white;
+            color: #080808;
+        }
+
+        .features-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 4rem 6rem;
+        }
+
+        .feat-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            border: 1px solid #e0e0e0;
+        }
+
+        .feat {
+            padding: 2rem;
+            border-right: 1px solid #e0e0e0;
+        }
+
+        .feat:last-child {
+            border-right: none;
+        }
+
+        .feat:hover {
+            background: #fafafa;
+        }
+
+        .feat-icon {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .feat h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .feat p {
+            font-size: 0.8rem;
+            color: #777;
+            line-height: 1.7;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">◻ Outline</div>
+        <ul class="nav-links">
+            <li><a href="#">Features</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">Docs</a></li>
+            <li><a href="#">Blog</a></li>
+        </ul>
+        <a href="#" class="btn-outline">Get Started</a>
+    </nav>
+    <section class="hero">
+        <div>
+            <div class="hero-tag">Pure Form</div>
+            <h1>Design without<br><span class="hollow">the fill</span></h1>
+            <p class="hero-p">Outline-only interfaces strip away the noise. Every border, every line, every shape is an
+                honest statement of purpose and precision.</p>
+            <a href="#" class="btn-outline">Explore System →</a>
+        </div>
+        <div>
+            <div style="border: 2px solid #080808; padding: 2rem; margin-bottom: 1.5rem;">
+                <div
+                    style="font-family: 'Syne', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; color: #888;">
+                    Component Preview</div>
+                <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
+                    <button class="btn-outline" style="font-size: 0.8rem; padding: 0.5rem 1rem;">Primary</button>
+                    <button
+                        style="border: 2px solid #ccc; background: transparent; padding: 0.5rem 1rem; font-family: 'Inter', sans-serif; font-size: 0.8rem; cursor:pointer; transition: all 0.25s;"
+                        onmouseover="this.style.borderColor='#080808'"
+                        onmouseout="this.style.borderColor='#ccc'">Secondary</button>
+                    <button
+                        style="border: 2px dashed #ccc; background: transparent; padding: 0.5rem 1rem; font-family: 'Inter', sans-serif; font-size: 0.8rem; cursor:pointer;">Ghost</button>
+                </div>
+                <input type="text" placeholder="Input field..."
+                    style="border: 2px solid #080808; background: transparent; padding: 0.7rem 1rem; width: 100%; font-family: 'Inter', sans-serif; font-size: 0.85rem; outline: none; color: #080808; margin-bottom: 1rem;">
+                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                    <span class="pill">Design</span><span class="pill">Typography</span><span
+                        class="pill">Layout</span><span class="pill">Grid</span>
+                </div>
+            </div>
+            <div style="border: 1px solid #e0e0e0; padding: 1.5rem; text-align: center; cursor: pointer; transition: border-color 0.25s;"
+                onmouseover="this.style.borderColor='#080808'" onmouseout="this.style.borderColor='#e0e0e0'">
+                <span style="font-size: 0.75rem; color: #aaa; letter-spacing: 1px; text-transform: uppercase;">+ Add
+                    Component</span>
+            </div>
+        </div>
+    </section>
+    <section class="pricing">
+        <div class="pricing-header">
+            <h2>Simple, <span class="hollow"
+                    style="-webkit-text-stroke: 2px #080808;color:transparent">transparent</span> pricing</h2>
+            <p>No hidden fees. No surprises. Just clean, honest pricing.</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="plan">
+                <div class="plan-name">Starter</div>
+                <div class="plan-price">$0</div>
+                <div class="plan-per">/ month forever</div>
+                <ul class="plan-features">
+                    <li>5 projects</li>
+                    <li>2GB storage</li>
+                    <li>Community support</li>
+                    <li>Basic analytics</li>
+                </ul>
+                <a href="#" class="plan-btn">Start Free</a>
+            </div>
+            <div class="plan featured">
+                <div class="plan-name">Pro</div>
+                <div class="plan-price">$29</div>
+                <div class="plan-per">/ month billed annually</div>
+                <ul class="plan-features">
+                    <li>Unlimited projects</li>
+                    <li>50GB storage</li>
+                    <li>Priority support</li>
+                    <li>Advanced analytics</li>
+                    <li>Custom domains</li>
+                </ul>
+                <a href="#" class="plan-btn">Get Pro</a>
+            </div>
+            <div class="plan">
+                <div class="plan-name">Enterprise</div>
+                <div class="plan-price">$99</div>
+                <div class="plan-per">/ month billed annually</div>
+                <ul class="plan-features">
+                    <li>Everything in Pro</li>
+                    <li>Unlimited storage</li>
+                    <li>Dedicated support</li>
+                    <li>SSO & SAML</li>
+                    <li>Custom contracts</li>
+                </ul>
+                <a href="#" class="plan-btn">Contact Sales</a>
+            </div>
+        </div>
+    </section>
+    <section class="features-section">
+        <div class="feat-row">
+            <div class="feat"><span class="feat-icon">◻</span>
+                <h3>No Clutter</h3>
+                <p>Outlines only — the interface stays uncluttered and breathable.</p>
+            </div>
+            <div class="feat"><span class="feat-icon">⬡</span>
+                <h3>High Contrast</h3>
+                <p>Maximum readability through pure black on white with zero distraction.</p>
+            </div>
+            <div class="feat"><span class="feat-icon">▷</span>
+                <h3>Fast Hover</h3>
+                <p>Instant fill animations on hover communicate interactivity clearly.</p>
+            </div>
+            <div class="feat"><span class="feat-icon">◈</span>
+                <h3>Print Ready</h3>
+                <p>Outline-based UI prints perfectly, every time, on any medium.</p>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

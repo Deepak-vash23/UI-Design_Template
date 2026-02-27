@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASCII Style UI</title>
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #0c0c0c;
+            color: #00ff41;
+            font-family: 'Courier New', Courier, monospace;
+            min-height: 100vh;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+
+        pre {
+            white-space: pre;
+            font-family: inherit;
+            color: #00ff41;
+        }
+
+        .b {
+            color: #00ff41;
+        }
+
+        .d {
+            color: #005511;
+        }
+
+        .y {
+            color: #aaff00;
+        }
+
+        .r {
+            color: #ff4444;
+        }
+
+        .w {
+            color: #ccffcc;
+        }
+
+        .g {
+            color: #00aa22;
+        }
+
+        .blink {
+            animation: bl 1.2s step-end infinite;
+        }
+
+        @keyframes bl {
+            50% {
+                opacity: 0
+            }
+        }
+
+        .clickable {
+            cursor: pointer;
+            transition: color 0.1s;
+            display: inline-block;
+        }
+
+        .clickable:hover {
+            color: #aaff00;
+        }
+
+        hr.ascii {
+            border: none;
+            color: #005511;
+            margin: 1rem 0;
+        }
+
+        .input-line {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            margin-top: 0.5rem;
+        }
+
+        .ascii-input {
+            background: transparent;
+            border: none;
+            outline: none;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #00ff41;
+            flex: 1;
+            caret-color: #00ff41;
+        }
+
+        .menu-item {
+            display: block;
+            padding: 0.2rem 0;
+            cursor: pointer;
+        }
+
+        .menu-item:hover {
+            background: #001a00;
+            color: #aaff00;
+        }
+
+        .selected {
+            background: #003300;
+        }
+
+        .progress {
+            color: #005511;
+        }
+
+        .progress .fill {
+            color: #00ff41;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <pre class="b">
+╔══════════════════════════════════════════════════════════════════╗
+║                                                                  ║
+║   ████╗  ███╗   ███╗ ██████╗ ██╗    ██╗████████╗██╗  ██╗       ║
+║  ██╔══██╗████╗ ████║██╔════╝ ██║    ██║╚══██╔══╝██║  ██║       ║
+║  ███████║██╔████╔██║██║  ███╗██║    ██║   ██║   ███████║       ║
+║  ██╔══██║██║╚██╔╝██║██║   ██║██║    ██║   ██║   ██╔══██║       ║
+║  ██║  ██║██║ ╚═╝ ██║╚██████╔╝╚██████╔╝   ██║   ██║  ██║       ║
+║  ╚═╝  ╚═╝╚═╝     ╚═╝ ╚═════╝  ╚═════╝    ╚═╝   ╚═╝  ╚═╝       ║
+║                                                                  ║
+║           [ AMGULTH PORTFOLIO v2.6.1 TERMINAL EDITION ]         ║
+║                                                                  ║
+╚══════════════════════════════════════════════════════════════════╝
+</pre>
+        <pre class="g">
+  System: ASCII/ANSI Terminal Interface    Status: ONLINE ████████░░ 80%
+  Date:   27-FEB-2026 18:56                Memory: ▓▓▓▓▓▓▓░░░ 72% used
+  User:   guest@terminal                   CPU:    ▓▓▓▓░░░░░░ 40% load
+</pre>
+        <hr class="ascii">
+        <pre class="d">──────────────────────────────────────────────────────────────────────</pre>
+        <pre class="b">
+  ┌─────────────────────────────────────────────────────────────────┐
+  │  MAIN MENU                                               [?=help]│
+  ├─────────────────────────────────────────────────────────────────┤
+  │                                                                  │
+  │  <span class="menu-item clickable selected">  [1]  ABOUT ME ............. Personal background & skills   </span>│
+  │  <span class="menu-item clickable">  [2]  PORTFOLIO ............ View my work & projects         </span>│
+  │  <span class="menu-item clickable">  [3]  SERVICES ............. What I offer & pricing          </span>│
+  │  <span class="menu-item clickable">  [4]  CONTACT .............. Get in touch                    </span>│
+  │  <span class="menu-item clickable">  [5]  BLOG ................. Articles & tutorials             </span>│
+  │  <span class="menu-item clickable">  [Q]  QUIT ................. Exit terminal                    </span>│
+  │                                                                  │
+  └─────────────────────────────────────────────────────────────────┘
+</pre>
+        <pre class="w">
+  ┌──[ ABOUT ME ]───────────────────────────────────────────────────┐
+  │                                                                  │
+  │  Name   : Alex Vance                                            │
+  │  Role   : Full-Stack Developer & UI Designer                    │
+  │  Loc    : San Francisco, CA                                     │
+  │  Status : <span class="y">Available for Projects</span>                               │
+  │                                                                  │
+  │  Skills:                                                         │
+  │  ┌──────────────┬──────────────────────┬──────────┐            │
+  │  │ JavaScript   │ ████████████████░░░░ │  80%     │            │
+  │  │ TypeScript   │ ██████████████░░░░░░ │  70%     │            │
+  │  │ React        │ ████████████████████ │  95%     │            │
+  │  │ Node.js      │ ██████████████████░░ │  85%     │            │
+  │  │ CSS/Design   │ █████████████████░░░ │  90%     │            │
+  │  └──────────────┴──────────────────────┴──────────┘            │
+  │                                                                  │
+  └─────────────────────────────────────────────────────────────────┘
+</pre>
+        <pre class="b">
+  ┌──[ FEATURED PROJECTS ]──────────────────────────────────────────┐
+  │                                                                  │
+  │  ╔══════════════════════════════════════════════════════════╗   │
+  │  ║  #01  NEXUS — SaaS Dashboard Platform                   ║   │
+  │  ╠══════════════════════════════════════════════════════════╣   │
+  │  ║  Tech: React + TypeScript + Node.js + PostgreSQL        ║   │
+  │  ║  Desc: Real-time analytics platform for enterprise use  ║   │
+  │  ║  URL:  nexus-dashboard.dev                  [<span class="y">★★★★★</span>]  ║   │
+  │  ╚══════════════════════════════════════════════════════════╝   │
+  │                                                                  │
+  │  ╔══════════════════════════════════════════════════════════╗   │
+  │  ║  #02  AURORA UI — Component Library                     ║   │
+  │  ╠══════════════════════════════════════════════════════════╣   │
+  │  ║  Tech: React + CSS + Storybook + Jest                   ║   │
+  │  ║  Desc: 200+ accessible UI components with dark mode     ║   │
+  │  ║  URL:  aurora-ui.dev                        [<span class="y">★★★★☆</span>]  ║   │
+  │  ╚══════════════════════════════════════════════════════════╝   │
+  │                                                                  │
+  └─────────────────────────────────────────────────────────────────┘
+</pre>
+        <pre class="g">
+  ┌──[ CONTACT ]────────────────────────────────────────────────────┐
+  │                                                                  │
+  │  Email  : alex@vance.dev                                        │
+  │  GitHub : /alexvance                                            │
+  │  Twitter: @alexvance_dev                                        │
+  │                                                                  │
+  └─────────────────────────────────────────────────────────────────┘
+</pre>
+        <pre class="d">──────────────────────────────────────────────────────────────────────</pre>
+        <div class="input-line">
+            <span class="b">guest@terminal:~$ </span>
+            <input class="ascii-input" type="text" placeholder="type a command and press Enter..." autofocus>
+            <span class="b blink">█</span>
+        </div>
+        <pre class="g" style="margin-top:1rem">
+  Commands: help | about | projects | contact | clear | quit
+</pre>
+    </div>
+</body>
+
+</html>

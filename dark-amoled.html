@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark AMOLED UI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000000;
+            color: white;
+            min-height: 100vh;
+        }
+
+        .accent {
+            color: #7877c6;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem 2.5rem;
+            background: #000;
+            border-bottom: 1px solid #111;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #888;
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .nav-cta {
+            background: #7877c6;
+            color: white !important;
+            padding: 0.45rem 1rem;
+            border-radius: 8px;
+            font-weight: 600 !important;
+            transition: opacity 0.2s !important;
+        }
+
+        .nav-cta:hover {
+            opacity: 0.85;
+        }
+
+        .hero {
+            padding: 4rem 2.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            min-height: calc(100vh - 65px);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(120, 119, 198, 0.12);
+            border: 1px solid rgba(120, 119, 198, 0.2);
+            color: #a8a7e0;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            padding: 0.4rem 0.9rem;
+            border-radius: 50px;
+            margin-bottom: 1.75rem;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 4.5vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -2px;
+            margin-bottom: 1.25rem;
+        }
+
+        h1 span {
+            color: #7877c6;
+        }
+
+        .hero-desc {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.8;
+            max-width: 400px;
+            margin-bottom: 2.25rem;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .btn-amoled {
+            background: #7877c6;
+            color: white;
+            font-family: 'Inter';
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.75rem 1.75rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-amoled:hover {
+            background: #9998d4;
+        }
+
+        .btn-ghost {
+            background: #111;
+            color: #888;
+            font-family: 'Inter';
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding: 0.75rem 1.75rem;
+            border: 1px solid #222;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-ghost:hover {
+            border-color: #444;
+            color: white;
+        }
+
+        .hero-phone {
+            background: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 40px;
+            padding: 1.5rem;
+            max-width: 320px;
+            margin: 0 auto;
+            box-shadow: 0 0 80px rgba(120, 119, 198, 0.1);
+        }
+
+        .phone-notch {
+            width: 80px;
+            height: 26px;
+            background: #111;
+            border-radius: 50px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .notch-camera {
+            width: 10px;
+            height: 10px;
+            background: #222;
+            border-radius: 50%;
+        }
+
+        .phone-screen {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .phone-card {
+            background: #111;
+            border-radius: 16px;
+            padding: 1rem;
+        }
+
+        .pc-label {
+            font-size: 0.65rem;
+            color: #555;
+            margin-bottom: 0.25rem;
+            letter-spacing: 1px;
+        }
+
+        .pc-val {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .pc-change {
+            font-size: 0.72rem;
+            color: #4ade80;
+            margin-top: 0.2rem;
+        }
+
+        .phone-mini-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+
+        .pmg-item {
+            background: #111;
+            border-radius: 12px;
+            padding: 0.75rem;
+        }
+
+        .pmg-icon {
+            font-size: 1.2rem;
+            margin-bottom: 0.35rem;
+        }
+
+        .pmg-label {
+            font-size: 0.65rem;
+            color: #555;
+        }
+
+        .pmg-val {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .phone-activity {
+            background: #111;
+            border-radius: 16px;
+            padding: 1rem;
+        }
+
+        .activity-bars {
+            display: flex;
+            align-items: flex-end;
+            gap: 4px;
+            height: 50px;
+        }
+
+        .a-bar {
+            flex: 1;
+            background: #222;
+            border-radius: 3px 3px 0 0;
+        }
+
+        .a-bar.active {
+            background: #7877c6;
+        }
+
+        .phone-home {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .home-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #333;
+        }
+
+        .home-dot.active-dot {
+            background: #7877c6;
+        }
+
+        .features {
+            padding: 4rem 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .features-header h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .features-header p {
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: #111;
+            border: 1px solid #111;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .f-item {
+            background: #000;
+            padding: 2rem;
+            border-right: 1px solid #111;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .f-item:hover {
+            background: #080808;
+        }
+
+        .f-icon {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .f-item h3 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+        }
+
+        .f-item p {
+            font-size: 0.8rem;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .bottom-section {
+            padding: 3rem 2.5rem 5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.75rem;
+        }
+
+        .stat-block {
+            background: #0a0a0a;
+            border: 1px solid #111;
+            border-radius: 12px;
+            padding: 1.25rem;
+        }
+
+        .sb-val {
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.2rem;
+        }
+
+        .sb-lbl {
+            font-size: 0.72rem;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">● AMOLED</div>
+        <ul class="nav-links">
+            <li><a href="#">Features</a></li>
+            <li><a href="#">Gallery</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#" class="nav-cta">Download</a></li>
+        </ul>
+    </nav>
+    <section class="hero">
+        <div>
+            <div class="hero-badge">✦ True Black · Zero Light</div>
+            <h1>Pure black.<br><span>Pure focus.</span><br>Pure AMOLED.</h1>
+            <p class="hero-desc">Every pixel either glows or doesn't. On AMOLED screens, true black pixels turn fully
+                off — saving battery and creating infinite contrast ratios that glass simply cannot match.</p>
+            <div class="hero-btns">
+                <a href="#" class="btn-amoled">Download App</a>
+                <a href="#" class="btn-ghost">View Demo</a>
+            </div>
+        </div>
+        <div class="hero-phone">
+            <div class="phone-notch">
+                <div class="notch-camera"></div>
+            </div>
+            <div class="phone-screen">
+                <div class="phone-card">
+                    <div class="pc-label">BATTERY SAVED</div>
+                    <div class="pc-val" style="color:#7877c6">42%</div>
+                    <div class="pc-change">↑ vs standard dark mode</div>
+                </div>
+                <div class="phone-mini-grid">
+                    <div class="pmg-item">
+                        <div class="pmg-icon">🖤</div>
+                        <div class="pmg-label">TRUE BLACK</div>
+                        <div class="pmg-val">Active</div>
+                    </div>
+                    <div class="pmg-item">
+                        <div class="pmg-icon">💡</div>
+                        <div class="pmg-label">BRIGHTNESS</div>
+                        <div class="pmg-val">30%</div>
+                    </div>
+                    <div class="pmg-item">
+                        <div class="pmg-icon">⚡</div>
+                        <div class="pmg-label">BATTERY</div>
+                        <div class="pmg-val">87%</div>
+                    </div>
+                    <div class="pmg-item">
+                        <div class="pmg-icon">🌙</div>
+                        <div class="pmg-label">DARK MODE</div>
+                        <div class="pmg-val">On</div>
+                    </div>
+                </div>
+                <div class="phone-activity">
+                    <div class="pc-label" style="margin-bottom:0.75rem">SCREEN-ON HOURS</div>
+                    <div class="activity-bars">
+                        <div class="a-bar" style="height:30%"></div>
+                        <div class="a-bar" style="height:50%"></div>
+                        <div class="a-bar" style="height:40%"></div>
+                        <div class="a-bar" style="height:70%"></div>
+                        <div class="a-bar" style="height:55%"></div>
+                        <div class="a-bar active" style="height:90%"></div>
+                        <div class="a-bar active" style="height:100%"></div>
+                    </div>
+                </div>
+                <div class="phone-home">
+                    <div class="home-dot"></div>
+                    <div class="home-dot active-dot"></div>
+                    <div class="home-dot"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="features">
+        <div class="features-header">
+            <h2>Why <span class="accent">AMOLED</span> dark?</h2>
+            <p>Technology and design working together for a premium experience</p>
+        </div>
+        <div class="features-grid">
+            <div class="f-item"><span class="f-icon">🔋</span>
+                <h3>Battery Savings</h3>
+                <p>OLED pixels that show black are literally turned off. No light = no power draw. Up to 45% longer
+                    screen-on time.</p>
+            </div>
+            <div class="f-item"><span class="f-icon">🌑</span>
+                <h3>Infinite Contrast</h3>
+                <p>True black has no light emission, creating a contrast ratio of ∞:1. Colors appear to float in
+                    absolute darkness.</p>
+            </div>
+            <div class="f-item" style="border-right:none"><span class="f-icon">👁️</span>
+                <h3>Eye Comfort</h3>
+                <p>Reduced total luminance in dark environments decreases eye strain during late-night use dramatically.
+                </p>
+            </div>
+        </div>
+    </section>
+    <div class="bottom-section">
+        <div class="stat-block">
+            <div class="sb-val" style="color:#7877c6">42%</div>
+            <div class="sb-lbl">More battery life</div>
+        </div>
+        <div class="stat-block">
+            <div class="sb-val">∞:1</div>
+            <div class="sb-lbl">Contrast ratio</div>
+        </div>
+        <div class="stat-block">
+            <div class="sb-val" style="color:#4ade80">60%</div>
+            <div class="sb-lbl">Less eye strain</div>
+        </div>
+        <div class="stat-block">
+            <div class="sb-val">#000</div>
+            <div class="sb-lbl">True black pixels</div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frosted Sidebar Layout</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            min-height: 100vh;
+            display: flex;
+            color: white;
+        }
+
+        .sidebar {
+            width: 260px;
+            min-height: 100vh;
+            flex-shrink: 0;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border-right: 1px solid rgba(255, 255, 255, 0.12);
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 0 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 1.5rem;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #a78bfa, #8b5cf6);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .logo-text {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .sidebar-section {
+            margin-bottom: 2rem;
+        }
+
+        .section-label {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.35);
+            margin-bottom: 0.75rem;
+            padding: 0 0.5rem;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.7rem 0.75rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: rgba(255, 255, 255, 0.65);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            margin-bottom: 0.25rem;
+        }
+
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transform: translateX(4px);
+        }
+
+        .nav-item.active {
+            background: rgba(167, 139, 250, 0.2);
+            color: #a78bfa;
+            border: 1px solid rgba(167, 139, 250, 0.25);
+        }
+
+        .nav-icon {
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .badge {
+            margin-left: auto;
+            background: rgba(167, 139, 250, 0.25);
+            color: #a78bfa;
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 0.2rem 0.5rem;
+            border-radius: 50px;
+        }
+
+        .sidebar-footer {
+            margin-top: auto;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .user-card {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .user-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f472b6, #a78bfa);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .user-info .name {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .user-info .role {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.45);
+        }
+
+        main {
+            flex: 1;
+            padding: 2.5rem;
+            overflow-y: auto;
+        }
+
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2.5rem;
+        }
+
+        .page-title h1 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .page-title p {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 0.25rem;
+        }
+
+        .top-actions {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .search-bar {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 0.6rem 1rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: white;
+            outline: none;
+            width: 220px;
+        }
+
+        .search-bar::placeholder {
+            color: rgba(255, 255, 255, 0.35);
+        }
+
+        .action-btn {
+            background: linear-gradient(135deg, #a78bfa, #8b5cf6);
+            color: white;
+            border: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.6rem 1.25rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: transform 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.45);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-value {
+            font-size: 1.9rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .stat-change {
+            font-size: 0.75rem;
+            margin-top: 0.5rem;
+        }
+
+        .up {
+            color: #34d399;
+        }
+
+        .down {
+            color: #f87171;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(167, 139, 250, 0.3);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .ci-purple {
+            background: rgba(167, 139, 250, 0.15);
+        }
+
+        .ci-pink {
+            background: rgba(244, 114, 182, 0.15);
+        }
+
+        .ci-blue {
+            background: rgba(96, 165, 250, 0.15);
+        }
+
+        .card-header h3 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .card-header span {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .card p {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.55);
+            line-height: 1.7;
+        }
+
+        .progress-bar {
+            margin-top: 1.25rem;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            margin-bottom: 0.4rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .bar-track {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 50px;
+            height: 6px;
+        }
+
+        .bar-fill {
+            height: 100%;
+            border-radius: 50px;
+            background: linear-gradient(90deg, #a78bfa, #60a5fa);
+        }
+    </style>
+</head>
+
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <div class="logo-icon">⬡</div>
+            <div class="logo-text">Frosted OS</div>
+        </div>
+        <div class="sidebar-section">
+            <div class="section-label">Home</div>
+            <a href="#" class="nav-item active"><span class="nav-icon">⊞</span> Dashboard <span
+                    class="badge">5</span></a>
+            <a href="#" class="nav-item"><span class="nav-icon">📊</span> Analytics</a>
+            <a href="#" class="nav-item"><span class="nav-icon">🎯</span> Projects</a>
+            <a href="#" class="nav-item"><span class="nav-icon">📁</span> Files</a>
+        </div>
+        <div class="sidebar-section">
+            <div class="section-label">Workspace</div>
+            <a href="#" class="nav-item"><span class="nav-icon">💬</span> Messages <span class="badge">12</span></a>
+            <a href="#" class="nav-item"><span class="nav-icon">📅</span> Calendar</a>
+            <a href="#" class="nav-item"><span class="nav-icon">✅</span> Tasks</a>
+            <a href="#" class="nav-item"><span class="nav-icon">👥</span> Team</a>
+        </div>
+        <div class="sidebar-section">
+            <div class="section-label">Settings</div>
+            <a href="#" class="nav-item"><span class="nav-icon">⚙️</span> Preferences</a>
+            <a href="#" class="nav-item"><span class="nav-icon">🔒</span> Security</a>
+            <a href="#" class="nav-item"><span class="nav-icon">💳</span> Billing</a>
+        </div>
+        <div class="sidebar-footer">
+            <div class="user-card">
+                <div class="avatar">DV</div>
+                <div class="user-info">
+                    <div class="name">Deepak V.</div>
+                    <div class="role">Pro Member</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+    <main>
+        <div class="top-bar">
+            <div class="page-title">
+                <h1>Dashboard</h1>
+                <p>Welcome back, Deepak 👋</p>
+            </div>
+            <div class="top-actions">
+                <input class="search-bar" type="text" placeholder="🔍 Search...">
+                <button class="action-btn">+ New Project</button>
+            </div>
+        </div>
+        <div class="stats-row">
+            <div class="stat-card">
+                <div class="stat-label">Total Revenue</div>
+                <div class="stat-value">$42.8K</div>
+                <div class="stat-change up">↑ 12.5% from last month</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Active Projects</div>
+                <div class="stat-value">28</div>
+                <div class="stat-change up">↑ 4 new this week</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Team Members</div>
+                <div class="stat-value">14</div>
+                <div class="stat-change up">↑ 2 joined recently</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Pending Tasks</div>
+                <div class="stat-value">63</div>
+                <div class="stat-change down">↓ 8 overdue</div>
+            </div>
+        </div>
+        <div class="cards-grid">
+            <div class="content-card">
+                <div class="card-header">
+                    <div class="card-icon ci-purple">🚀</div>
+                    <div>
+                        <h3>Design System</h3><span>In Progress</span>
+                    </div>
+                </div>
+                <p>Building a comprehensive frosted glass component library for modern web applications.</p>
+                <div class="progress-bar">
+                    <div class="progress-label"><span>Progress</span><span>78%</span></div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width:78%"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-card">
+                <div class="card-header">
+                    <div class="card-icon ci-pink">💎</div>
+                    <div>
+                        <h3>Mobile App</h3><span>Review</span>
+                    </div>
+                </div>
+                <p>iOS and Android applications featuring haptic feedback and gesture-driven navigation.</p>
+                <div class="progress-bar">
+                    <div class="progress-label"><span>Progress</span><span>45%</span></div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width:45%"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-card">
+                <div class="card-header">
+                    <div class="card-icon ci-blue">📡</div>
+                    <div>
+                        <h3>API Gateway</h3><span>Active</span>
+                    </div>
+                </div>
+                <p>High-performance REST and GraphQL endpoints with automatic rate limiting and caching.</p>
+                <div class="progress-bar">
+                    <div class="progress-label"><span>Progress</span><span>92%</span></div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width:92%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

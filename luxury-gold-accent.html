@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Gold Accent UI</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --gold: #c9a84c;
+            --gold-light: #e8c97a;
+            --gold-dark: #8c6e2a;
+            --bg: #0a0a08;
+            --bg2: #111108;
+            --cream: #f5f0e8;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--cream);
+            min-height: 100vh;
+        }
+
+        .gold-line {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.75rem 4rem;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(245, 240, 232, 0.55);
+            text-decoration: none;
+            font-size: 0.78rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold-light);
+        }
+
+        .nav-col {
+            color: var(--gold-light) !important;
+            font-weight: 500;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 90vh;
+        }
+
+        .hero-left {
+            padding: 5rem 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-right: 1px solid rgba(201, 168, 76, 0.15);
+        }
+
+        .hero-tag {
+            font-size: 0.65rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .hero-tag::before,
+        .hero-tag::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            max-width: 40px;
+            background: var(--gold);
+            opacity: 0.5;
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 4.5vw, 5rem);
+            font-weight: 300;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+            margin-bottom: 1.5rem;
+            color: var(--cream);
+        }
+
+        h1 .gold-text {
+            color: var(--gold-light);
+            font-style: italic;
+        }
+
+        .hero-desc {
+            font-size: 0.9rem;
+            color: rgba(245, 240, 232, 0.5);
+            line-height: 1.9;
+            max-width: 380px;
+            margin-bottom: 3rem;
+            font-weight: 300;
+            letter-spacing: 0.3px;
+        }
+
+        .btn-gold {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-light), var(--gold));
+            background-size: 200% 100%;
+            color: var(--bg);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            padding: 1rem 2.5rem;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-position 0.4s, box-shadow 0.3s;
+        }
+
+        .btn-gold:hover {
+            background-position: right center;
+            box-shadow: 0 8px 30px rgba(201, 168, 76, 0.35);
+        }
+
+        .btn-ghost-gold {
+            display: inline-block;
+            background: transparent;
+            color: var(--gold-light);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 400;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            padding: 1rem 2.5rem;
+            border: 1px solid rgba(201, 168, 76, 0.4);
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-ghost-gold:hover {
+            border-color: var(--gold-light);
+            background: rgba(201, 168, 76, 0.05);
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .hero-right {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .product-showcase {
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            background: var(--bg2);
+            padding: 0;
+            width: 100%;
+            max-width: 380px;
+        }
+
+        .showcase-top {
+            padding: 2.5rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+        }
+
+        .showcase-emoji {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            filter: drop-shadow(0 0 20px rgba(201, 168, 76, 0.4));
+        }
+
+        .showcase-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            color: var(--cream);
+            margin-bottom: 0.5rem;
+        }
+
+        .showcase-sub {
+            font-size: 0.72rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .showcase-details {
+            padding: 1.5rem 2rem;
+        }
+
+        .detail-line {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.65rem 0;
+            border-bottom: 1px solid rgba(201, 168, 76, 0.08);
+            font-size: 0.78rem;
+        }
+
+        .detail-line .lbl {
+            color: rgba(245, 240, 232, 0.4);
+            letter-spacing: 0.5px;
+        }
+
+        .detail-line .val {
+            color: var(--gold-light);
+            font-weight: 500;
+        }
+
+        .showcase-price {
+            padding: 1.5rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(201, 168, 76, 0.15);
+        }
+
+        .price-lbl {
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.4rem;
+        }
+
+        .price-val {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--cream);
+        }
+
+        .collections {
+            padding: 5rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .col-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .col-tag {
+            font-size: 0.65rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .col-header h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .col-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: rgba(201, 168, 76, 0.1);
+        }
+
+        .col-item {
+            background: var(--bg);
+            padding: 3rem 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .col-item:hover {
+            background: var(--bg2);
+        }
+
+        .col-icon {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 0 10px rgba(201, 168, 76, 0.3));
+        }
+
+        .col-item h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
+            color: var(--cream);
+        }
+
+        .col-item p {
+            font-size: 0.8rem;
+            color: rgba(245, 240, 232, 0.4);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .col-link {
+            font-size: 0.68rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .col-link:hover {
+            color: var(--gold-light);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="gold-line"></div>
+    <nav>
+        <div class="logo">Aurum</div>
+        <ul class="nav-links">
+            <li><a href="#">Collections</a></li>
+            <li><a href="#">Bespoke</a></li>
+            <li><a href="#">Heritage</a></li>
+            <li><a href="#">Atelier</a></li>
+            <li><a href="#" class="nav-col">Enquire</a></li>
+        </ul>
+    </nav>
+    <div class="gold-line"></div>
+    <section class="hero">
+        <div class="hero-left">
+            <div class="hero-tag">Maison de Luxe · Est. 1892</div>
+            <h1>The art of<br><span class="gold-text">timeless</span><br>refinement</h1>
+            <p class="hero-desc">Aurum presents an exclusive collection of objets d'art and jewellery, each piece a
+                testament to the mastery of centuries-old craft traditions reimagined for the discerning modern
+                collector.</p>
+            <div class="hero-btns">
+                <a href="#" class="btn-gold">Explore Collection</a>
+                <a href="#" class="btn-ghost-gold">Private Viewing</a>
+            </div>
+        </div>
+        <div class="hero-right">
+            <div class="product-showcase">
+                <div class="showcase-top">
+                    <span class="showcase-emoji">💍</span>
+                    <div class="showcase-name">The Soleil Ring</div>
+                    <div class="showcase-sub">18k Gold · Diamond Pavé</div>
+                </div>
+                <div class="showcase-details">
+                    <div class="detail-line"><span class="lbl">Metal</span><span class="val">18k Yellow Gold</span>
+                    </div>
+                    <div class="detail-line"><span class="lbl">Stone</span><span class="val">1.2ct VVS Diamond</span>
+                    </div>
+                    <div class="detail-line"><span class="lbl">Origin</span><span class="val">Antwerp, Belgium</span>
+                    </div>
+                    <div class="detail-line"><span class="lbl">Edition</span><span class="val">Limited — 12
+                            Pieces</span></div>
+                </div>
+                <div class="showcase-price">
+                    <div class="price-lbl">Starting from</div>
+                    <div class="price-val">€ 28,500</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="gold-line" style="margin: 0 4rem;"></div>
+    <section class="collections">
+        <div class="col-header">
+            <div class="col-tag">Our Heritage</div>
+            <h2>Curated for the Connoisseur</h2>
+        </div>
+        <div class="col-grid">
+            <div class="col-item"><span class="col-icon">💎</span>
+                <h3>High Jewellery</h3>
+                <p>One-of-a-kind masterpieces set with the world's finest gemstones, each requiring months of meticulous
+                    craftsmanship.</p><a href="#" class="col-link">Discover →</a>
+            </div>
+            <div class="col-item"><span class="col-icon">⌚</span>
+                <h3>Horlogerie</h3>
+                <p>Time-honoured Swiss movements housed in cases of sculpted gold and platinum, destined to become
+                    heirlooms.</p><a href="#" class="col-link">Discover →</a>
+            </div>
+            <div class="col-item"><span class="col-icon">🏺</span>
+                <h3>Objets d'Art</h3>
+                <p>Decorative pieces that transform any space — from gilded sculptures to hand-painted porcelain of
+                    extraordinary quality.</p><a href="#" class="col-link">Discover →</a>
+            </div>
+        </div>
+    </section>
+    <div class="gold-line"></div>
+</body>
+
+</html>

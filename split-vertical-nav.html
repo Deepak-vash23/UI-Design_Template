@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Split Vertical Navigation UI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #050505;
+            color: white;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+        }
+
+        .split-nav {
+            width: 80px;
+            background: #0a0a0a;
+            border-right: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1.5rem 0;
+            z-index: 20;
+        }
+
+        .nav-logo {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .nav-icons {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .nav-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: rgba(255, 255, 255, 0.4);
+            position: relative;
+        }
+
+        .nav-icon:hover,
+        .nav-icon.active {
+            background: rgba(99, 102, 241, 0.2);
+            color: #818cf8;
+        }
+
+        .nav-icon.active::before {
+            content: '';
+            position: absolute;
+            left: -1px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 24px;
+            background: #6366f1;
+            border-radius: 0 3px 3px 0;
+        }
+
+        .nav-icon[data-tip]::after {
+            content: attr(data-tip);
+            position: absolute;
+            left: calc(100% + 12px);
+            top: 50%;
+            transform: translateY(-50%);
+            background: #1a1a2e;
+            color: white;
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+        }
+
+        .nav-icon:hover::after {
+            opacity: 1;
+        }
+
+        .nav-bottom {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .panel-container {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 240px 1fr;
+        }
+
+        .secondary-nav {
+            background: #0d0d0d;
+            border-right: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 1.5rem;
+            overflow-y: auto;
+        }
+
+        .sec-section {
+            margin-bottom: 2rem;
+        }
+
+        .sec-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.25);
+            margin-bottom: 0.75rem;
+        }
+
+        .sec-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.6rem 0.75rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .sec-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+        }
+
+        .sec-item.active {
+            background: rgba(99, 102, 241, 0.15);
+            color: #818cf8;
+        }
+
+        .sec-icon {
+            font-size: 0.9rem;
+        }
+
+        .sec-badge {
+            margin-left: auto;
+            background: rgba(99, 102, 241, 0.3);
+            color: #818cf8;
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 0.15rem 0.45rem;
+            border-radius: 50px;
+        }
+
+        .main {
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .page-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .search {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 0.55rem 1rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem;
+            color: white;
+            outline: none;
+            width: 200px;
+        }
+
+        .search::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .main-btn {
+            background: #6366f1;
+            color: white;
+            border: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 600;
+            padding: 0.55rem 1.25rem;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .kpi-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .kpi {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 12px;
+            padding: 1.25rem;
+        }
+
+        .kpi-v {
+            font-size: 1.7rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .kpi-l {
+            font-size: 0.72rem;
+            color: rgba(255, 255, 255, 0.4);
+            margin-top: 0.25rem;
+        }
+
+        .kpi-d {
+            font-size: 0.75rem;
+            margin-top: 0.5rem;
+            color: #34d399;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 1rem;
+        }
+
+        .main-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-tag {
+            font-size: 0.65rem;
+            color: rgba(255, 255, 255, 0.35);
+            font-weight: 400;
+        }
+
+        .table-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 1rem;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .table-row:last-child {
+            border-bottom: none;
+        }
+
+        .table-head {
+            opacity: 0.35;
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .row-main {
+            font-size: 0.82rem;
+            font-weight: 500;
+        }
+
+        .row-sub {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .status-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            margin-right: 0.4rem;
+        }
+
+        .val {
+            font-size: 0.82rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .side-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .activity-item {
+            display: flex;
+            gap: 0.75rem;
+            align-items: flex-start;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .act-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #818cf8;
+            margin-top: 5px;
+            flex-shrink: 0;
+        }
+
+        .act-text {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.5;
+        }
+
+        .act-time {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.25);
+            margin-top: 0.2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="split-nav">
+        <div class="nav-logo">⊞</div>
+        <div class="nav-icons">
+            <div class="nav-icon active" data-tip="Dashboard">⊞</div>
+            <div class="nav-icon" data-tip="Analytics">📊</div>
+            <div class="nav-icon" data-tip="Projects">🎯</div>
+            <div class="nav-icon" data-tip="Messages">💬</div>
+            <div class="nav-icon" data-tip="Calendar">📅</div>
+            <div class="nav-icon" data-tip="Files">📁</div>
+            <div class="nav-icon" data-tip="Team">👥</div>
+        </div>
+        <div class="nav-bottom">
+            <div class="nav-icon" data-tip="Settings">⚙️</div>
+            <div class="nav-icon" data-tip="Profile"
+                style="background:linear-gradient(135deg,#6366f1,#8b5cf6); width:36px; height:36px; border-radius:50%;font-size:0.9rem;font-weight:700; color:white">
+                DV</div>
+        </div>
+    </div>
+    <div class="panel-container">
+        <div class="secondary-nav">
+            <div class="sec-section">
+                <div class="sec-label">Views</div>
+                <div class="sec-item active"><span class="sec-icon">⊞</span> Overview</div>
+                <div class="sec-item"><span class="sec-icon">📈</span> Performance</div>
+                <div class="sec-item"><span class="sec-icon">⚡</span> Real-time <span class="sec-badge">LIVE</span>
+                </div>
+            </div>
+            <div class="sec-section">
+                <div class="sec-label">Projects</div>
+                <div class="sec-item"><span class="sec-icon">🚀</span> Project Aurora</div>
+                <div class="sec-item"><span class="sec-icon">💎</span> Nova Dashboard</div>
+                <div class="sec-item"><span class="sec-icon">🌊</span> Ocean API</div>
+                <div class="sec-item" style="color:rgba(255,255,255,0.25)"><span class="sec-icon">+</span> New Project
+                </div>
+            </div>
+            <div class="sec-section">
+                <div class="sec-label">Workspace</div>
+                <div class="sec-item"><span class="sec-icon">✅</span> Tasks <span class="sec-badge">8</span></div>
+                <div class="sec-item"><span class="sec-icon">📌</span> Pinned Items</div>
+                <div class="sec-item"><span class="sec-icon">🗄️</span> Archive</div>
+            </div>
+        </div>
+        <div class="main">
+            <div class="main-header">
+                <div class="page-title">Overview</div>
+                <div class="header-actions">
+                    <input class="search" placeholder="🔍 Search...">
+                    <button class="main-btn">+ New</button>
+                </div>
+            </div>
+            <div class="kpi-row">
+                <div class="kpi">
+                    <div class="kpi-v">$128K</div>
+                    <div class="kpi-l">Monthly Revenue</div>
+                    <div class="kpi-d">↑ 14.2%</div>
+                </div>
+                <div class="kpi">
+                    <div class="kpi-v">3,842</div>
+                    <div class="kpi-l">Active Users</div>
+                    <div class="kpi-d">↑ 8.7%</div>
+                </div>
+                <div class="kpi">
+                    <div class="kpi-v">94.2%</div>
+                    <div class="kpi-l">Satisfaction Score</div>
+                    <div class="kpi-d">↑ 2.1%</div>
+                </div>
+                <div class="kpi">
+                    <div class="kpi-v">12ms</div>
+                    <div class="kpi-l">Avg Response</div>
+                    <div class="kpi-d" style="color:#34d399">↓ 23%</div>
+                </div>
+            </div>
+            <div class="content-grid">
+                <div class="main-card">
+                    <div class="card-title">Recent Projects <span class="card-tag">Last 7 days</span></div>
+                    <div class="table-row table-head">
+                        <div>Project</div>
+                        <div>Status</div>
+                        <div>Team</div>
+                        <div>Progress</div>
+                    </div>
+                    <div class="table-row">
+                        <div>
+                            <div class="row-main">Aurora Platform</div>
+                            <div class="row-sub">Frontend redesign</div>
+                        </div>
+                        <div class="val"><span class="status-dot" style="background:#34d399"></span>Active</div>
+                        <div class="val">6 members</div>
+                        <div class="val">78%</div>
+                    </div>
+                    <div class="table-row">
+                        <div>
+                            <div class="row-main">Nova Dashboard</div>
+                            <div class="row-sub">Analytics UI</div>
+                        </div>
+                        <div class="val"><span class="status-dot" style="background:#fbbf24"></span>Review</div>
+                        <div class="val">4 members</div>
+                        <div class="val">55%</div>
+                    </div>
+                    <div class="table-row">
+                        <div>
+                            <div class="row-main">Ocean API v3</div>
+                            <div class="row-sub">Backend services</div>
+                        </div>
+                        <div class="val"><span class="status-dot" style="background:#818cf8"></span>Planning</div>
+                        <div class="val">3 members</div>
+                        <div class="val">22%</div>
+                    </div>
+                    <div class="table-row">
+                        <div>
+                            <div class="row-main">Pixel App</div>
+                            <div class="row-sub">Mobile application</div>
+                        </div>
+                        <div class="val"><span class="status-dot" style="background:#34d399"></span>Active</div>
+                        <div class="val">5 members</div>
+                        <div class="val">91%</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="side-card">
+                        <div class="card-title">Recent Activity</div>
+                        <div class="activity-item">
+                            <div class="act-dot"></div>
+                            <div>
+                                <div class="act-text">Alex merged PR #234 into main</div>
+                                <div class="act-time">5 min ago</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="act-dot" style="background:#34d399"></div>
+                            <div>
+                                <div class="act-text">Maya completed task: Design system v2</div>
+                                <div class="act-time">24 min ago</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="act-dot" style="background:#fbbf24"></div>
+                            <div>
+                                <div class="act-text">Sprint 14 review scheduled for Friday</div>
+                                <div class="act-time">1 hr ago</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="act-dot"></div>
+                            <div>
+                                <div class="act-text">New member joined Project Aurora</div>
+                                <div class="act-time">3 hrs ago</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="side-card">
+                        <div class="card-title">Team Online</div>
+                        <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+                            <div
+                                style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#6366f1,#8b5cf6);display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;border:2px solid #34d399">
+                                DV</div>
+                            <div
+                                style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#f472b6,#a78bfa);display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;border:2px solid #34d399">
+                                AK</div>
+                            <div
+                                style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#34d399,#06b6d4);display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;border:2px solid #34d399">
+                                MN</div>
+                            <div
+                                style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#fbbf24,#f97316);display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;border:2px solid rgba(255,255,255,0.1)">
+                                RC</div>
+                            <div
+                                style="width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:0.7rem;color:rgba(255,255,255,0.35)">
+                                +4</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeline-Focused UI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8f9fa;
+            color: #1a1a2e;
+            min-height: 100vh;
+        }
+
+        nav {
+            background: white;
+            padding: 1rem 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #1a1a2e;
+        }
+
+        .logo span {
+            color: #6366f1;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #1a1a2e;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero p {
+            color: #777;
+            font-size: 1rem;
+            max-width: 480px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .filter-row {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            padding: 1.5rem 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter {
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: #555;
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 0.45rem 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter:hover,
+        .filter.active {
+            background: #6366f1;
+            color: white;
+            border-color: #6366f1;
+        }
+
+        .timeline-wrapper {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 2rem 2rem 5rem;
+        }
+
+        .year-group {
+            margin-bottom: 3rem;
+        }
+
+        .year-label {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .year-text {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #6366f1;
+        }
+
+        .year-line {
+            flex: 1;
+            height: 1px;
+            background: rgba(0, 0, 0, 0.08);
+        }
+
+        .timeline {
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #6366f1, #8b5cf6);
+            border-radius: 1px;
+        }
+
+        .tl-item {
+            display: grid;
+            grid-template-columns: 60px 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .tl-dot-col {
+            display: flex;
+            justify-content: center;
+            padding-top: 0.3rem;
+        }
+
+        .tl-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: white;
+            border: 3px solid #6366f1;
+            z-index: 1;
+            position: relative;
+            flex-shrink: 0;
+            transition: transform 0.2s;
+        }
+
+        .tl-item:hover .tl-dot {
+            transform: scale(1.3);
+        }
+
+        .tl-dot.milestone {
+            background: #6366f1;
+            width: 20px;
+            height: 20px;
+        }
+
+        .tl-card {
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.07);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: box-shadow 0.2s, transform 0.2s;
+            cursor: pointer;
+        }
+
+        .tl-card:hover {
+            transform: translateX(4px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+        }
+
+        .card-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 0.25rem 0.6rem;
+            border-radius: 50px;
+        }
+
+        .tag-purple {
+            background: rgba(99, 102, 241, 0.1);
+            color: #6366f1;
+        }
+
+        .tag-green {
+            background: rgba(52, 211, 153, 0.1);
+            color: #059669;
+        }
+
+        .tag-orange {
+            background: rgba(251, 191, 36, 0.1);
+            color: #d97706;
+        }
+
+        .tag-blue {
+            background: rgba(96, 165, 250, 0.1);
+            color: #2563eb;
+        }
+
+        .card-date {
+            font-size: 0.72rem;
+            color: #999;
+            white-space: nowrap;
+        }
+
+        .card-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+            letter-spacing: -0.3px;
+        }
+
+        .card-desc {
+            font-size: 0.85rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .card-images {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .card-img {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 8px;
+            height: 70px;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .card-img.mix {
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+        }
+
+        .card-img.warm {
+            background: linear-gradient(135deg, #f97316, #fbbf24);
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .contributors {
+            display: flex;
+        }
+
+        .contrib-avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid white;
+            margin-right: -8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6rem;
+            font-weight: 700;
+        }
+
+        .card-meta {
+            font-size: 0.75rem;
+            color: #999;
+            margin-left: 1.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">Time<span>line</span></div>
+        <ul class="nav-links">
+            <li><a href="#">All Events</a></li>
+            <li><a href="#">Milestones</a></li>
+            <li><a href="#">Team</a></li>
+            <li><a href="#">Export</a></li>
+        </ul>
+        <button
+            style="background:#6366f1; color:white; border:none; font-family:'Inter',sans-serif; font-size:0.82rem; font-weight:600; padding:0.55rem 1.1rem; border-radius:8px; cursor:pointer;">+
+            Add Event</button>
+    </nav>
+    <section class="hero">
+        <h1>Project <span style="color:#6366f1">History</span></h1>
+        <p>A visual timeline of every milestone, launch, and key decision that shaped this project.</p>
+    </section>
+    <div class="filter-row">
+        <button class="filter active">All</button>
+        <button class="filter">Launches</button>
+        <button class="filter">Milestones</button>
+        <button class="filter">Decisions</button>
+        <button class="filter">Releases</button>
+    </div>
+    <div class="timeline-wrapper">
+        <div class="year-group">
+            <div class="year-label"><span class="year-text">2026</span>
+                <div class="year-line"></div>
+            </div>
+            <div class="timeline">
+                <div class="tl-item">
+                    <div class="tl-dot-col">
+                        <div class="tl-dot milestone"></div>
+                    </div>
+                    <div class="tl-card">
+                        <div class="card-header">
+                            <div class="card-tags"><span class="tag tag-purple">Milestone</span><span
+                                    class="tag tag-green">Product</span></div>
+                            <span class="card-date">Feb 27, 2026</span>
+                        </div>
+                        <div class="card-title">Platform v3.0 — Major Release 🚀</div>
+                        <p class="card-desc">Launched the completely redesigned platform with AI-powered features, new
+                            design system, and 40% performance improvement across all core workflows.</p>
+                        <div class="card-images">
+                            <div class="card-img">🎯</div>
+                            <div class="card-img mix">📊</div>
+                            <div class="card-img warm">⚡</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="contributors">
+                                <div class="contrib-avatar" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)">
+                                    DV</div>
+                                <div class="contrib-avatar" style="background:linear-gradient(135deg,#f472b6,#ec4899)">
+                                    MN</div>
+                                <div class="contrib-avatar" style="background:linear-gradient(135deg,#34d399,#06b6d4)">
+                                    AK</div>
+                            </div>
+                            <span class="card-meta">12 team members · 84 commits</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot-col">
+                        <div class="tl-dot"></div>
+                    </div>
+                    <div class="tl-card">
+                        <div class="card-header">
+                            <div class="card-tags"><span class="tag tag-blue">Feature</span></div>
+                            <span class="card-date">Jan 15, 2026</span>
+                        </div>
+                        <div class="card-title">AI Assistant Integration Shipped</div>
+                        <p class="card-desc">Integrated GPT-based AI assistant into the main product, enabling natural
+                            language queries across all data sources and automated report generation.</p>
+                        <div class="card-footer">
+                            <div class="contributors">
+                                <div class="contrib-avatar" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)">
+                                    DV</div>
+                                <div class="contrib-avatar" style="background:linear-gradient(135deg,#fbbf24,#f97316)">
+                                    RC</div>
+                            </div>
+                            <span class="card-meta">3 devs · Sprint 21</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="year-group">
+            <div class="year-label"><span class="year-text">2025</span>
+                <div class="year-line"></div>
+            </div>
+            <div class="timeline">
+                <div class="tl-item">
+                    <div class="tl-dot-col">
+                        <div class="tl-dot milestone"></div>
+                    </div>
+                    <div class="tl-card">
+                        <div class="card-header">
+                            <div class="card-tags"><span class="tag tag-purple">Milestone</span><span
+                                    class="tag tag-orange">Funding</span></div>
+                            <span class="card-date">Oct 3, 2025</span>
+                        </div>
+                        <div class="card-title">Series A Funding Closed — $12M 💰</div>
+                        <p class="card-desc">Successfully closed our Series A round of $12M led by Horizon Ventures and
+                            Atlas Capital. Funds to accelerate product development and team expansion.</p>
+                    </div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot-col">
+                        <div class="tl-dot"></div>
+                    </div>
+                    <div class="tl-card">
+                        <div class="card-header">
+                            <div class="card-tags"><span class="tag tag-green">Launch</span></div>
+                            <span class="card-date">Mar 15, 2025</span>
+                        </div>
+                        <div class="card-title">Public Beta — 1,000 Users Milestone</div>
+                        <p class="card-desc">Opened the public beta and onboarded our first 1,000 users within 48 hours
+                            of launch. NPS score of 72 on day one — validation of core product value.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

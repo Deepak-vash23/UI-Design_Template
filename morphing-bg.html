@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morphing Background UI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .morphing-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background: linear-gradient(135deg, #2d0057, #7a0099, #ff0080, #ff6030);
+            animation: bgShift 10s ease-in-out infinite alternate;
+        }
+
+        @keyframes bgShift {
+            0% {
+                background: linear-gradient(135deg, #1a0033, #6600cc, #cc0066, #ff3300);
+            }
+
+            25% {
+                background: linear-gradient(180deg, #002244, #0066cc, #6600cc, #cc00aa);
+            }
+
+            50% {
+                background: linear-gradient(225deg, #005500, #0099aa, #006699, #000099);
+            }
+
+            75% {
+                background: linear-gradient(90deg, #440022, #880044, #dd0077, #ff4400);
+            }
+
+            100% {
+                background: linear-gradient(315deg, #220044, #7700bb, #ff0088, #ff6600);
+            }
+        }
+
+        .morph1,
+        .morph2,
+        .morph3 {
+            position: fixed;
+            z-index: 1;
+            opacity: 0.5;
+            animation: morphShape 8s ease-in-out infinite;
+            mix-blend-mode: overlay;
+        }
+
+        .morph1 {
+            width: 600px;
+            height: 600px;
+            background: rgba(255, 255, 255, 0.15);
+            top: -100px;
+            left: -100px;
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            animation-duration: 7s;
+        }
+
+        .morph2 {
+            width: 500px;
+            height: 500px;
+            background: rgba(255, 255, 255, 0.1);
+            bottom: -50px;
+            right: -80px;
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            animation-duration: 9s;
+            animation-delay: -3s;
+        }
+
+        .morph3 {
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.12);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 30% 70% 50% 50% / 50% 30% 70% 70%;
+            animation-duration: 11s;
+            animation-delay: -5s;
+        }
+
+        @keyframes morphShape {
+
+            0%,
+            100% {
+                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+                transform: rotate(0deg) scale(1);
+            }
+
+            33% {
+                border-radius: 30% 70% 70% 30% / 30% 70% 30% 70%;
+                transform: rotate(120deg) scale(1.1);
+            }
+
+            66% {
+                border-radius: 50% 50% 20% 80% / 50% 80% 20% 50%;
+                transform: rotate(240deg) scale(0.9);
+            }
+        }
+
+        nav {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem 3rem;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        main {
+            position: relative;
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 80px);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .eyebrow {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 7vw, 6rem);
+            font-weight: 900;
+            color: white;
+            letter-spacing: -3px;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 em {
+            font-style: normal;
+            color: rgba(255, 255, 255, 0.55);
+        }
+
+        .subtitle {
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 520px;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 0;
+            max-width: 520px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .search-box input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            padding: 1rem 1.5rem;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            color: white;
+        }
+
+        .search-box input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .search-box button {
+            background: rgba(255, 255, 255, 0.9);
+            color: #2d0057;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            border: none;
+            padding: 1rem 1.75rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .search-box button:hover {
+            background: white;
+        }
+
+        .tags {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tag:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .cards {
+            position: relative;
+            z-index: 5;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            color: white;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.18);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.7);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="morphing-bg"></div>
+    <div class="morph1"></div>
+    <div class="morph2"></div>
+    <div class="morph3"></div>
+    <nav>
+        <div class="logo">◈ Morph</div>
+        <ul class="nav-links">
+            <li><a href="#">Explore</a></li>
+            <li><a href="#">Studio</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">Login</a></li>
+        </ul>
+    </nav>
+    <main>
+        <div class="eyebrow">✦ Next Generation Design</div>
+        <h1>Living<br><em>back</em>grounds<br>that breathe</h1>
+        <p class="subtitle">Experience interfaces that are never static. Our morphing design system creates backgrounds
+            that feel alive and in constant, beautiful motion.</p>
+        <div class="search-box">
+            <input type="text" placeholder="Search design templates...">
+            <button>Search →</button>
+        </div>
+        <div class="tags">
+            <span class="tag">Gradient</span>
+            <span class="tag">Abstract</span>
+            <span class="tag">Aurora</span>
+            <span class="tag">Minimal</span>
+            <span class="tag">Dark Mode</span>
+        </div>
+    </main>
+    <div class="cards">
+        <div class="card">
+            <div class="card-icon">🌊</div>
+            <h3>Fluid Animations</h3>
+            <p>CSS-only morphing shapes that transform smoothly without any JavaScript overhead.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">🎨</div>
+            <h3>Dynamic Colors</h3>
+            <p>Background gradients shift through the entire spectrum, creating an ever-changing atmosphere.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">⚡</div>
+            <h3>GPU Accelerated</h3>
+            <p>All animations run on the compositor thread for butter-smooth 60fps performance everywhere.</p>
+        </div>
+    </div>
+</body>
+
+</html>

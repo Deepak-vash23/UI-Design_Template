@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glitch Effect UI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Share Tech Mono', monospace;
+            background: #000;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .scanlines {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            pointer-events: none;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.1) 2px, rgba(0, 0, 0, 0.1) 4px);
+        }
+
+        .noise {
+            position: fixed;
+            inset: 0;
+            z-index: 99;
+            pointer-events: none;
+            opacity: 0.03;
+            animation: noiseAnim 0.15s steps(2) infinite;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        @keyframes noiseAnim {
+            0% {
+                background-position: 0 0
+            }
+
+            100% {
+                background-position: 100% 100%
+            }
+        }
+
+        nav {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem 3rem;
+            border-bottom: 1px solid rgba(255, 0, 80, 0.3);
+        }
+
+        .logo {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1.8rem;
+            letter-spacing: 4px;
+            position: relative;
+            display: inline-block;
+            color: white;
+        }
+
+        .logo::before {
+            content: attr(data-text);
+            position: absolute;
+            left: 2px;
+            top: 0;
+            color: #ff0050;
+            clip-path: polygon(0 30%, 100% 30%, 100% 50%, 0 50%);
+            animation: glitchClip 3s ease-in-out infinite;
+            opacity: 0.7;
+        }
+
+        .logo::after {
+            content: attr(data-text);
+            position: absolute;
+            left: -2px;
+            top: 0;
+            color: #00f5ff;
+            clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%);
+            animation: glitchClip 2.5s ease-in-out infinite reverse;
+            opacity: 0.7;
+        }
+
+        @keyframes glitchClip {
+
+            0%,
+            90%,
+            100% {
+                clip-path: polygon(0 40%, 100% 40%, 100% 60%, 0 60%)
+            }
+
+            93% {
+                clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%)
+            }
+
+            96% {
+                clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%)
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.78rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #ff0050;
+        }
+
+        .glitch-btn {
+            background: transparent;
+            border: 1px solid #ff0050;
+            color: #ff0050;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.78rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 0.6rem 1.25rem;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: color 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .glitch-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: #ff0050;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.25s;
+            z-index: -1;
+        }
+
+        .glitch-btn:hover {
+            color: white;
+        }
+
+        .glitch-btn:hover::before {
+            transform: scaleX(1);
+        }
+
+        .hero {
+            position: relative;
+            z-index: 5;
+            min-height: calc(100vh - 80px);
+            display: flex;
+            align-items: center;
+            padding: 4rem 3rem;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .glitch-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: clamp(5rem, 12vw, 12rem);
+            line-height: 0.9;
+            letter-spacing: 3px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .glitch-title:hover {
+            animation: glitchHover 0.3s steps(2) forwards;
+        }
+
+        @keyframes glitchHover {
+            0% {
+                text-shadow: 3px 0 #ff0050, -3px 0 #00f5ff;
+                transform: skewX(0deg);
+            }
+
+            20% {
+                text-shadow: -5px 0 #ff0050, 5px 0 #00f5ff;
+                transform: skewX(-5deg);
+            }
+
+            40% {
+                text-shadow: 5px 0 #ff0050, -5px 0 #00f5ff;
+                transform: skewX(5deg);
+            }
+
+            60% {
+                text-shadow: -3px 0 #ff0050, 3px 0 #00f5ff;
+                transform: skewX(0deg);
+            }
+
+            80% {
+                text-shadow: 3px 0 #ff0050, -3px 0 #00f5ff;
+                transform: skewX(-2deg);
+            }
+
+            100% {
+                text-shadow: none;
+                transform: skewX(0);
+            }
+        }
+
+        .t-line1 {
+            display: block;
+            color: white;
+            animation: glitch1 4s ease-in-out infinite;
+        }
+
+        .t-line2 {
+            display: block;
+            color: #ff0050;
+            animation: glitch2 3.5s ease-in-out infinite;
+            text-shadow: 3px 0 rgba(0, 245, 255, 0.5);
+        }
+
+        .t-line3 {
+            display: block;
+            color: rgba(255, 255, 255, 0.15);
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+        }
+
+        @keyframes glitch1 {
+
+            0%,
+            95%,
+            100% {
+                transform: none;
+                opacity: 1
+            }
+
+            96% {
+                transform: translate(4px);
+                opacity: 0.8
+            }
+
+            97% {
+                transform: translate(-4px);
+                opacity: 0.9
+            }
+
+            98% {
+                transform: translate(2px, 1px);
+                opacity: 0.7
+            }
+
+            99% {
+                transform: none;
+                opacity: 1
+            }
+        }
+
+        @keyframes glitch2 {
+
+            0%,
+            92%,
+            100% {
+                transform: none
+            }
+
+            93% {
+                transform: translate(-6px)
+            }
+
+            95% {
+                transform: translate(4px)
+            }
+
+            97% {
+                transform: translate(-2px)
+            }
+        }
+
+        .hero-right {
+            width: 400px;
+            padding-left: 4rem;
+        }
+
+        .glitch-card {
+            border: 1px solid rgba(255, 0, 80, 0.3);
+            padding: 1.5rem;
+            background: rgba(255, 0, 80, 0.05);
+            position: relative;
+        }
+
+        .glitch-card::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border: 1px solid rgba(0, 245, 255, 0.3);
+            transform: translate(4px, 4px);
+            pointer-events: none;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.25rem;
+            border-bottom: 1px solid rgba(255, 0, 80, 0.2);
+            padding-bottom: 0.75rem;
+        }
+
+        .card-id {
+            font-size: 0.65rem;
+            color: #ff0050;
+            letter-spacing: 2px;
+        }
+
+        .card-status {
+            font-size: 0.65rem;
+            letter-spacing: 1px;
+        }
+
+        .status-ok {
+            color: #00ff88;
+        }
+
+        .data-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .d-item {}
+
+        .d-label {
+            font-size: 0.6rem;
+            color: rgba(255, 255, 255, 0.3);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 0.2rem;
+        }
+
+        .d-val {
+            font-size: 0.9rem;
+            color: #00f5ff;
+        }
+
+        .noise-bar {
+            height: 3px;
+            background: rgba(255, 255, 255, 0.05);
+            margin: 1rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .noise-fill {
+            height: 100%;
+            animation: noiseFill 2s ease-in-out infinite;
+        }
+
+        @keyframes noiseFill {
+            0% {
+                width: 0;
+                background: #ff0050
+            }
+
+            50% {
+                width: 80%;
+                background: #00f5ff
+            }
+
+            100% {
+                width: 0;
+                background: #ff0050
+            }
+        }
+
+        .error-log {
+            font-size: 0.72rem;
+            color: rgba(255, 255, 255, 0.35);
+            line-height: 1.8;
+        }
+
+        .err {
+            color: #ff0050;
+        }
+
+        .ok {
+            color: #00ff88;
+        }
+
+        .warn {
+            color: #ffd32a;
+        }
+
+        .sections {
+            position: relative;
+            z-index: 5;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: rgba(255, 0, 80, 0.15);
+            border-top: 1px solid rgba(255, 0, 80, 0.2);
+            padding-top: 1px;
+        }
+
+        .sec {
+            background: #000;
+            padding: 2rem;
+        }
+
+        .sec:hover {
+            background: rgba(255, 0, 80, 0.04);
+        }
+
+        .sec-id {
+            font-size: 0.6rem;
+            color: rgba(255, 255, 255, 0.2);
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+        }
+
+        .sec h3 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            margin-bottom: 0.75rem;
+            color: #ff0050;
+        }
+
+        .sec p {
+            font-size: 0.78rem;
+            color: rgba(255, 255, 255, 0.45);
+            line-height: 1.7;
+        }
+
+        .glitch-list {
+            list-style: none;
+            margin-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .glitch-list li {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            padding-left: 0.75rem;
+            border-left: 2px solid rgba(255, 0, 80, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="scanlines"></div>
+    <div class="noise"></div>
+    <nav>
+        <div class="logo" data-text="GL1TCH">GL1TCH</div>
+        <ul class="nav-links">
+            <li><a href="#">System</a></li>
+            <li><a href="#">Corrupted</a></li>
+            <li><a href="#">Archive</a></li>
+            <li><a href="#">Error_log</a></li>
+        </ul>
+        <a href="#" class="glitch-btn">ACCESS_0xFF</a>
+    </nav>
+    <section class="hero">
+        <div class="hero-text">
+            <div class="glitch-title">
+                <span class="t-line1">GLITCH</span>
+                <span class="t-line2">IN THE</span>
+                <span class="t-line3">MATRIX</span>
+            </div>
+            <div style="margin-top:2rem; max-width:460px;">
+                <p
+                    style="font-size:0.85rem; color:rgba(255,255,255,0.45); line-height:1.8; margin-bottom:2rem; letter-spacing:0.5px;">
+                    ERROR_CODE: VISUAL_CORRUPTION — The system has encountered an unexpected aesthetic malfunction.
+                    Digital artifacts, scan lines, and chromatic aberration are now features, not bugs.</p>
+                <div style="display:flex; gap:1rem;">
+                    <a href="#" class="glitch-btn">EXECUTE</a>
+                    <a href="#" class="glitch-btn" style="border-color:rgba(0,245,255,0.5); color:#00f5ff;">ABORT</a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-right">
+            <div class="glitch-card">
+                <div class="card-header">
+                    <span class="card-id">SYSTEM_ID: 0xFF4A2C</span>
+                    <span class="card-status status-ok">● ONLINE</span>
+                </div>
+                <div class="data-row">
+                    <div class="d-item">
+                        <div class="d-label">Corruption Level</div>
+                        <div class="d-val">87.3%</div>
+                    </div>
+                    <div class="d-item">
+                        <div class="d-label">Glitch Rate</div>
+                        <div class="d-val">14/sec</div>
+                    </div>
+                    <div class="d-item">
+                        <div class="d-label">Signal</div>
+                        <div class="d-val">BROKEN</div>
+                    </div>
+                    <div class="d-item">
+                        <div class="d-label">Reality Index</div>
+                        <div class="d-val">0.001</div>
+                    </div>
+                </div>
+                <div class="noise-bar">
+                    <div class="noise-fill"></div>
+                </div>
+                <div class="error-log">
+                    <div><span class="err">[ERR]</span> Frame buffer overflow detected</div>
+                    <div><span class="warn">[WRN]</span> Chromatic aberration: +8px offset</div>
+                    <div><span class="ok">[OK]</span> Scanline renderer: active</div>
+                    <div><span class="err">[ERR]</span> Reality texture: missing</div>
+                    <div><span class="warn">[WRN]</span> Matrix connection: unstable</div>
+                    <div><span class="ok">[OK]</span> Glitch engine: running</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="sections">
+        <div class="sec">
+            <div class="sec-id">MOD_001</div>
+            <h3>Visual Corruption</h3>
+            <p>RGB channel splitting, pixel displacement, and scan-line artifacts create the signature glitch aesthetic
+                that disrupts visual order.</p>
+            <ul class="glitch-list">
+                <li>Channel splitting (R/G/B offset)</li>
+                <li>Pixel displacement maps</li>
+                <li>Scan-line overlay filters</li>
+            </ul>
+        </div>
+        <div class="sec">
+            <div class="sec-id">MOD_002</div>
+            <h3>Data Distortion</h3>
+            <p>Typography that appears to malfunction, characters that flicker, and text that shifts between states —
+                digital unreliability as art.</p>
+            <ul class="glitch-list">
+                <li>CSS clip-path animations</li>
+                <li>Pseudo-element text offsets</li>
+                <li>Keyframe-based flicker</li>
+            </ul>
+        </div>
+        <div class="sec">
+            <div class="sec-id">MOD_003</div>
+            <h3>Audio Override</h3>
+            <p>Synthesized noise patterns and corrupted audio signatures that reinforce the digital degradation theme
+                through multi-sensory design.</p>
+            <ul class="glitch-list">
+                <li>Web Audio API distortion</li>
+                <li>Bitcrusher effects</li>
+                <li>Error beep sequences</li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
