@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>UI Design Showcase — Template Gallery</title>
     <meta name="description"
-        content="Browse 37 stunning UI design templates across various aesthetics including 10 school website designs." />
+        content="Browse 31 stunning UI design templates across various aesthetics including 4 school website designs." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -466,14 +466,14 @@
         <header>
             <div class="badge">UI Design Gallery</div>
             <h1>UI Template Showcase</h1>
-            <p>A curated collection of 37 distinct UI design templates. Click any card to open the live template.</p>
+            <p>A curated collection of 4 school UI design templates. Click any card to open the live template.</p>
             <div class="stats-bar">
                 <div class="stat">
-                    <div class="stat-num">37</div>
+                    <div class="stat-num">4</div>
                     <div class="stat-label">Templates</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-num">12+</div>
+                    <div class="stat-num">4</div>
                     <div class="stat-label">Styles</div>
                 </div>
                 <div class="stat">
@@ -490,63 +490,25 @@
             </div>
         </div>
 
-        <div class="result-count" id="result-count">Showing all 37 templates</div>
+        <div class="result-count" id="result-count">Showing all 4 templates</div>
 
         <div class="grid-container">
             <div class="grid" id="grid"></div>
         </div>
 
-        <footer>UI Design Showcase &nbsp;·&nbsp; 37 Templates &nbsp;·&nbsp; Click any card to open the template</footer>
+        <footer>School UI Design Showcase &nbsp;·&nbsp; 4 Templates &nbsp;·&nbsp; Click any card to open the template
+        </footer>
     </div>
 
     <script>
         const templates = [
-            { file: 'ascii-style.html', title: 'ASCII Style', icon: '⚙', tag: 'Retro', desc: 'Old-school terminal ASCII art aesthetic with monospaced characters and a nostalgic CRT vibe.', stripe: '#00ff41,#007a1f' },
-            { file: 'aurora-gradient.html', title: 'Aurora Gradient', icon: '🌌', tag: 'Abstract', desc: 'Fluid northern-lights-inspired gradient flows with luminous colour transitions.', stripe: '#43e97b,#38f9d7,#4facfe' },
-            { file: 'comic-style.html', title: 'Comic Style', icon: '💥', tag: 'Playful', desc: 'Bold outlines, halftone dots, and pop-art energy straight out of a comic book panel.', stripe: '#f7971e,#ffd200' },
-            { file: 'cyber-minimal.html', title: 'Cyber Minimal', icon: '⚡', tag: 'Futuristic', desc: 'Sleek cyberpunk minimalism — neon accents, sharp geometry, and electric dark backgrounds.', stripe: '#00f0ff,#7928ca' },
-            { file: 'dark-amoled.html', title: 'Dark AMOLED', icon: '🖤', tag: 'Dark Mode', desc: 'True-black AMOLED-optimised dark design with rich contrast and vivid neon highlights.', stripe: '#555,#111' },
-            { file: 'dashboard-widget.html', title: 'Dashboard Widget', icon: '📊', tag: 'Dashboard', desc: 'Modular widget layout with cards, data panels, and clean information hierarchy.', stripe: '#667eea,#764ba2' },
-            { file: 'frosted-sidebar.html', title: 'Frosted Sidebar', icon: '❄️', tag: 'Glassmorphism', desc: 'Glassmorphic frosted-glass sidebar with blurred backdrop and translucent panels.', stripe: '#a8edea,#fed6e3' },
-            { file: 'fullscreen-carousel.html', title: 'Fullscreen Carousel', icon: '🎠', tag: 'Layout', desc: 'Immersive full-viewport carousel with bold photography-first presentation.', stripe: '#f093fb,#f5576c' },
-            { file: 'glitch-effect.html', title: 'Glitch Effect', icon: '📡', tag: 'Experimental', desc: 'Distorted RGB channel splits, scanlines, and flickering animations for a digital-glitch feel.', stripe: '#ff0080,#7928ca' },
-            { file: 'hand-drawn-sketch.html', title: 'Hand‑Drawn Sketch', icon: '✏️', tag: 'Organic', desc: 'Rough pencil strokes, imperfect lines, and paper-texture aesthetic that feels hand-crafted.', stripe: '#d4a574,#b5835a' },
-            { file: 'high-contrast-black-yellow.html', title: 'High Contrast B&Y', icon: '⚠️', tag: 'Accessible', desc: 'Maximum-contrast black and yellow palette — bold, energetic, and highly accessible.', stripe: '#f9d71c,#333' },
-            { file: 'holographic.html', title: 'Holographic', icon: '🌈', tag: 'Futuristic', desc: 'Iridescent holographic foil shimmer with shifting rainbow reflections and prism effects.', stripe: '#ff0080,#ffec00,#00cf6e,#00b4ff' },
-            { file: 'kinetic-typography.html', title: 'Kinetic Typography', icon: '🔤', tag: 'Motion', desc: 'Typography as the hero — animated letterforms, morphing text, and motion-forward design.', stripe: '#fc4a1a,#f7b733' },
-            { file: 'liquid-blob.html', title: 'Liquid Blob', icon: '💧', tag: 'Abstract', desc: 'Organic morphing blob shapes with fluid motion and soft gradient fills.', stripe: '#4facfe,#00f2fe' },
-            { file: 'luxury-gold-accent.html', title: 'Luxury Gold Accent', icon: '✨', tag: 'Luxury', desc: 'Dark opulent base with gilded gold accents, velvet textures, and premium typography.', stripe: '#f7971e,#ffd200' },
-            { file: 'magazine-grid.html', title: 'Magazine Grid', icon: '📰', tag: 'Editorial', desc: 'Editorial magazine layout with asymmetric grids, bold headlines, and print-inspired design.', stripe: '#e53e3e,#c53030' },
-            { file: 'morphing-bg.html', title: 'Morphing Background', icon: '🌊', tag: 'Animated', desc: 'Continuously morphing animated background with smooth colour and shape transitions.', stripe: '#a18cd1,#fbc2eb' },
-            { file: 'muted-earth-tone.html', title: 'Muted Earth Tone', icon: '🌿', tag: 'Organic', desc: 'Soothing terracotta, sage, and sand palette with a natural, grounded aesthetic.', stripe: '#c6956a,#a8c090' },
-            { file: 'outline-only.html', title: 'Outline Only', icon: '🔲', tag: 'Minimalist', desc: 'Stroke-only wireframe aesthetic — zero fills, just clean outlines on a pure canvas.', stripe: '#bdc3c7,#555' },
-            { file: 'pixel-art.html', title: 'Pixel Art', icon: '🕹️', tag: 'Retro', desc: '8-bit pixel-art style with grid-snapped elements, chunky borders, and retro game palettes.', stripe: '#f76b1c,#fad961' },
-            { file: 'portfolio-masonry.html', title: 'Portfolio Masonry', icon: '🖼️', tag: 'Portfolio', desc: 'Fluid masonry Pinterest-style grid for showcasing creative work in varying proportions.', stripe: '#30cfd0,#330867' },
-            { file: 'soft-pastel.html', title: 'Soft Pastel', icon: '🍬', tag: 'Cute', desc: 'Gentle pastel hues, rounded corners, and airy spacing for a soft, delightful interface.', stripe: '#fbc2eb,#a6c1ee' },
-            { file: 'split-vertical-nav.html', title: 'Split Vertical Nav', icon: '🗂️', tag: 'Layout', desc: 'Left-panel vertical navigation split with main content area — ideal for apps and dashboards.', stripe: '#0f3443,#34e89e' },
-            { file: 'terminal-cli.html', title: 'Terminal CLI', icon: '💻', tag: 'Retro', desc: 'Command-line terminal aesthetic with monospace font, blinking cursor, and hacker green glow.', stripe: '#0f0c29,#24243e' },
-            { file: 'timeline-focused.html', title: 'Timeline Focused', icon: '📅', tag: 'Layout', desc: 'Vertical timeline layout perfect for history, events, changelogs, and progress tracking.', stripe: '#4776e6,#8e54e9' },
-            { file: 'transparent-layers.html', title: 'Transparent Layers', icon: '🔮', tag: 'Glassmorphism', desc: 'Stacked translucent layers with depth, backdrop-blur, and beautiful glass overlay effects.', stripe: '#89f7fe,#66a6ff' },
-            { file: 'ultra-thin-line.html', title: 'Ultra Thin Line', icon: '➖', tag: 'Minimalist', desc: 'Hairline strokes, expansive whitespace, and razor-sharp minimalism for a refined look.', stripe: '#c9d6df,#52616b' },
             { file: 'school-institutional.html', title: 'School – Institutional', icon: '🏛️', tag: 'School', desc: 'Clean institutional UI with white background, navy accents, notice board, and structured layout. Best for CBSE/ICSE schools.', stripe: '#0f2a5c,#1a54b5' },
-            { file: 'school-bento-grid.html', title: 'School – Bento Grid', icon: '📦', tag: 'School', desc: 'Modern bento grid layout with modular cards for admissions, results, events, faculty and gallery.', stripe: '#2563eb,#7c3aed' },
             { file: 'school-dashboard-portal.html', title: 'School – Dashboard Portal', icon: '📊', tag: 'School', desc: 'Card-based student portal with sidebar navigation, homework, attendance, timetable and fee cards.', stripe: '#3b82f6,#6366f1' },
             { file: 'school-minimal-hero.html', title: 'School – Minimal Hero', icon: '📢', tag: 'School', desc: 'Large bold typography hero — "Admissions Open 2026" with clear CTA, marquee, and clean sections below.', stripe: '#0a1628,#1a4fd8' },
-            { file: 'school-soft-pastel-primary.html', title: 'School – Soft Pastel', icon: '🌸', tag: 'School', desc: 'Warm child-friendly design with rounded corners, soft pastel colors, and simple icons for primary schools.', stripe: '#ffd166,#ffb997,#a8dadc' },
-            { file: 'school-dark-gold.html', title: 'School – Dark Gold', icon: '⚜', tag: 'School', desc: 'Premium private school UI with deep navy background, gold accents, serif fonts, and elite branding.', stripe: '#c9a84c,#0a0c10' },
             { file: 'school-magazine-editorial.html', title: 'School – Magazine', icon: '📰', tag: 'School', desc: 'Editorial newspaper-style layout with article grid, events, opinion quotes, and notice board sidebar.', stripe: '#111,#c0392b' },
-            { file: 'school-timeline.html', title: 'School – Timeline', icon: '📅', tag: 'School', desc: 'Timeline-based UI with academic calendar, admission process steps, and annual events in sequential order.', stripe: '#3563e9,#10b981,#f59e0b' },
-            { file: 'school-immersive-visual.html', title: 'School – Immersive Visual', icon: '📸', tag: 'School', desc: 'Image-focused immersive design with full-width sections for campus, sports, arts and labs. Minimal text, maximum visuals.', stripe: '#e6a54a,#0a0a0a' },
-            { file: 'school-govt-modern.html', title: 'School – Govt Modern', icon: '🇮🇳', tag: 'School', desc: 'Modernised government school UI with Hindi+English, accessibility controls, large fonts, and NCERT/RTE integration.', stripe: '#1a3b5c,#16a34a' },
         ];
 
         const tagColors = {
-            'Retro': '#f7971e', 'Abstract': '#4facfe', 'Playful': '#ffd200',
-            'Futuristic': '#00f0ff', 'Dark Mode': '#a0a0a0', 'Dashboard': '#667eea',
-            'Glassmorphism': '#a8edea', 'Layout': '#7c6aff', 'Experimental': '#ff0080',
-            'Organic': '#a8c090', 'Accessible': '#f9d71c', 'Luxury': '#d4a900',
-            'Editorial': '#e53e3e', 'Animated': '#a18cd1', 'Motion': '#fc4a1a',
-            'Minimalist': '#bdc3c7', 'Cute': '#fbc2eb', 'Portfolio': '#30cfd0',
             'School': '#1a54b5',
         };
 
