@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>SmartSchool — Student Dashboard Portal</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap"
+        rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        :root {
+            --bg: #f1f5f9;
+            --sidebar: #0f172a;
+            --white: #fff;
+            --blue: #3b82f6;
+            --indigo: #6366f1;
+            --emerald: #10b981;
+            --rose: #f43f5e;
+            --amber: #f59e0b;
+            --text: #1e293b;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --sh: 0 4px 16px rgba(0, 0, 0, .07)
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            display: flex;
+            min-height: 100vh
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 220px;
+            flex-shrink: 0;
+            background: var(--sidebar);
+            display: flex;
+            flex-direction: column;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto
+        }
+
+        .sb-brand {
+            padding: 22px 18px 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none
+        }
+
+        .sb-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--blue), var(--indigo));
+            border-radius: 10px;
+            display: grid;
+            place-items: center;
+            font-size: 16px;
+            flex-shrink: 0
+        }
+
+        .sb-name {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff
+        }
+
+        .sb-sub {
+            font-size: .65rem;
+            color: rgba(255, 255, 255, .4)
+        }
+
+        .sb-label {
+            font-size: .62rem;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .28);
+            padding: 14px 18px 5px
+        }
+
+        .sb-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            padding: 0 8px
+        }
+
+        .sb-nav a {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            padding: 8px 11px;
+            border-radius: 9px;
+            font-size: .83rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, .55);
+            text-decoration: none;
+            transition: background .15s, color .15s
+        }
+
+        .sb-nav a:hover {
+            background: rgba(255, 255, 255, .07);
+            color: rgba(255, 255, 255, .9)
+        }
+
+        .sb-nav a.active {
+            background: rgba(59, 130, 246, .22);
+            color: var(--blue)
+        }
+
+        .nb {
+            margin-left: auto;
+            background: var(--rose);
+            color: #fff;
+            font-size: .63rem;
+            font-weight: 700;
+            padding: 1px 6px;
+            border-radius: 999px
+        }
+
+        .sb-div {
+            height: 1px;
+            background: rgba(255, 255, 255, .06);
+            margin: 10px 0
+        }
+
+        .sb-user {
+            margin-top: auto;
+            padding: 14px 18px;
+            border-top: 1px solid rgba(255, 255, 255, .07);
+            display: flex;
+            align-items: center;
+            gap: 9px
+        }
+
+        .av {
+            width: 34px;
+            height: 34px;
+            background: linear-gradient(135deg, var(--emerald), #06b6d4);
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-size: 13px;
+            font-weight: 700;
+            color: #fff;
+            flex-shrink: 0
+        }
+
+        .av-name {
+            font-size: .8rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, .9)
+        }
+
+        .av-role {
+            font-size: .67rem;
+            color: rgba(255, 255, 255, .4)
+        }
+
+        /* MAIN */
+        .main {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column
+        }
+
+        .topbar {
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, .05)
+        }
+
+        .tb-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700
+        }
+
+        .tb-right {
+            display: flex;
+            align-items: center;
+            gap: 10px
+        }
+
+        .tb-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            display: grid;
+            place-items: center;
+            font-size: .95rem;
+            text-decoration: none;
+            transition: background .15s
+        }
+
+        .tb-btn:hover {
+            background: var(--border)
+        }
+
+        .login-btn {
+            background: var(--sidebar);
+            color: #fff;
+            padding: 7px 16px;
+            border-radius: 9px;
+            font-size: .8rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: background .15s
+        }
+
+        .login-btn:hover {
+            background: #1e293b
+        }
+
+        /* CONTENT */
+        .content {
+            padding: 24px;
+            flex: 1
+        }
+
+        /* BANNER */
+        .banner {
+            background: linear-gradient(135deg, var(--sidebar), #1e3a5f);
+            color: #fff;
+            border-radius: 16px;
+            padding: 22px 26px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap
+        }
+
+        .banner h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 4px
+        }
+
+        .banner p {
+            font-size: .82rem;
+            opacity: .75
+        }
+
+        .banner-btns {
+            display: flex;
+            gap: 9px;
+            flex-wrap: wrap
+        }
+
+        .bb {
+            padding: 8px 16px;
+            border-radius: 9px;
+            font-size: .8rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px
+        }
+
+        .bb-solid {
+            background: var(--blue);
+            color: #fff;
+            transition: background .15s
+        }
+
+        .bb-solid:hover {
+            background: #2563eb
+        }
+
+        .bb-out {
+            background: rgba(255, 255, 255, .1);
+            color: rgba(255, 255, 255, .9);
+            border: 1px solid rgba(255, 255, 255, .2);
+            transition: background .15s
+        }
+
+        .bb-out:hover {
+            background: rgba(255, 255, 255, .18)
+        }
+
+        /* METRICS */
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+            margin-bottom: 20px
+        }
+
+        .metric {
+            background: var(--white);
+            border-radius: 13px;
+            padding: 16px 18px;
+            border: 1px solid var(--border);
+            box-shadow: var(--sh)
+        }
+
+        .mt {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 9px
+        }
+
+        .mi {
+            width: 38px;
+            height: 38px;
+            border-radius: 9px;
+            display: grid;
+            place-items: center;
+            font-size: 1rem
+        }
+
+        .mc {
+            font-size: .7rem;
+            font-weight: 600;
+            padding: 2px 7px;
+            border-radius: 999px
+        }
+
+        .cup {
+            background: #dcfce7;
+            color: #16a34a
+        }
+
+        .cdn {
+            background: #fee2e2;
+            color: #dc2626
+        }
+
+        .mn {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.7rem;
+            font-weight: 800;
+            line-height: 1
+        }
+
+        .ml {
+            font-size: .73rem;
+            color: var(--muted);
+            margin-top: 3px
+        }
+
+        .mbar {
+            height: 4px;
+            border-radius: 2px;
+            background: var(--border);
+            margin-top: 10px;
+            overflow: hidden
+        }
+
+        .mfill {
+            height: 100%;
+            border-radius: 2px
+        }
+
+        /* CARDS */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-bottom: 20px
+        }
+
+        .dcard {
+            background: var(--white);
+            border-radius: 14px;
+            padding: 18px;
+            border: 1px solid var(--border);
+            box-shadow: var(--sh);
+            text-decoration: none;
+            color: var(--text);
+            transition: transform .2s, box-shadow .2s;
+            display: flex;
+            flex-direction: column;
+            gap: 10px
+        }
+
+        .dcard:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 32px rgba(0, 0, 0, .1)
+        }
+
+        .dc-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .dc-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: grid;
+            place-items: center;
+            font-size: 1.1rem
+        }
+
+        .dc-status {
+            font-size: .68rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 999px
+        }
+
+        .s-live {
+            background: #dcfce7;
+            color: #16a34a
+        }
+
+        .s-pend {
+            background: #fef9c3;
+            color: #854d0e
+        }
+
+        .s-done {
+            background: #ede9fe;
+            color: #6d28d9
+        }
+
+        .dc-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: .92rem;
+            font-weight: 700
+        }
+
+        .dc-desc {
+            font-size: .76rem;
+            color: var(--muted);
+            line-height: 1.5;
+            flex: 1
+        }
+
+        .dc-foot {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid var(--border);
+            padding-top: 10px
+        }
+
+        .dc-meta {
+            font-size: .72rem;
+            color: var(--muted)
+        }
+
+        .dc-arr {
+            font-size: .82rem;
+            color: var(--blue);
+            font-weight: 600
+        }
+
+        /* BOTTOM */
+        .bottom {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px
+        }
+
+        .panel {
+            background: var(--white);
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            box-shadow: var(--sh);
+            overflow: hidden
+        }
+
+        .ph {
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .ph h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: .92rem;
+            font-weight: 700
+        }
+
+        .ph a {
+            font-size: .73rem;
+            color: var(--blue);
+            font-weight: 600;
+            text-decoration: none
+        }
+
+        .ann-item {
+            display: flex;
+            gap: 10px;
+            padding: 12px 18px;
+            border-bottom: 1px solid var(--border);
+            align-items: flex-start;
+            transition: background .12s
+        }
+
+        .ann-item:last-child {
+            border-bottom: none
+        }
+
+        .ann-item:hover {
+            background: var(--bg)
+        }
+
+        .adot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 5px
+        }
+
+        .at {
+            font-size: .8rem;
+            font-weight: 600;
+            margin-bottom: 2px
+        }
+
+        .am {
+            font-size: .7rem;
+            color: var(--muted)
+        }
+
+        .tt-row {
+            display: flex;
+            gap: 12px;
+            padding: 11px 18px;
+            border-bottom: 1px solid var(--border);
+            align-items: center
+        }
+
+        .tt-row:last-child {
+            border-bottom: none
+        }
+
+        .ttime {
+            font-size: .7rem;
+            font-weight: 600;
+            color: var(--muted);
+            min-width: 56px
+        }
+
+        .tbar {
+            width: 3px;
+            height: 34px;
+            border-radius: 2px;
+            flex-shrink: 0
+        }
+
+        .tsubj {
+            font-size: .8rem;
+            font-weight: 600
+        }
+
+        .troom {
+            font-size: .7rem;
+            color: var(--muted)
+        }
+
+        .tteach {
+            font-size: .7rem;
+            background: var(--bg);
+            color: var(--muted);
+            padding: 2px 7px;
+            border-radius: 999px;
+            margin-left: auto
+        }
+
+        @media(max-width:900px) {
+            .metrics {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .cards {
+                grid-template-columns: repeat(2, 1fr)
+            }
+        }
+
+        @media(max-width:640px) {
+            body {
+                flex-direction: column
+            }
+
+            .sidebar {
+                width: 100%;
+                min-height: auto;
+                height: auto;
+                flex-direction: row;
+                position: static
+            }
+
+            .sb-label,
+            .av-name,
+            .av-role {
+                display: none
+            }
+
+            .bottom,
+            .cards {
+                grid-template-columns: 1fr
+            }
+
+            .metrics {
+                grid-template-columns: 1fr 1fr
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <aside class="sidebar">
+        <a href="#" class="sb-brand">
+            <div class="sb-icon">📚</div>
+            <div>
+                <div class="sb-name">SmartSchool</div>
+                <div class="sb-sub">Student Portal</div>
+            </div>
+        </a>
+        <div class="sb-label">Main</div>
+        <div class="sb-nav">
+            <a href="#" class="active">🏠 Dashboard</a>
+            <a href="#">📊 Results</a>
+            <a href="#">📋 Homework <span class="nb">3</span></a>
+            <a href="#">📅 Timetable</a>
+            <a href="#">📢 Notices <span class="nb">5</span></a>
+        </div>
+        <div class="sb-div"></div>
+        <div class="sb-label">Tools</div>
+        <div class="sb-nav">
+            <a href="#">💳 Fee Payment</a>
+            <a href="#">🚌 Transport</a>
+            <a href="#">📚 Library</a>
+            <a href="#">📞 Contact</a>
+        </div>
+        <div class="sb-user">
+            <div class="av">R</div>
+            <div>
+                <div class="av-name">Riya Sharma</div>
+                <div class="av-role">Class X-A · Roll 14</div>
+            </div>
+        </div>
+    </aside>
+
+    <div class="main">
+        <div class="topbar">
+            <div class="tb-title">Good Evening, Riya 👋</div>
+            <div class="tb-right">
+                <a href="#" class="tb-btn">🔔</a>
+                <a href="#" class="tb-btn">⚙️</a>
+                <a href="#" class="login-btn">🔑 Parent Login</a>
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- BANNER -->
+            <div class="banner">
+                <div>
+                    <h2>SmartSchool Portal 2025–26 🎓</h2>
+                    <p>Class X · Section A · CBSE Board Year · Academic Year 2025–26</p>
+                </div>
+                <div class="banner-btns">
+                    <a href="#" class="bb bb-solid">📋 Admit Card</a>
+                    <a href="#" class="bb bb-out">💳 Pay Fees</a>
+                </div>
+            </div>
+
+            <!-- METRICS -->
+            <div class="metrics">
+                <div class="metric">
+                    <div class="mt">
+                        <div class="mi" style="background:#eff6ff">📊</div><span class="mc cup">+2.1%</span>
+                    </div>
+                    <div class="mn">87.4%</div>
+                    <div class="ml">Overall Grade</div>
+                    <div class="mbar">
+                        <div class="mfill" style="width:87%;background:var(--blue)"></div>
+                    </div>
+                </div>
+                <div class="metric">
+                    <div class="mt">
+                        <div class="mi" style="background:#f0fdf4">✅</div><span class="mc cup">Good</span>
+                    </div>
+                    <div class="mn">94%</div>
+                    <div class="ml">Attendance</div>
+                    <div class="mbar">
+                        <div class="mfill" style="width:94%;background:var(--emerald)"></div>
+                    </div>
+                </div>
+                <div class="metric">
+                    <div class="mt">
+                        <div class="mi" style="background:#fff7ed">📋</div><span class="mc cdn">3 Due</span>
+                    </div>
+                    <div class="mn">3</div>
+                    <div class="ml">Pending Homework</div>
+                    <div class="mbar">
+                        <div class="mfill" style="width:30%;background:var(--amber)"></div>
+                    </div>
+                </div>
+                <div class="metric">
+                    <div class="mt">
+                        <div class="mi" style="background:#fdf4ff">🏆</div><span class="mc cup">Top 5</span>
+                    </div>
+                    <div class="mn">5th</div>
+                    <div class="ml">Class Rank</div>
+                    <div class="mbar">
+                        <div class="mfill" style="width:85%;background:var(--indigo)"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARDS -->
+            <div class="cards">
+                <a href="#" class="dcard">
+                    <div class="dc-head">
+                        <div class="dc-icon" style="background:#eff6ff">📚</div><span class="dc-status s-live">Due
+                            Today</span>
+                    </div>
+                    <div class="dc-title">Mathematics Homework</div>
+                    <div class="dc-desc">Chapter 7: Coordinate Geometry · Exercise 7.3 · Q1–Q15</div>
+                    <div class="dc-foot"><span class="dc-meta">Due: Feb 28 · 8:00 AM</span><span class="dc-arr">Submit
+                            →</span></div>
+                </a>
+                <a href="#" class="dcard">
+                    <div class="dc-head">
+                        <div class="dc-icon" style="background:#f0fdf4">📈</div><span
+                            class="dc-status s-done">Released</span>
+                    </div>
+                    <div class="dc-title">Pre-Board Results</div>
+                    <div class="dc-desc">Pre-Board I results published. Check your score and performance analysis.</div>
+                    <div class="dc-foot"><span class="dc-meta">Average: 81.6%</span><span class="dc-arr">View →</span>
+                    </div>
+                </a>
+                <a href="#" class="dcard">
+                    <div class="dc-head">
+                        <div class="dc-icon" style="background:#fff7ed">🗓️</div><span class="dc-status s-pend">Mar
+                            8</span>
+                    </div>
+                    <div class="dc-title">Annual Sports Day</div>
+                    <div class="dc-desc">You are shortlisted for 100m Sprint. Report to Ground by 8:30 AM.</div>
+                    <div class="dc-foot"><span class="dc-meta">School Ground</span><span class="dc-arr">Details →</span>
+                    </div>
+                </a>
+                <a href="#" class="dcard">
+                    <div class="dc-head">
+                        <div class="dc-icon" style="background:#fdf4ff">💳</div><span
+                            class="dc-status s-pend">Pending</span>
+                    </div>
+                    <div class="dc-title">Q4 Fee Payment</div>
+                    <div class="dc-desc">Annual Development Fund + Tuition Fee due by March 31, 2026.</div>
+                    <div class="dc-foot"><span class="dc-meta">₹12,500 due</span><span class="dc-arr">Pay Now →</span>
+                    </div>
+                </a>
+                <a href="#" class="dcard">
+                    <div class="dc-head">
+                        <div class="dc-icon" style="background:#fef2f2">🔬</div><span class="dc-status s-pend">Mar
+                            3</span>
+                    </div>
+                    <div class="dc-title">Science Practical</div>
+                    <div class="dc-desc">Chemistry: Preparation of Iron Sulphide · Lab 2 · Period 4</div>
+                    <div class="dc-foot"><span class="dc-meta">Period 4</span><span class="dc-arr">Notes →</span></div>
+                </a>
+                <a href="#" class="dcard">
+                    <div class="dc-head">
+                        <div class="dc-icon" style="background:#f0fdf4">🚌</div><span class="dc-status s-live">On Time
+                            ✅</span>
+                    </div>
+                    <div class="dc-title">Bus Route Status</div>
+                    <div class="dc-desc">Route 7 — Rajouri Garden pickup 7:10 AM · DL 1CA 2086</div>
+                    <div class="dc-foot"><span class="dc-meta">Active</span><span class="dc-arr">Track →</span></div>
+                </a>
+            </div>
+
+            <!-- BOTTOM -->
+            <div class="bottom">
+                <div class="panel">
+                    <div class="ph">
+                        <h3>📢 Announcements</h3><a href="#">View All</a>
+                    </div>
+                    <div class="ann-item">
+                        <div class="adot" style="background:var(--rose)"></div>
+                        <div>
+                            <div class="at">Board Exam Hall Tickets Available</div>
+                            <div class="am">Feb 27 · Admin Office</div>
+                        </div>
+                    </div>
+                    <div class="ann-item">
+                        <div class="adot" style="background:var(--blue)"></div>
+                        <div>
+                            <div class="at">Parent Teacher Meeting — March 5</div>
+                            <div class="am">Feb 25 · 9 AM–12 PM</div>
+                        </div>
+                    </div>
+                    <div class="ann-item">
+                        <div class="adot" style="background:var(--emerald)"></div>
+                        <div>
+                            <div class="at">Library extended hours till March 31</div>
+                            <div class="am">Feb 22 · Library Dept</div>
+                        </div>
+                    </div>
+                    <div class="ann-item">
+                        <div class="adot" style="background:var(--amber)"></div>
+                        <div>
+                            <div class="at">Swimming pool closed for maintenance</div>
+                            <div class="am">Feb 20 · Sports Dept</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel">
+                    <div class="ph">
+                        <h3>📅 Today's Timetable</h3><a href="#">Full Schedule</a>
+                    </div>
+                    <div class="tt-row">
+                        <div class="ttime">8:00–8:45</div>
+                        <div class="tbar" style="background:var(--blue)"></div>
+                        <div>
+                            <div class="tsubj">Mathematics</div>
+                            <div class="troom">Room 12A</div>
+                        </div>
+                        <div class="tteach">Mr. Verma</div>
+                    </div>
+                    <div class="tt-row">
+                        <div class="ttime">8:45–9:30</div>
+                        <div class="tbar" style="background:var(--emerald)"></div>
+                        <div>
+                            <div class="tsubj">Science</div>
+                            <div class="troom">Lab 2</div>
+                        </div>
+                        <div class="tteach">Ms. Singh</div>
+                    </div>
+                    <div class="tt-row">
+                        <div class="ttime">9:30–10:15</div>
+                        <div class="tbar" style="background:var(--amber)"></div>
+                        <div>
+                            <div class="tsubj">English Literature</div>
+                            <div class="troom">Room 12A</div>
+                        </div>
+                        <div class="tteach">Ms. Kapoor</div>
+                    </div>
+                    <div class="tt-row">
+                        <div class="ttime">10:30–11:15</div>
+                        <div class="tbar" style="background:var(--indigo)"></div>
+                        <div>
+                            <div class="tsubj">Social Science</div>
+                            <div class="troom">Room 12A</div>
+                        </div>
+                        <div class="tteach">Mr. Gupta</div>
+                    </div>
+                    <div class="tt-row">
+                        <div class="ttime">11:15–12:00</div>
+                        <div class="tbar" style="background:var(--rose)"></div>
+                        <div>
+                            <div class="tsubj">Hindi</div>
+                            <div class="troom">Room 12A</div>
+                        </div>
+                        <div class="tteach">Ms. Sharma</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

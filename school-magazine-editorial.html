@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>The Scholars' Gazette — School Magazine</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        :root {
+            --bg: #faf8f5;
+            --white: #fff;
+            --black: #111;
+            --red: #c0392b;
+            --red-light: #f8e8e6;
+            --gray: #666;
+            --light: #f2efea;
+            --border: #e5e0d8;
+            --serif: 'Playfair Display', serif;
+            --sans: 'Inter', sans-serif;
+            --sh: 0 2px 12px rgba(0, 0, 0, .06)
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--black);
+            overflow-x: hidden
+        }
+
+        /* MASTHEAD */
+        .masthead {
+            text-align: center;
+            padding: 32px 24px 20px;
+            border-bottom: 3px double var(--black)
+        }
+
+        .masthead-date {
+            font-size: .72rem;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-bottom: 4px
+        }
+
+        .masthead h1 {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 5vw, 3.6rem);
+            font-weight: 900;
+            letter-spacing: .02em;
+            margin-bottom: 4px
+        }
+
+        .masthead-sub {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: .95rem;
+            color: var(--gray)
+        }
+
+        /* NAV */
+        nav {
+            background: var(--black);
+            color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 100
+        }
+
+        .nav-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0
+        }
+
+        nav a {
+            display: block;
+            padding: 12px 20px;
+            font-size: .78rem;
+            font-weight: 600;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .65);
+            text-decoration: none;
+            transition: color .18s
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #fff
+        }
+
+        nav a.active {
+            border-bottom: 2px solid var(--red)
+        }
+
+        /* BREAKING */
+        .breaking {
+            background: var(--red);
+            color: #fff;
+            padding: 10px 24px;
+            font-size: .82rem;
+            font-weight: 600;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px
+        }
+
+        .breaking-tag {
+            background: rgba(0, 0, 0, .25);
+            padding: 2px 10px;
+            border-radius: 3px;
+            font-size: .7rem;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 24px
+        }
+
+        /* HERO ARTICLE */
+        .hero-article {
+            border-bottom: 1px solid var(--border);
+            padding: 40px 0;
+            display: grid;
+            grid-template-columns: 1.2fr .8fr;
+            gap: 32px;
+            align-items: start
+        }
+
+        .hero-left {}
+
+        .hero-cat {
+            display: inline-block;
+            font-size: .68rem;
+            font-weight: 700;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 10px;
+            background: var(--red-light);
+            padding: 3px 10px;
+            border-radius: 2px
+        }
+
+        .hero-title {
+            font-family: var(--serif);
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 900;
+            line-height: 1.15;
+            margin-bottom: 12px;
+            letter-spacing: -.01em
+        }
+
+        .hero-excerpt {
+            font-size: .92rem;
+            color: var(--gray);
+            line-height: 1.75;
+            margin-bottom: 16px
+        }
+
+        .hero-meta {
+            font-size: .75rem;
+            color: var(--gray);
+            display: flex;
+            gap: 16px;
+            align-items: center
+        }
+
+        .hero-meta strong {
+            color: var(--black)
+        }
+
+        .hero-visual {
+            background: var(--light);
+            border-radius: 6px;
+            aspect-ratio: 4/3;
+            display: grid;
+            place-items: center;
+            font-size: 4rem;
+            border: 1px solid var(--border)
+        }
+
+        /* 3-COL GRID */
+        .section-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 24px 0 16px;
+            border-bottom: 2px solid var(--black);
+            margin-bottom: 20px
+        }
+
+        .section-bar h2 {
+            font-family: var(--serif);
+            font-size: 1.1rem;
+            font-weight: 900;
+            white-space: nowrap
+        }
+
+        .section-bar::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border)
+        }
+
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 40px
+        }
+
+        .article-card {
+            text-decoration: none;
+            color: var(--black);
+            transition: transform .2s
+        }
+
+        .article-card:hover {
+            transform: translateY(-3px)
+        }
+
+        .ac-img {
+            background: var(--light);
+            border-radius: 4px;
+            aspect-ratio: 16/10;
+            display: grid;
+            place-items: center;
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+            border: 1px solid var(--border)
+        }
+
+        .ac-cat {
+            font-size: .62rem;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 6px
+        }
+
+        .ac-title {
+            font-family: var(--serif);
+            font-size: 1rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 6px
+        }
+
+        .ac-excerpt {
+            font-size: .78rem;
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 8px
+        }
+
+        .ac-meta {
+            font-size: .7rem;
+            color: var(--gray)
+        }
+
+        /* 2-COL LAYOUT */
+        .two-col {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 32px;
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--border)
+        }
+
+        /* EVENTS LIST */
+        .ev-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px
+        }
+
+        .ev-item {
+            display: flex;
+            gap: 14px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+            text-decoration: none;
+            color: var(--black);
+            transition: opacity .2s
+        }
+
+        .ev-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0
+        }
+
+        .ev-item:hover {
+            opacity: .75
+        }
+
+        .ev-date {
+            text-align: center;
+            flex-shrink: 0;
+            min-width: 48px
+        }
+
+        .ev-date .ed {
+            font-family: var(--serif);
+            font-size: 1.8rem;
+            font-weight: 900;
+            line-height: 1;
+            color: var(--red)
+        }
+
+        .ev-date .em {
+            font-size: .65rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: .1em
+        }
+
+        .ev-body h4 {
+            font-family: var(--serif);
+            font-size: .92rem;
+            font-weight: 700;
+            margin-bottom: 3px
+        }
+
+        .ev-body p {
+            font-size: .75rem;
+            color: var(--gray);
+            line-height: 1.5
+        }
+
+        .ev-tag {
+            font-size: .62rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            color: var(--gray);
+            margin-top: 4px;
+            display: inline-block
+        }
+
+        /* SIDEBAR NOTICE */
+        .sidebar-notice {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            overflow: hidden
+        }
+
+        .sn-header {
+            background: var(--black);
+            color: #fff;
+            padding: 12px 16px;
+            font-size: .82rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px
+        }
+
+        .sn-item {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            font-size: .8rem;
+            line-height: 1.5;
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+            text-decoration: none;
+            color: var(--black);
+            transition: background .12s
+        }
+
+        .sn-item:last-child {
+            border-bottom: none
+        }
+
+        .sn-item:hover {
+            background: var(--light)
+        }
+
+        .sn-bullet {
+            color: var(--red);
+            font-size: .9rem;
+            flex-shrink: 0
+        }
+
+        .sn-date {
+            font-size: .68rem;
+            color: var(--gray);
+            margin-top: 2px
+        }
+
+        .sn-new {
+            background: var(--red);
+            color: #fff;
+            font-size: .58rem;
+            font-weight: 700;
+            padding: 1px 5px;
+            border-radius: 2px;
+            margin-left: 4px
+        }
+
+        /* OPINION / QUOTES */
+        .opinion {
+            background: var(--light);
+            border-top: 3px solid var(--black);
+            border-bottom: 1px solid var(--border);
+            padding: 40px 0
+        }
+
+        .opinion-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px
+        }
+
+        .op-card {
+            background: var(--white);
+            padding: 24px;
+            border-radius: 6px;
+            border: 1px solid var(--border)
+        }
+
+        .op-quote {
+            font-family: var(--serif);
+            font-size: 3rem;
+            color: var(--red);
+            line-height: .8;
+            margin-bottom: 6px
+        }
+
+        .op-text {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: .92rem;
+            line-height: 1.6;
+            margin-bottom: 12px;
+            color: var(--black)
+        }
+
+        .op-attr {
+            font-size: .75rem;
+            color: var(--gray);
+            font-weight: 500
+        }
+
+        .op-attr strong {
+            color: var(--black)
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--black);
+            color: rgba(255, 255, 255, .6);
+            padding: 32px 24px;
+            margin-top: 40px
+        }
+
+        .footer-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px
+        }
+
+        footer .f-name {
+            font-family: var(--serif);
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff
+        }
+
+        footer a {
+            color: rgba(255, 255, 255, .45);
+            text-decoration: none;
+            font-size: .78rem;
+            margin-left: 18px
+        }
+
+        footer a:hover {
+            color: #fff
+        }
+
+        .f-copy {
+            font-size: .72rem;
+            color: rgba(255, 255, 255, .35)
+        }
+
+        @media(max-width:860px) {
+
+            .hero-article,
+            .two-col {
+                grid-template-columns: 1fr
+            }
+
+            .article-grid,
+            .opinion-grid {
+                grid-template-columns: 1fr 1fr
+            }
+        }
+
+        @media(max-width:540px) {
+
+            .article-grid,
+            .opinion-grid {
+                grid-template-columns: 1fr
+            }
+
+            nav {
+                overflow-x: auto;
+                justify-content: flex-start
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- MASTHEAD -->
+    <div class="masthead">
+        <div class="masthead-date">Thursday, February 27, 2026 · Volume XLIII · Issue 08</div>
+        <h1>The Scholars' Gazette</h1>
+        <div class="masthead-sub">The Official School Newspaper — Vidya Bhawan Public School, New Delhi</div>
+    </div>
+
+    <!-- NAV -->
+    <nav>
+        <div class="nav-inner">
+            <a href="#" class="active">Front Page</a>
+            <a href="#">Academics</a>
+            <a href="#">Sports</a>
+            <a href="#">Arts & Culture</a>
+            <a href="#">Events</a>
+            <a href="#">Opinion</a>
+            <a href="#">Alumni</a>
+            <a href="#">Notice Board</a>
+        </div>
+    </nav>
+
+    <!-- BREAKING -->
+    <div class="breaking">
+        <span class="breaking-tag">Breaking</span>
+        CBSE Class XII Results 2026: Vidya Bhawan records 99.6% pass rate — 8 students score above 98%!
+    </div>
+
+    <!-- HERO ARTICLE -->
+    <div class="container">
+        <div class="hero-article">
+            <div class="hero-left">
+                <div class="hero-cat">Cover Story</div>
+                <h2 class="hero-title">Vidya Bhawan Students Sweep National Science Olympiad — Win 5 Gold Medals</h2>
+                <p class="hero-excerpt">In a remarkable feat, five students from our senior secondary wing bagged gold
+                    medals at the 42nd National Science Olympiad held in Bengaluru. The team was led by Aarav Malhotra
+                    (Class XII) who also received the Best Innovator Award.</p>
+                <div class="hero-meta">
+                    <span>By <strong>Priya Verma</strong>, Editor-in-Chief</span>
+                    <span>·</span>
+                    <span>February 27, 2026</span>
+                    <span>·</span>
+                    <span>5 min read</span>
+                </div>
+            </div>
+            <div class="hero-visual">🏆</div>
+        </div>
+    </div>
+
+    <!-- LATEST NEWS -->
+    <div class="container">
+        <div class="section-bar">
+            <h2>Latest News</h2>
+        </div>
+        <div class="article-grid">
+            <a href="#" class="article-card">
+                <div class="ac-img">📋</div>
+                <div class="ac-cat">Admissions</div>
+                <h3 class="ac-title">Admissions Open for Session 2026–27: New Stream Options Announced</h3>
+                <p class="ac-excerpt">The school has introduced Applied Sciences and Design Thinking as new stream
+                    options for Class XI students.</p>
+                <div class="ac-meta">Feb 25 · 3 min read</div>
+            </a>
+            <a href="#" class="article-card">
+                <div class="ac-img">🏃</div>
+                <div class="ac-cat">Sports</div>
+                <h3 class="ac-title">Annual Sports Day: Inter-House Athletics Sets New Records</h3>
+                <p class="ac-excerpt">Blue House retains the championship trophy. Three interschool records broken in
+                    track and field events.</p>
+                <div class="ac-meta">Feb 22 · 4 min read</div>
+            </a>
+            <a href="#" class="article-card">
+                <div class="ac-img">🎭</div>
+                <div class="ac-cat">Culture</div>
+                <h3 class="ac-title">Annual Cultural Fest "Aarohan 2026" Dates Announced</h3>
+                <p class="ac-excerpt">The three-day cultural extravaganza will feature inter-school competitions in
+                    drama, music, and fine arts.</p>
+                <div class="ac-meta">Feb 20 · 2 min read</div>
+            </a>
+        </div>
+    </div>
+
+    <!-- EVENTS + NOTICE -->
+    <div class="container">
+        <div class="two-col">
+            <div>
+                <div class="section-bar">
+                    <h2>Upcoming Events</h2>
+                </div>
+                <div class="ev-list">
+                    <a href="#" class="ev-item">
+                        <div class="ev-date">
+                            <div class="ed">08</div>
+                            <div class="em">Mar</div>
+                        </div>
+                        <div class="ev-body">
+                            <h4>Annual Sports Day 2026</h4>
+                            <p>School Ground · 9:00 AM – 4:00 PM · Parents & guests welcome</p><span
+                                class="ev-tag">Sports</span>
+                        </div>
+                    </a>
+                    <a href="#" class="ev-item">
+                        <div class="ev-date">
+                            <div class="ed">15</div>
+                            <div class="em">Mar</div>
+                        </div>
+                        <div class="ev-body">
+                            <h4>CBSE Class X Board Exams Begin</h4>
+                            <p>All Class X students must report 30 minutes before scheduled time</p><span
+                                class="ev-tag">Academic</span>
+                        </div>
+                    </a>
+                    <a href="#" class="ev-item">
+                        <div class="ev-date">
+                            <div class="ed">22</div>
+                            <div class="em">Mar</div>
+                        </div>
+                        <div class="ev-body">
+                            <h4>Cultural Fest — Aarohan 2026</h4>
+                            <p>Main Auditorium · Inter-school competitions in 12 categories</p><span
+                                class="ev-tag">Culture</span>
+                        </div>
+                    </a>
+                    <a href="#" class="ev-item">
+                        <div class="ev-date">
+                            <div class="ed">01</div>
+                            <div class="em">Apr</div>
+                        </div>
+                        <div class="ev-body">
+                            <h4>New Session 2026–27 Begins</h4>
+                            <p>All classes resume · Book distribution & orientation for new students</p><span
+                                class="ev-tag">General</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- NOTICE BOARD -->
+            <div>
+                <div class="section-bar">
+                    <h2>Notice Board</h2>
+                </div>
+                <div class="sidebar-notice">
+                    <div class="sn-header">📌 Official Notices</div>
+                    <a href="#" class="sn-item"><span class="sn-bullet">▸</span>
+                        <div>Admission forms 2026–27 available online <span class="sn-new">NEW</span>
+                            <div class="sn-date">Feb 27</div>
+                        </div>
+                    </a>
+                    <a href="#" class="sn-item"><span class="sn-bullet">▸</span>
+                        <div>Pre-Board II timetable released for Classes X & XII<div class="sn-date">Feb 25</div>
+                        </div>
+                    </a>
+                    <a href="#" class="sn-item"><span class="sn-bullet">▸</span>
+                        <div>Q4 fee payment deadline: March 31, 2026<div class="sn-date">Feb 22</div>
+                        </div>
+                    </a>
+                    <a href="#" class="sn-item"><span class="sn-bullet">▸</span>
+                        <div>Parent-Teacher Meeting for Classes VI–IX on March 5<div class="sn-date">Feb 20</div>
+                        </div>
+                    </a>
+                    <a href="#" class="sn-item"><span class="sn-bullet">▸</span>
+                        <div>Swimming pool reopens after winter maintenance<div class="sn-date">Feb 18</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- OPINION -->
+    <div class="opinion">
+        <div class="container">
+            <div class="section-bar">
+                <h2>Voices from School</h2>
+            </div>
+            <div class="opinion-grid">
+                <div class="op-card">
+                    <div class="op-quote">"</div>
+                    <p class="op-text">Education is not filling a bucket but lighting a fire. We strive every day to
+                        ignite that flame of curiosity in each student.</p>
+                    <div class="op-attr"><strong>Dr. Ananya Sharma</strong> · Principal</div>
+                </div>
+                <div class="op-card">
+                    <div class="op-quote">"</div>
+                    <p class="op-text">The Science Olympiad victory was a team effort. Our teachers pushed us to think
+                        beyond the textbook and that made all the difference.</p>
+                    <div class="op-attr"><strong>Aarav Malhotra</strong> · Class XII, Science Olympiad Gold</div>
+                </div>
+                <div class="op-card">
+                    <div class="op-quote">"</div>
+                    <p class="op-text">This school gave my daughter confidence and opportunities that shaped her
+                        personality. We are proud parents of a Vidya Bhawan student.</p>
+                    <div class="op-attr"><strong>Mrs. Ritu Kapoor</strong> · Parent, Class TX</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-inner">
+            <div>
+                <div class="f-name">The Scholars' Gazette · Vidya Bhawan Public School</div>
+                <div class="f-copy">© 2026 All Rights Reserved · CBSE Affiliated · New Delhi</div>
+            </div>
+            <div>
+                <a href="#">Home</a><a href="#">About</a><a href="#">Admissions</a><a href="#">Results</a><a
+                    href="#">Contact</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

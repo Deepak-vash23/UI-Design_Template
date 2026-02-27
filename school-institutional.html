@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Delhi Public School — Official Website</title>
+    <meta name="description" content="Welcome to Delhi Public School — Excellence in Education since 1949." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@400;700&display=swap"
+        rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --navy: #0f2a5c;
+            --blue: #1a54b5;
+            --blue-light: #2d6fd6;
+            --blue-pale: #e8f0fb;
+            --gold: #c8960f;
+            --white: #ffffff;
+            --off-white: #f7f9fc;
+            --gray-100: #f0f4f8;
+            --gray-200: #d9e2ec;
+            --gray-400: #8ca0b8;
+            --gray-600: #4a6180;
+            --gray-800: #2d3748;
+            --text: #1a2a42;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* TOP BAR */
+        .topbar {
+            background: var(--navy);
+            color: var(--white);
+            font-size: 0.78rem;
+            padding: 6px 0;
+        }
+
+        .topbar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .topbar a {
+            color: var(--gray-200);
+            text-decoration: none;
+        }
+
+        .topbar a:hover {
+            color: var(--white);
+        }
+
+        .topbar-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        /* NAVBAR */
+        nav {
+            background: var(--white);
+            border-bottom: 3px solid var(--blue);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+            gap: 24px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+        }
+
+        .logo-emblem {
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(135deg, var(--navy), var(--blue));
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-size: 22px;
+            color: #fff;
+            box-shadow: var(--shadow-sm);
+            flex-shrink: 0;
+        }
+
+        .logo-text h1 {
+            font-family: 'Merriweather', serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.2;
+        }
+
+        .logo-text p {
+            font-size: 0.7rem;
+            color: var(--gray-600);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2px;
+        }
+
+        .nav-menu a {
+            display: block;
+            padding: 10px 14px;
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--gray-800);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            background: var(--blue-pale);
+            color: var(--blue);
+        }
+
+        .nav-cta {
+            background: var(--blue);
+            color: var(--white) !important;
+            border-radius: 8px;
+            padding: 10px 20px !important;
+            transition: background 0.2s !important;
+        }
+
+        .nav-cta:hover {
+            background: var(--blue-light) !important;
+            color: var(--white) !important;
+        }
+
+        /* HERO BANNER */
+        .hero {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 60%, #2980b9 100%);
+            color: var(--white);
+            padding: 56px 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .hero-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .hero-text h2 {
+            font-family: 'Merriweather', serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 700;
+            line-height: 1.25;
+            margin-bottom: 16px;
+        }
+
+        .hero-text p {
+            font-size: 1.05rem;
+            opacity: 0.88;
+            max-width: 520px;
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: #1a1a00;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(200, 150, 15, 0.4);
+        }
+
+        .btn-outline {
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            color: var(--white);
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: background 0.2s, border-color 0.2s;
+            display: inline-block;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: var(--white);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .hero-stat {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            border-radius: 12px;
+            padding: 18px 24px;
+            text-align: center;
+            min-width: 110px;
+        }
+
+        .hero-stat-num {
+            font-family: 'Merriweather', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .hero-stat-label {
+            font-size: 0.75rem;
+            opacity: 0.8;
+            margin-top: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* QUICK LINKS BAR */
+        .quick-bar {
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .quick-bar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            gap: 0;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .quick-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--gray-600);
+            text-decoration: none;
+            border-bottom: 3px solid transparent;
+            white-space: nowrap;
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        .quick-link:hover,
+        .quick-link.active {
+            color: var(--blue);
+            border-bottom-color: var(--blue);
+        }
+
+        .quick-link span {
+            font-size: 1rem;
+        }
+
+        /* MAIN CONTENT */
+        .main-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 24px;
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 32px;
+        }
+
+        /* NOTICE BOARD */
+        .section-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--blue);
+            margin-bottom: 8px;
+        }
+
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--gray-200);
+        }
+
+        .section-title {
+            font-family: 'Merriweather', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 20px;
+        }
+
+        /* INFO CARDS GRID */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .info-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+            border-color: var(--blue-light);
+        }
+
+        .info-card-icon {
+            width: 52px;
+            height: 52px;
+            background: var(--blue-pale);
+            border-radius: 12px;
+            display: grid;
+            place-items: center;
+            font-size: 22px;
+            margin: 0 auto 12px;
+        }
+
+        .info-card h4 {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 4px;
+        }
+
+        .info-card p {
+            font-size: 0.75rem;
+            color: var(--gray-400);
+        }
+
+        /* NOTICE BOARD */
+        .notice-board {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 32px;
+        }
+
+        .notice-header {
+            background: var(--navy);
+            color: var(--white);
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .notice-header h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .notice-header a {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+        }
+
+        .notice-header a:hover {
+            color: var(--white);
+        }
+
+        .notice-list {
+            list-style: none;
+        }
+
+        .notice-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 14px 20px;
+            border-bottom: 1px solid var(--gray-100);
+            text-decoration: none;
+            color: inherit;
+            transition: background 0.15s;
+        }
+
+        .notice-item:last-child {
+            border-bottom: none;
+        }
+
+        .notice-item:hover {
+            background: var(--off-white);
+        }
+
+        .notice-date {
+            background: var(--blue-pale);
+            color: var(--blue);
+            border-radius: 8px;
+            padding: 6px 10px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 0.72rem;
+            min-width: 44px;
+            flex-shrink: 0;
+        }
+
+        .notice-date .day {
+            font-size: 1.2rem;
+            display: block;
+            line-height: 1;
+        }
+
+        .notice-content h4 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 3px;
+        }
+
+        .notice-content p {
+            font-size: 0.75rem;
+            color: var(--gray-400);
+        }
+
+        .notice-badge {
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 999px;
+            margin-left: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .badge-new {
+            background: #fef3cd;
+            color: #856404;
+        }
+
+        .badge-imp {
+            background: #f8d7da;
+            color: #842029;
+        }
+
+        /* EVENTS */
+        .events-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .event-card {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 16px 18px;
+            text-decoration: none;
+            color: inherit;
+            transition: box-shadow 0.2s, border-color 0.2s;
+        }
+
+        .event-card:hover {
+            box-shadow: var(--shadow);
+            border-color: var(--blue-light);
+        }
+
+        .event-date-pill {
+            background: var(--blue);
+            color: var(--white);
+            border-radius: 10px;
+            padding: 10px 14px;
+            text-align: center;
+            flex-shrink: 0;
+            min-width: 52px;
+        }
+
+        .event-date-pill .em {
+            font-size: 1.3rem;
+            font-weight: 700;
+            line-height: 1;
+            display: block;
+        }
+
+        .event-date-pill .mo {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.85;
+        }
+
+        .event-info h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 3px;
+        }
+
+        .event-info p {
+            font-size: 0.75rem;
+            color: var(--gray-400);
+        }
+
+        .event-cat {
+            margin-left: auto;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: var(--blue-pale);
+            color: var(--blue);
+            white-space: nowrap;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .sidebar-widget {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 14px;
+            overflow: hidden;
+        }
+
+        .widget-header {
+            padding: 14px 18px;
+            background: var(--off-white);
+            border-bottom: 1px solid var(--gray-200);
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--navy);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .widget-body {
+            padding: 16px 18px;
+        }
+
+        /* LINKS WIDGET */
+        .quick-links-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .quick-links-list li a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 9px 12px;
+            background: var(--off-white);
+            border-radius: 8px;
+            font-size: 0.83rem;
+            font-weight: 500;
+            color: var(--gray-800);
+            text-decoration: none;
+            transition: background 0.15s, color 0.15s;
+        }
+
+        .quick-links-list li a:hover {
+            background: var(--blue-pale);
+            color: var(--blue);
+        }
+
+        .quick-links-list li a::after {
+            content: '→';
+            font-size: 0.9rem;
+        }
+
+        /* ADMISSION WIDGET */
+        .admission-widget {
+            background: linear-gradient(135deg, var(--navy), var(--blue));
+            color: var(--white);
+            border-radius: 14px;
+            padding: 22px;
+            text-align: center;
+        }
+
+        .admission-widget .aw-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .admission-widget h3 {
+            font-family: 'Merriweather', serif;
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+
+        .admission-widget p {
+            font-size: 0.78rem;
+            opacity: 0.85;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .btn-gold {
+            background: var(--gold);
+            color: #1a1a00;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.2s;
+        }
+
+        .btn-gold:hover {
+            transform: scale(1.05);
+        }
+
+        /* CONTACT WIDGET */
+        .contact-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .contact-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.82rem;
+            color: var(--gray-600);
+        }
+
+        .contact-list li span:first-child {
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .contact-list li strong {
+            color: var(--navy);
+            display: block;
+            font-size: 0.8rem;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--navy);
+            color: rgba(255, 255, 255, 0.75);
+            padding: 40px 24px 20px;
+            margin-top: 40px;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Merriweather', serif;
+            font-size: 1rem;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .footer-brand p {
+            font-size: 0.8rem;
+            line-height: 1.7;
+        }
+
+        .footer-col h4 {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .footer-col ul li a {
+            font-size: 0.78rem;
+            color: rgba(255, 255, 255, 0.65);
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+            padding-top: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            font-size: 0.75rem;
+        }
+
+        .footer-bottom a {
+            color: rgba(255, 255, 255, 0.55);
+            text-decoration: none;
+        }
+
+        .footer-bottom a:hover {
+            color: var(--white);
+        }
+
+        @media (max-width: 900px) {
+            .main-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .info-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .info-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOP BAR -->
+    <div class="topbar">
+        <div class="topbar-inner">
+            <span>📍 Sector 14, New Delhi – 110001 &nbsp;|&nbsp; 📞 011-2345-6789</span>
+            <div class="topbar-links">
+                <a href="#">Student Login</a>
+                <a href="#">Parent Portal</a>
+                <a href="#">Staff Login</a>
+                <a href="#">RTI</a>
+                <a href="#">CBSE</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="nav-inner">
+            <a href="#" class="logo">
+                <div class="logo-emblem">🏛️</div>
+                <div class="logo-text">
+                    <h1>Delhi Public School</h1>
+                    <p>Estd. 1949 · Affiliated to CBSE</p>
+                </div>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Academics</a></li>
+                <li><a href="#">Admissions</a></li>
+                <li><a href="#">Activities</a></li>
+                <li><a href="#">Gallery</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#" class="nav-cta">Apply Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="hero-text">
+                <h2>Shaping Tomorrow's<br />Leaders Today</h2>
+                <p>Providing holistic, value-based education since 1949. Affiliated to CBSE, committed to academic
+                    excellence and character development.</p>
+                <div class="hero-btns">
+                    <a href="#" class="btn-primary">📋 Admissions 2026–27</a>
+                    <a href="#" class="btn-outline">View Results</a>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-num">3,500+</div>
+                    <div class="hero-stat-label">Students</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-num">98%</div>
+                    <div class="hero-stat-label">Pass Rate</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-num">75+</div>
+                    <div class="hero-stat-label">Years</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-num">A+</div>
+                    <div class="hero-stat-label">CBSE Grade</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUICK LINKS BAR -->
+    <div class="quick-bar">
+        <div class="quick-bar-inner">
+            <a href="#" class="quick-link active"><span>📋</span>Admissions</a>
+            <a href="#" class="quick-link"><span>📊</span>Results</a>
+            <a href="#" class="quick-link"><span>🗓️</span>Academic Calendar</a>
+            <a href="#" class="quick-link"><span>💳</span>Fee Payment</a>
+            <a href="#" class="quick-link"><span>📖</span>Syllabus</a>
+            <a href="#" class="quick-link"><span>🚌</span>Transport</a>
+            <a href="#" class="quick-link"><span>📞</span>Contact</a>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-wrapper">
+        <main>
+            <!-- INFO CARDS -->
+            <div style="margin-bottom:32px;">
+                <div class="section-label">Quick Access</div>
+                <div class="info-grid">
+                    <a href="#" class="info-card">
+                        <div class="info-card-icon">📋</div>
+                        <h4>Admission Form</h4>
+                        <p>Apply for 2026–27</p>
+                    </a>
+                    <a href="#" class="info-card">
+                        <div class="info-card-icon">📊</div>
+                        <h4>Board Results</h4>
+                        <p>Class X & XII</p>
+                    </a>
+                    <a href="#" class="info-card">
+                        <div class="info-card-icon">💳</div>
+                        <h4>Fee Portal</h4>
+                        <p>Pay Online</p>
+                    </a>
+                    <a href="#" class="info-card">
+                        <div class="info-card-icon">📚</div>
+                        <h4>Syllabus</h4>
+                        <p>Download PDF</p>
+                    </a>
+                    <a href="#" class="info-card">
+                        <div class="info-card-icon">🗓️</div>
+                        <h4>Time Table</h4>
+                        <p>All Classes</p>
+                    </a>
+                    <a href="#" class="info-card">
+                        <div class="info-card-icon">🎓</div>
+                        <h4>Alumni</h4>
+                        <p>Connect Network</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- NOTICE BOARD -->
+            <div style="margin-bottom:32px;">
+                <div class="section-label">Notice Board</div>
+                <div class="notice-board">
+                    <div class="notice-header">
+                        <h3>📌 Important Notices</h3>
+                        <a href="#">View All →</a>
+                    </div>
+                    <ul class="notice-list">
+                        <li>
+                            <a href="#" class="notice-item">
+                                <div class="notice-date"><span class="day">27</span>Feb</div>
+                                <div class="notice-content">
+                                    <h4>Admission Open for Class XI 2026–27 <span
+                                            class="notice-badge badge-new">NEW</span></h4>
+                                    <p>Online registration begins March 1. Last date: April 15, 2026.</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="notice-item">
+                                <div class="notice-date"><span class="day">25</span>Feb</div>
+                                <div class="notice-content">
+                                    <h4>Annual Sports Day — March 8, 2026 <span
+                                            class="notice-badge badge-imp">IMP</span></h4>
+                                    <p>All parents are invited. Venue: School Ground, 9:00 AM onwards.</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="notice-item">
+                                <div class="notice-date"><span class="day">22</span>Feb</div>
+                                <div class="notice-content">
+                                    <h4>Class X Pre-Board Exam Schedule Released</h4>
+                                    <p>Download timetable from the student portal or collect from office.</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="notice-item">
+                                <div class="notice-date"><span class="day">18</span>Feb</div>
+                                <div class="notice-content">
+                                    <h4>Fee Payment Deadline — March 31 <span class="notice-badge badge-imp">IMP</span>
+                                    </h4>
+                                    <p>Please pay Q4 fees to avoid late charges. Online portal available 24×7.</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="notice-item">
+                                <div class="notice-date"><span class="day">15</span>Feb</div>
+                                <div class="notice-content">
+                                    <h4>CBSE Board Practical Exams Begin</h4>
+                                    <p>Practical examinations for Classes X and XII commence as per CBSE schedule.</p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- UPCOMING EVENTS -->
+            <div>
+                <div class="section-label">School Events</div>
+                <div class="events-list">
+                    <a href="#" class="event-card">
+                        <div class="event-date-pill"><span class="em">08</span><span class="mo">Mar</span></div>
+                        <div class="event-info">
+                            <h4>Annual Sports Day 2026</h4>
+                            <p>🏃 School Ground · 9:00 AM – 4:00 PM · All parents welcome</p>
+                        </div>
+                        <div class="event-cat">Sports</div>
+                    </a>
+                    <a href="#" class="event-card">
+                        <div class="event-date-pill"><span class="em">15</span><span class="mo">Mar</span></div>
+                        <div class="event-info">
+                            <h4>Class X Board Examinations Begin</h4>
+                            <p>📝 CBSE Board Exams · All Class X students</p>
+                        </div>
+                        <div class="event-cat">Academics</div>
+                    </a>
+                    <a href="#" class="event-card">
+                        <div class="event-date-pill"><span class="em">22</span><span class="mo">Mar</span></div>
+                        <div class="event-info">
+                            <h4>Science Exhibition & Fair</h4>
+                            <p>🔬 Main Hall · Classes VI–XII · Open to public</p>
+                        </div>
+                        <div class="event-cat">Academic</div>
+                    </a>
+                    <a href="#" class="event-card">
+                        <div class="event-date-pill"><span class="em">01</span><span class="mo">Apr</span></div>
+                        <div class="event-info">
+                            <h4>New Academic Session 2026–27 Begins</h4>
+                            <p>📚 All classes resume · Uniform wearing compulsory</p>
+                        </div>
+                        <div class="event-cat">General</div>
+                    </a>
+                </div>
+            </div>
+        </main>
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <!-- ADMISSIONS -->
+            <div class="admission-widget">
+                <div class="aw-icon">🎓</div>
+                <h3>Admissions Open<br />2026–27</h3>
+                <p>Nursery to Class XII. Merit-based selection. Limited seats available.</p>
+                <a href="#" class="btn-gold">Apply Online →</a>
+            </div>
+
+            <!-- QUICK LINKS -->
+            <div class="sidebar-widget">
+                <div class="widget-header">🔗 Important Links</div>
+                <div class="widget-body">
+                    <ul class="quick-links-list">
+                        <li><a href="#">CBSE Official Website</a></li>
+                        <li><a href="#">Student Result Portal</a></li>
+                        <li><a href="#">Online Fee Payment</a></li>
+                        <li><a href="#">NCERT Textbooks</a></li>
+                        <li><a href="#">Scholarship Schemes</a></li>
+                        <li><a href="#">Transport Route Map</a></li>
+                        <li><a href="#">Parent Teacher Meet</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- CONTACT -->
+            <div class="sidebar-widget">
+                <div class="widget-header">📞 Contact Us</div>
+                <div class="widget-body">
+                    <ul class="contact-list">
+                        <li><span>📍</span>
+                            <div><strong>Address</strong>Sector 14, New Delhi – 110001</div>
+                        </li>
+                        <li><span>📞</span>
+                            <div><strong>Phone</strong>011-2345-6789, 011-2345-6790</div>
+                        </li>
+                        <li><span>📧</span>
+                            <div><strong>Email</strong>info@dps.edu.in</div>
+                        </li>
+                        <li><span>🕐</span>
+                            <div><strong>Office Hours</strong>Mon–Sat: 8:00 AM – 2:00 PM</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>Delhi Public School</h3>
+                    <p>Providing quality education since 1949. Affiliated to Central Board of Secondary Education
+                        (CBSE), New Delhi. Committed to holistic development of every child.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Academics</h4>
+                    <ul>
+                        <li><a href="#">Curriculum</a></li>
+                        <li><a href="#">Time Table</a></li>
+                        <li><a href="#">Syllabus</a></li>
+                        <li><a href="#">Results</a></li>
+                        <li><a href="#">Library</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Admissions</h4>
+                    <ul>
+                        <li><a href="#">Apply Online</a></li>
+                        <li><a href="#">Eligibility</a></li>
+                        <li><a href="#">Fee Structure</a></li>
+                        <li><a href="#">Documents</a></li>
+                        <li><a href="#">RTE Admissions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>School</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Principal's Message</a></li>
+                        <li><a href="#">Faculty</a></li>
+                        <li><a href="#">Infrastructure</a></li>
+                        <li><a href="#">RTI</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 Delhi Public School. All rights reserved.</span>
+                <div style="display:flex;gap:16px;">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                    <a href="#">Sitemap</a>
+                    <a href="#">RTI</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

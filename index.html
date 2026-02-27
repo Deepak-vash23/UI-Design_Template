@@ -5,7 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>UI Design Showcase — Template Gallery</title>
-    <meta name="description" content="Browse 27 stunning UI design templates across various aesthetics." />
+    <meta name="description"
+        content="Browse 37 stunning UI design templates across various aesthetics including 10 school website designs." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -465,14 +466,14 @@
         <header>
             <div class="badge">UI Design Gallery</div>
             <h1>UI Template Showcase</h1>
-            <p>A curated collection of 27 distinct UI design templates. Click any card to open the live template.</p>
+            <p>A curated collection of 37 distinct UI design templates. Click any card to open the live template.</p>
             <div class="stats-bar">
                 <div class="stat">
-                    <div class="stat-num">27</div>
+                    <div class="stat-num">37</div>
                     <div class="stat-label">Templates</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-num">8+</div>
+                    <div class="stat-num">12+</div>
                     <div class="stat-label">Styles</div>
                 </div>
                 <div class="stat">
@@ -489,13 +490,13 @@
             </div>
         </div>
 
-        <div class="result-count" id="result-count">Showing all 27 templates</div>
+        <div class="result-count" id="result-count">Showing all 37 templates</div>
 
         <div class="grid-container">
             <div class="grid" id="grid"></div>
         </div>
 
-        <footer>UI Design Showcase &nbsp;·&nbsp; 27 Templates &nbsp;·&nbsp; Click any card to open the template</footer>
+        <footer>UI Design Showcase &nbsp;·&nbsp; 37 Templates &nbsp;·&nbsp; Click any card to open the template</footer>
     </div>
 
     <script>
@@ -527,6 +528,16 @@
             { file: 'timeline-focused.html', title: 'Timeline Focused', icon: '📅', tag: 'Layout', desc: 'Vertical timeline layout perfect for history, events, changelogs, and progress tracking.', stripe: '#4776e6,#8e54e9' },
             { file: 'transparent-layers.html', title: 'Transparent Layers', icon: '🔮', tag: 'Glassmorphism', desc: 'Stacked translucent layers with depth, backdrop-blur, and beautiful glass overlay effects.', stripe: '#89f7fe,#66a6ff' },
             { file: 'ultra-thin-line.html', title: 'Ultra Thin Line', icon: '➖', tag: 'Minimalist', desc: 'Hairline strokes, expansive whitespace, and razor-sharp minimalism for a refined look.', stripe: '#c9d6df,#52616b' },
+            { file: 'school-institutional.html', title: 'School – Institutional', icon: '🏛️', tag: 'School', desc: 'Clean institutional UI with white background, navy accents, notice board, and structured layout. Best for CBSE/ICSE schools.', stripe: '#0f2a5c,#1a54b5' },
+            { file: 'school-bento-grid.html', title: 'School – Bento Grid', icon: '📦', tag: 'School', desc: 'Modern bento grid layout with modular cards for admissions, results, events, faculty and gallery.', stripe: '#2563eb,#7c3aed' },
+            { file: 'school-dashboard-portal.html', title: 'School – Dashboard Portal', icon: '📊', tag: 'School', desc: 'Card-based student portal with sidebar navigation, homework, attendance, timetable and fee cards.', stripe: '#3b82f6,#6366f1' },
+            { file: 'school-minimal-hero.html', title: 'School – Minimal Hero', icon: '📢', tag: 'School', desc: 'Large bold typography hero — "Admissions Open 2026" with clear CTA, marquee, and clean sections below.', stripe: '#0a1628,#1a4fd8' },
+            { file: 'school-soft-pastel-primary.html', title: 'School – Soft Pastel', icon: '🌸', tag: 'School', desc: 'Warm child-friendly design with rounded corners, soft pastel colors, and simple icons for primary schools.', stripe: '#ffd166,#ffb997,#a8dadc' },
+            { file: 'school-dark-gold.html', title: 'School – Dark Gold', icon: '⚜', tag: 'School', desc: 'Premium private school UI with deep navy background, gold accents, serif fonts, and elite branding.', stripe: '#c9a84c,#0a0c10' },
+            { file: 'school-magazine-editorial.html', title: 'School – Magazine', icon: '📰', tag: 'School', desc: 'Editorial newspaper-style layout with article grid, events, opinion quotes, and notice board sidebar.', stripe: '#111,#c0392b' },
+            { file: 'school-timeline.html', title: 'School – Timeline', icon: '📅', tag: 'School', desc: 'Timeline-based UI with academic calendar, admission process steps, and annual events in sequential order.', stripe: '#3563e9,#10b981,#f59e0b' },
+            { file: 'school-immersive-visual.html', title: 'School – Immersive Visual', icon: '📸', tag: 'School', desc: 'Image-focused immersive design with full-width sections for campus, sports, arts and labs. Minimal text, maximum visuals.', stripe: '#e6a54a,#0a0a0a' },
+            { file: 'school-govt-modern.html', title: 'School – Govt Modern', icon: '🇮🇳', tag: 'School', desc: 'Modernised government school UI with Hindi+English, accessibility controls, large fonts, and NCERT/RTE integration.', stripe: '#1a3b5c,#16a34a' },
         ];
 
         const tagColors = {
@@ -536,6 +547,7 @@
             'Organic': '#a8c090', 'Accessible': '#f9d71c', 'Luxury': '#d4a900',
             'Editorial': '#e53e3e', 'Animated': '#a18cd1', 'Motion': '#fc4a1a',
             'Minimalist': '#bdc3c7', 'Cute': '#fbc2eb', 'Portfolio': '#30cfd0',
+            'School': '#1a54b5',
         };
 
         const grid = document.getElementById('grid');
