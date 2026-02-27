@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Nitin's Design — School Website</title>
+    <meta name="description" content="A warm, clear, and accessible school website designed by Nitin." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        :root {
+            /* Skin-tone warm palette */
+            --bg: #fdf5ed;
+            --bg-warm: #f9ece0;
+            --bg-card: #fff8f2;
+            --white: #ffffff;
+            --skin: #f0d5b8;
+            --skin-light: #faeadb;
+            --skin-dark: #d4a87c;
+            /* Sky blue accents */
+            --sky: #4da8da;
+            --sky-deep: #2980b9;
+            --sky-pale: #e0f0fa;
+            --sky-glow: rgba(77, 168, 218, .15);
+            /* Supporting */
+            --emerald: #27ae60;
+            --emerald-pale: #e8f8ef;
+            --amber: #f39c12;
+            --amber-pale: #fef6e4;
+            --rose: #e74c3c;
+            --rose-pale: #fdeaea;
+            --violet: #8e44ad;
+            --violet-pale: #f5eafa;
+            /* Text */
+            --text: #2c1810;
+            --text-warm: #5a3e2b;
+            --muted: #8b7260;
+            --border: rgba(210, 175, 140, .3);
+            --shadow: 0 4px 24px rgba(44, 24, 16, .06);
+            --shadow-hover: 0 12px 40px rgba(44, 24, 16, .12);
+            --radius: 18px;
+            --transition: .25s cubic-bezier(.4, 0, .2, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.6
+        }
+
+        /* === NAVBAR === */
+        nav {
+            background: rgba(253, 245, 237, .92);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-inner {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 28px;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none
+        }
+
+        .logo-circle {
+            width: 46px;
+            height: 46px;
+            background: linear-gradient(135deg, var(--sky), var(--sky-deep));
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-size: 20px;
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(77, 168, 218, .35);
+            transition: transform var(--transition);
+        }
+
+        .logo:hover .logo-circle {
+            transform: scale(1.1) rotate(-8deg)
+        }
+
+        .logo-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--text)
+        }
+
+        .logo-sub {
+            font-size: .68rem;
+            font-weight: 600;
+            color: var(--muted);
+            letter-spacing: .03em
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2px;
+            list-style: none
+        }
+
+        .nav-menu a {
+            display: block;
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-size: .88rem;
+            font-weight: 700;
+            color: var(--text-warm);
+            text-decoration: none;
+            transition: background var(--transition), color var(--transition);
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            background: var(--sky-pale);
+            color: var(--sky-deep)
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--sky), var(--sky-deep));
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 14px;
+            font-size: .88rem;
+            font-weight: 800;
+            text-decoration: none;
+            box-shadow: 0 4px 16px rgba(77, 168, 218, .3);
+            transition: transform var(--transition), box-shadow var(--transition);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(77, 168, 218, .4)
+        }
+
+        /* === HERO === */
+        .hero {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 56px 28px 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .hero-text {
+            display: block;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--sky-pale);
+            color: var(--sky-deep);
+            font-size: .78rem;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 999px;
+            margin-bottom: 20px;
+        }
+
+        .hero-tag::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--sky);
+            animation: pulse 2s infinite
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1)
+            }
+
+            50% {
+                opacity: .5;
+                transform: scale(1.3)
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+            font-weight: 800;
+            line-height: 1.15;
+            color: var(--text);
+            margin-bottom: 16px;
+        }
+
+        .hero h1 span {
+            color: var(--sky-deep)
+        }
+
+        .hero-desc {
+            font-size: 1.05rem;
+            color: var(--muted);
+            font-weight: 600;
+            line-height: 1.75;
+            max-width: 460px;
+            margin-bottom: 32px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap
+        }
+
+        .btn-sky {
+            background: linear-gradient(135deg, var(--sky), var(--sky-deep));
+            color: #fff;
+            padding: 14px 32px;
+            border-radius: 16px;
+            font-size: .95rem;
+            font-weight: 800;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 6px 24px rgba(77, 168, 218, .3);
+            transition: transform var(--transition), box-shadow var(--transition);
+        }
+
+        .btn-sky:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 36px rgba(77, 168, 218, .4)
+        }
+
+        .btn-warm {
+            background: var(--white);
+            border: 2px solid var(--border);
+            color: var(--text-warm);
+            padding: 14px 32px;
+            border-radius: 16px;
+            font-size: .95rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: border-color var(--transition), color var(--transition);
+        }
+
+        .btn-warm:hover {
+            border-color: var(--sky);
+            color: var(--sky-deep)
+        }
+
+        /* HERO VISUAL */
+        .hero-visual {
+            position: relative
+        }
+
+        .hero-card {
+            background: var(--white);
+            border-radius: 28px;
+            padding: 28px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 16px
+        }
+
+        .hg-tile {
+            background: var(--skin-light);
+            border-radius: 16px;
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            transition: transform var(--transition), background var(--transition);
+            cursor: default;
+        }
+
+        .hg-tile:hover {
+            transform: scale(1.06);
+            background: var(--sky-pale)
+        }
+
+        .hg-tile .hg-emoji {
+            font-size: 2rem;
+            transition: transform var(--transition)
+        }
+
+        .hg-tile:hover .hg-emoji {
+            transform: scale(1.2) rotate(10deg)
+        }
+
+        .hg-tile .hg-label {
+            font-size: .72rem;
+            font-weight: 800;
+            color: var(--muted)
+        }
+
+        .hero-card-foot {
+            text-align: center;
+            font-size: .82rem;
+            font-weight: 700;
+            color: var(--muted)
+        }
+
+        /* Floating badges on hero */
+        .float-badge {
+            position: absolute;
+            background: var(--white);
+            border-radius: 14px;
+            padding: 10px 16px;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, .1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: .78rem;
+            font-weight: 800;
+            color: var(--text);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .float-badge .fb-icon {
+            font-size: 1.2rem
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-8px)
+            }
+        }
+
+        .fb-1 {
+            top: -12px;
+            right: -20px;
+            animation-delay: 0s
+        }
+
+        .fb-2 {
+            bottom: 30px;
+            left: -24px;
+            animation-delay: -2s
+        }
+
+        /* === QUICK OPTIONS === */
+        .options-section {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 20px 28px 60px;
+        }
+
+        .section-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: .72rem;
+            font-weight: 800;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--sky-deep);
+            margin-bottom: 8px;
+        }
+
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1.5px;
+            background: var(--border)
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 32px;
+            line-height: 1.2;
+        }
+
+        .section-title span {
+            color: var(--sky-deep)
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px
+        }
+
+        .option-card {
+            background: var(--white);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px 20px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text);
+            transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .option-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--sky);
+        }
+
+        .option-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 18px;
+            display: grid;
+            place-items: center;
+            font-size: 1.8rem;
+            transition: transform var(--transition);
+        }
+
+        .option-card:hover .option-icon {
+            transform: scale(1.15) rotate(-6deg)
+        }
+
+        .option-card h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: .92rem;
+            font-weight: 800;
+            color: var(--text)
+        }
+
+        .option-card p {
+            font-size: .75rem;
+            font-weight: 600;
+            color: var(--muted);
+            line-height: 1.5
+        }
+
+        /* === ACHIEVEMENTS === */
+        .achievements {
+            background: linear-gradient(180deg, var(--bg-warm), var(--bg));
+            padding: 60px 28px;
+        }
+
+        .achieve-inner {
+            max-width: 1180px;
+            margin: 0 auto
+        }
+
+        .achieve-header {
+            text-align: center;
+            margin-bottom: 40px
+        }
+
+        .achieve-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 40px
+        }
+
+        .achieve-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 28px 20px;
+            text-align: center;
+            border: 1.5px solid var(--border);
+            transition: transform var(--transition), box-shadow var(--transition);
+        }
+
+        .achieve-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover)
+        }
+
+        .achieve-emoji {
+            font-size: 2.6rem;
+            margin-bottom: 10px;
+            display: block
+        }
+
+        .achieve-num {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--sky-deep);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .achieve-label {
+            font-size: .78rem;
+            font-weight: 700;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: .08em
+        }
+
+        .achieve-bar {
+            height: 4px;
+            border-radius: 2px;
+            background: var(--skin-light);
+            margin-top: 12px;
+            overflow: hidden
+        }
+
+        .achieve-fill {
+            height: 100%;
+            border-radius: 2px;
+            background: linear-gradient(90deg, var(--sky), var(--sky-deep))
+        }
+
+        /* Award Cards */
+        .awards-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px
+        }
+
+        .award-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 22px;
+            border: 1.5px solid var(--border);
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            transition: transform var(--transition), box-shadow var(--transition);
+        }
+
+        .award-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow)
+        }
+
+        .award-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .award-card h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: .88rem;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 4px
+        }
+
+        .award-card p {
+            font-size: .75rem;
+            font-weight: 600;
+            color: var(--muted);
+            line-height: 1.5
+        }
+
+        .award-year {
+            font-size: .68rem;
+            font-weight: 800;
+            color: var(--sky);
+            margin-top: 4px
+        }
+
+        /* === NOTICE BOARD === */
+        .notice-section {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 60px 28px
+        }
+
+        .notice-layout {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 28px
+        }
+
+        .notice-board {
+            background: var(--white);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .nb-header {
+            background: linear-gradient(135deg, var(--sky), var(--sky-deep));
+            color: #fff;
+            padding: 16px 22px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nb-header h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: .95rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 8px
+        }
+
+        .nb-header a {
+            font-size: .75rem;
+            color: rgba(255, 255, 255, .8);
+            text-decoration: none;
+            font-weight: 700
+        }
+
+        .nb-header a:hover {
+            color: #fff
+        }
+
+        .nb-item {
+            display: flex;
+            gap: 14px;
+            padding: 16px 22px;
+            border-bottom: 1px solid var(--skin-light);
+            text-decoration: none;
+            color: var(--text);
+            transition: background var(--transition);
+            align-items: flex-start;
+        }
+
+        .nb-item:last-child {
+            border-bottom: none
+        }
+
+        .nb-item:hover {
+            background: var(--sky-glow)
+        }
+
+        .nb-date {
+            background: var(--sky-pale);
+            color: var(--sky-deep);
+            border-radius: 12px;
+            padding: 6px 10px;
+            text-align: center;
+            flex-shrink: 0;
+            min-width: 46px;
+            font-weight: 800;
+        }
+
+        .nb-day {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 900;
+            line-height: 1
+        }
+
+        .nb-mo {
+            font-size: .62rem;
+            text-transform: uppercase;
+            letter-spacing: .06em
+        }
+
+        .nb-body h4 {
+            font-size: .85rem;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 3px
+        }
+
+        .nb-body p {
+            font-size: .73rem;
+            font-weight: 600;
+            color: var(--muted)
+        }
+
+        .nb-badge {
+            display: inline-block;
+            font-size: .6rem;
+            font-weight: 800;
+            padding: 2px 8px;
+            border-radius: 999px;
+            margin-left: 6px;
+            text-transform: uppercase;
+        }
+
+        .badge-new {
+            background: var(--emerald-pale);
+            color: var(--emerald)
+        }
+
+        .badge-imp {
+            background: var(--rose-pale);
+            color: var(--rose)
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 16px
+        }
+
+        .cta-widget {
+            background: linear-gradient(135deg, var(--sky), var(--sky-deep));
+            color: #fff;
+            border-radius: var(--radius);
+            padding: 28px;
+            text-align: center;
+        }
+
+        .cta-widget .cw-icon {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            display: block
+        }
+
+        .cta-widget h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 800;
+            margin-bottom: 6px
+        }
+
+        .cta-widget p {
+            font-size: .82rem;
+            opacity: .85;
+            line-height: 1.5;
+            margin-bottom: 18px
+        }
+
+        .btn-white {
+            background: #fff;
+            color: var(--sky-deep);
+            padding: 11px 24px;
+            border-radius: 14px;
+            font-size: .88rem;
+            font-weight: 800;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform var(--transition);
+        }
+
+        .btn-white:hover {
+            transform: scale(1.05)
+        }
+
+        .links-widget {
+            background: var(--white);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .lw-header {
+            padding: 14px 18px;
+            background: var(--skin-light);
+            border-bottom: 1px solid var(--border);
+            font-family: 'Poppins', sans-serif;
+            font-size: .88rem;
+            font-weight: 800;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .lw-body {
+            padding: 12px 16px
+        }
+
+        .lw-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 9px 12px;
+            border-radius: 10px;
+            font-size: .82rem;
+            font-weight: 700;
+            color: var(--text-warm);
+            text-decoration: none;
+            transition: background var(--transition), color var(--transition);
+            margin-bottom: 4px;
+        }
+
+        .lw-link:last-child {
+            margin-bottom: 0
+        }
+
+        .lw-link:hover {
+            background: var(--sky-pale);
+            color: var(--sky-deep)
+        }
+
+        .lw-link::after {
+            content: '→';
+            font-size: .9rem;
+            transition: transform var(--transition)
+        }
+
+        .lw-link:hover::after {
+            transform: translateX(3px)
+        }
+
+        /* CONTACT */
+        .contact-widget {
+            background: var(--white);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .cw-header {
+            padding: 14px 18px;
+            background: var(--skin-light);
+            border-bottom: 1px solid var(--border);
+            font-family: 'Poppins', sans-serif;
+            font-size: .88rem;
+            font-weight: 800;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cw-body {
+            padding: 14px 18px
+        }
+
+        .cw-row {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            margin-bottom: 10px;
+            font-size: .82rem;
+            color: var(--muted)
+        }
+
+        .cw-row:last-child {
+            margin-bottom: 0
+        }
+
+        .cw-row-icon {
+            font-size: 1rem;
+            flex-shrink: 0;
+            width: 24px;
+            text-align: center
+        }
+
+        .cw-row strong {
+            color: var(--text);
+            display: block;
+            font-weight: 800;
+            font-size: .78rem
+        }
+
+        /* === PRINCIPAL MESSAGE === */
+        .message-section {
+            background: var(--bg-warm);
+            padding: 60px 28px;
+        }
+
+        .message-inner {
+            max-width: 860px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .msg-quote {
+            font-size: 4rem;
+            color: var(--sky);
+            opacity: .3;
+            line-height: .6;
+            margin-bottom: 4px;
+        }
+
+        .msg-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            font-weight: 700;
+            font-style: italic;
+            color: var(--text);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .msg-attr {
+            font-size: .85rem;
+            font-weight: 800;
+            color: var(--sky-deep)
+        }
+
+        .msg-attr span {
+            font-weight: 600;
+            color: var(--muted)
+        }
+
+        /* === FOOTER === */
+        footer {
+            background: var(--text);
+            color: rgba(255, 255, 255, .65);
+            padding: 40px 28px 20px;
+        }
+
+        .footer-inner {
+            max-width: 1180px;
+            margin: 0 auto
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 32px;
+            margin-bottom: 28px
+        }
+
+        .f-brand h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px
+        }
+
+        .f-brand p {
+            font-size: .78rem;
+            line-height: 1.7
+        }
+
+        .f-col-title {
+            font-size: .72rem;
+            font-weight: 800;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .35);
+            margin-bottom: 12px
+        }
+
+        .f-col-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px
+        }
+
+        .f-col-links a {
+            font-size: .78rem;
+            color: rgba(255, 255, 255, .55);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color .18s
+        }
+
+        .f-col-links a:hover {
+            color: #fff
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, .1);
+            padding-top: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            font-size: .73rem;
+        }
+
+        .footer-bottom a {
+            color: rgba(255, 255, 255, .4);
+            text-decoration: none;
+            margin-left: 14px
+        }
+
+        .footer-bottom a:hover {
+            color: #fff
+        }
+
+        /* === RESPONSIVE === */
+        @media(max-width:960px) {
+            .hero {
+                grid-template-columns: 1fr
+            }
+
+            .hero-visual {
+                max-width: 400px;
+                margin: 0 auto
+            }
+
+            .options-grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .achieve-grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .awards-row {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .notice-layout {
+                grid-template-columns: 1fr
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr
+            }
+        }
+
+        @media(max-width:600px) {
+            .nav-menu {
+                display: none
+            }
+
+            .options-grid {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .achieve-grid {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .awards-row {
+                grid-template-columns: 1fr
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== NAV ===== -->
+    <nav>
+        <div class="nav-inner">
+            <a href="#" class="logo">
+                <div class="logo-circle">🎓</div>
+                <div>
+                    <div class="logo-text">Nitin's School</div>
+                    <div class="logo-sub">Clear as Blue Sky ☁️</div>
+                </div>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#options">Quick Access</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#notices">Notices</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="#" class="nav-cta">📋 Apply Now</a>
+        </div>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+        <div class="hero-text">
+            <div class="hero-tag">✦ Admissions Open 2026–27</div>
+            <h1>Where Every Child<br /><span>Shines Bright</span></h1>
+            <p class="hero-desc">A warm, nurturing school where clarity meets excellence. Simple values, bold results,
+                and a future as clear as the blue sky.</p>
+            <div class="hero-btns">
+                <a href="#" class="btn-sky">🎓 Get Admission</a>
+                <a href="#" class="btn-warm">📊 View Results</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="float-badge fb-1"><span class="fb-icon">🏆</span> 99% Pass Rate</div>
+            <div class="float-badge fb-2"><span class="fb-icon">⭐</span> A+ CBSE Grade</div>
+            <div class="hero-card">
+                <div class="hero-grid">
+                    <div class="hg-tile"><span class="hg-emoji">📚</span><span class="hg-label">Academics</span></div>
+                    <div class="hg-tile"><span class="hg-emoji">⚽</span><span class="hg-label">Sports</span></div>
+                    <div class="hg-tile"><span class="hg-emoji">🎨</span><span class="hg-label">Arts</span></div>
+                    <div class="hg-tile"><span class="hg-emoji">💻</span><span class="hg-label">Tech Labs</span></div>
+                    <div class="hg-tile"><span class="hg-emoji">🔬</span><span class="hg-label">Science</span></div>
+                    <div class="hg-tile"><span class="hg-emoji">🎵</span><span class="hg-label">Music</span></div>
+                    <div class="hg-tile"><span class="hg-emoji">📖</span><span class="hg-label">Library</span></div>
+                    <div class="hg-tile"><span class="hg-emoji">🌿</span><span class="hg-label">Campus</span></div>
+                </div>
+                <div class="hero-card-foot">✨ Explore Everything We Offer — Hover to Play!</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== QUICK OPTIONS ===== -->
+    <section class="options-section" id="options">
+        <div class="section-label">Easy Access</div>
+        <h2 class="section-title">Everything You Need,<br /><span>One Click Away</span></h2>
+        <div class="options-grid">
+            <a href="#" class="option-card">
+                <div class="option-icon" style="background:var(--sky-pale)">📋</div>
+                <h4>Admission Form</h4>
+                <p>Apply for 2026–27 session. Nursery to Class XII.</p>
+            </a>
+            <a href="#" class="option-card">
+                <div class="option-icon" style="background:var(--emerald-pale)">📊</div>
+                <h4>Board Results</h4>
+                <p>Check Class X & XII CBSE results online.</p>
+            </a>
+            <a href="#" class="option-card">
+                <div class="option-icon" style="background:var(--amber-pale)">💳</div>
+                <h4>Fee Payment</h4>
+                <p>Pay school fees online. Quick & secure.</p>
+            </a>
+            <a href="#" class="option-card">
+                <div class="option-icon" style="background:var(--violet-pale)">📅</div>
+                <h4>Time Table</h4>
+                <p>Download class-wise timetable PDF.</p>
+            </a>
+            <a href="#" class="option-card">
+                <div class="option-icon" style="background:var(--rose-pale)">📚</div>
+                <h4>Syllabus</h4>
+                <p>NCERT & CBSE syllabus for all classes.</p>
+            </a>
+            <a href="#" class="option-card">
+                <div class="option-icon" style="background:var(--sky-pale)">🚌</div>
+                <h4>Transport</h4>
+                <p>Bus routes, timings, and GPS tracking.</p>
+            </a>
+            <a href="#" class="option-card">
+                <div class="option-icon" style="background:var(--emerald-pale)">🎓</div>
+                <h4>Alumni Network</h4>
+                <p>Connect with our proud alumni family.</p>
+            </a>
+            <a href="#" class="option-card">
+                <div class="option-icon" style="background:var(--amber-pale)">📞</div>
+                <h4>Contact Us</h4>
+                <p>Reach us anytime. We're happy to help!</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- ===== ACHIEVEMENTS ===== -->
+    <section class="achievements" id="achievements">
+        <div class="achieve-inner">
+            <div class="achieve-header">
+                <div class="section-label" style="justify-content:center">Our Pride</div>
+                <h2 class="section-title" style="text-align:center">Achievements That<br /><span>Speak for
+                        Themselves</span></h2>
+            </div>
+
+            <!-- Stats -->
+            <div class="achieve-grid">
+                <div class="achieve-card">
+                    <span class="achieve-emoji">🏆</span>
+                    <div class="achieve-num">99%</div>
+                    <div class="achieve-label">Board Pass Rate</div>
+                    <div class="achieve-bar">
+                        <div class="achieve-fill" style="width:99%"></div>
+                    </div>
+                </div>
+                <div class="achieve-card">
+                    <span class="achieve-emoji">🥇</span>
+                    <div class="achieve-num">42</div>
+                    <div class="achieve-label">Gold Medals</div>
+                    <div class="achieve-bar">
+                        <div class="achieve-fill" style="width:85%"></div>
+                    </div>
+                </div>
+                <div class="achieve-card">
+                    <span class="achieve-emoji">📚</span>
+                    <div class="achieve-num">3,500+</div>
+                    <div class="achieve-label">Students</div>
+                    <div class="achieve-bar">
+                        <div class="achieve-fill" style="width:90%"></div>
+                    </div>
+                </div>
+                <div class="achieve-card">
+                    <span class="achieve-emoji">⭐</span>
+                    <div class="achieve-num">A+</div>
+                    <div class="achieve-label">CBSE Grading</div>
+                    <div class="achieve-bar">
+                        <div class="achieve-fill" style="width:100%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Award Cards -->
+            <div class="awards-row">
+                <div class="award-card">
+                    <div class="award-icon" style="background:var(--sky-pale)">🔬</div>
+                    <div>
+                        <h4>National Science Olympiad</h4>
+                        <p>5 students won gold medals at the 42nd National Science Olympiad in Bengaluru.</p>
+                        <div class="award-year">🗓️ 2025</div>
+                    </div>
+                </div>
+                <div class="award-card">
+                    <div class="award-icon" style="background:var(--amber-pale)">🏃</div>
+                    <div>
+                        <h4>State Athletics Championship</h4>
+                        <p>3 inter-school records broken in track & field at the State Level Championship.</p>
+                        <div class="award-year">🗓️ 2025</div>
+                    </div>
+                </div>
+                <div class="award-card">
+                    <div class="award-icon" style="background:var(--emerald-pale)">🎭</div>
+                    <div>
+                        <h4>Best Cultural Programme</h4>
+                        <p>Awarded "Best School Cultural Programme" at the Delhi Inter-School Festival.</p>
+                        <div class="award-year">🗓️ 2024</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PRINCIPAL'S MESSAGE ===== -->
+    <section class="message-section">
+        <div class="message-inner">
+            <div class="msg-quote">"</div>
+            <p class="msg-text">We believe in keeping things simple, clear, and honest. Our students don't just pass
+                exams — they become kind, confident, and capable human beings ready for the world.</p>
+            <div class="msg-attr">Dr. Nitin Kumar <span>· Founder & Principal</span></div>
+        </div>
+    </section>
+
+    <!-- ===== NOTICES + SIDEBAR ===== -->
+    <section class="notice-section" id="notices">
+        <div class="section-label">Stay Updated</div>
+        <h2 class="section-title">Notice Board & <span>Quick Links</span></h2>
+
+        <div class="notice-layout">
+            <!-- NOTICE BOARD -->
+            <div class="notice-board">
+                <div class="nb-header">
+                    <h3>📌 Important Notices</h3>
+                    <a href="#">View All →</a>
+                </div>
+                <a href="#" class="nb-item">
+                    <div class="nb-date">
+                        <div class="nb-day">27</div>
+                        <div class="nb-mo">Feb</div>
+                    </div>
+                    <div class="nb-body">
+                        <h4>Admission Form 2026–27 Now Available <span class="nb-badge badge-new">NEW</span></h4>
+                        <p>Online registration begins March 1. Last date: April 15, 2026. Limited seats!</p>
+                    </div>
+                </a>
+                <a href="#" class="nb-item">
+                    <div class="nb-date">
+                        <div class="nb-day">25</div>
+                        <div class="nb-mo">Feb</div>
+                    </div>
+                    <div class="nb-body">
+                        <h4>Annual Sports Day — March 8 <span class="nb-badge badge-imp">IMP</span></h4>
+                        <p>All parents are invited. Venue: School Ground, 9:00 AM onwards.</p>
+                    </div>
+                </a>
+                <a href="#" class="nb-item">
+                    <div class="nb-date">
+                        <div class="nb-day">22</div>
+                        <div class="nb-mo">Feb</div>
+                    </div>
+                    <div class="nb-body">
+                        <h4>Class X Pre-Board Timetable Released</h4>
+                        <p>Download from student portal or collect from the school office.</p>
+                    </div>
+                </a>
+                <a href="#" class="nb-item">
+                    <div class="nb-date">
+                        <div class="nb-day">18</div>
+                        <div class="nb-mo">Feb</div>
+                    </div>
+                    <div class="nb-body">
+                        <h4>Fee Payment Deadline — March 31 <span class="nb-badge badge-imp">IMP</span></h4>
+                        <p>Please pay Q4 fees online or at the office to avoid late charges.</p>
+                    </div>
+                </a>
+                <a href="#" class="nb-item">
+                    <div class="nb-date">
+                        <div class="nb-day">15</div>
+                        <div class="nb-mo">Feb</div>
+                    </div>
+                    <div class="nb-body">
+                        <h4>Science Exhibition — March 22</h4>
+                        <p>Open to parents & public. Students from Class VI–XII showcase innovations.</p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- SIDEBAR -->
+            <div class="sidebar">
+                <!-- CTA -->
+                <div class="cta-widget">
+                    <span class="cw-icon">🎓</span>
+                    <h3>Admissions Open!</h3>
+                    <p>Nursery to Class XII. Simple process, warm welcome. Join our family today.</p>
+                    <a href="#" class="btn-white">Apply Online →</a>
+                </div>
+
+                <!-- LINKS -->
+                <div class="links-widget">
+                    <div class="lw-header">🔗 Quick Links</div>
+                    <div class="lw-body">
+                        <a href="#" class="lw-link">CBSE Official Portal</a>
+                        <a href="#" class="lw-link">Student Results</a>
+                        <a href="#" class="lw-link">Online Fee Payment</a>
+                        <a href="#" class="lw-link">NCERT Textbooks</a>
+                        <a href="#" class="lw-link">Scholarship Schemes</a>
+                        <a href="#" class="lw-link">Parent-Teacher Meet</a>
+                    </div>
+                </div>
+
+                <!-- CONTACT -->
+                <div class="contact-widget" id="contact">
+                    <div class="cw-header">📞 Reach Us</div>
+                    <div class="cw-body">
+                        <div class="cw-row"><span class="cw-row-icon">📍</span>
+                            <div><strong>Address</strong>Sector 14, R.K. Puram, New Delhi – 110001</div>
+                        </div>
+                        <div class="cw-row"><span class="cw-row-icon">📞</span>
+                            <div><strong>Phone</strong>011-2345-6789</div>
+                        </div>
+                        <div class="cw-row"><span class="cw-row-icon">📧</span>
+                            <div><strong>Email</strong>hello@nitinsschool.edu.in</div>
+                        </div>
+                        <div class="cw-row"><span class="cw-row-icon">🕐</span>
+                            <div><strong>Office Hours</strong>Mon–Sat: 8:00 AM – 2:00 PM</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="f-brand">
+                    <h3>🎓 Nitin's School</h3>
+                    <p>A place where warmth meets wisdom. Clear as blue sky, bold in results. Affiliated to CBSE,
+                        committed to every child's success since 2002.</p>
+                </div>
+                <div>
+                    <div class="f-col-title">Academics</div>
+                    <ul class="f-col-links">
+                        <li><a href="#">Curriculum</a></li>
+                        <li><a href="#">Time Table</a></li>
+                        <li><a href="#">Syllabus</a></li>
+                        <li><a href="#">Results</a></li>
+                        <li><a href="#">Library</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="f-col-title">Admissions</div>
+                    <ul class="f-col-links">
+                        <li><a href="#">Apply Online</a></li>
+                        <li><a href="#">Fee Structure</a></li>
+                        <li><a href="#">Eligibility</a></li>
+                        <li><a href="#">Documents</a></li>
+                        <li><a href="#">RTE</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="f-col-title">School</div>
+                    <ul class="f-col-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Principal's Message</a></li>
+                        <li><a href="#">Faculty</a></li>
+                        <li><a href="#">Gallery</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 Nitin's School. All rights reserved. Designed with ☁️ clarity.</span>
+                <div>
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                    <a href="#">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
