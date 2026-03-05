@@ -466,14 +466,14 @@
         <header>
             <div class="badge">UI Design Gallery</div>
             <h1>UI Template Showcase</h1>
-            <p>A curated collection of 5 school UI design templates. Click any card to open the live template.</p>
+            <p>A curated collection of UI design templates. Click any card to open the live template.</p>
             <div class="stats-bar">
                 <div class="stat">
-                    <div class="stat-num">5</div>
+                    <div class="stat-num">11</div>
                     <div class="stat-label">Templates</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-num">5</div>
+                    <div class="stat-num">11</div>
                     <div class="stat-label">Styles</div>
                 </div>
                 <div class="stat">
@@ -490,18 +490,24 @@
             </div>
         </div>
 
-        <div class="result-count" id="result-count">Showing all 5 templates</div>
+        <div class="result-count" id="result-count">Showing all 11 templates</div>
 
         <div class="grid-container">
             <div class="grid" id="grid"></div>
         </div>
 
-        <footer>School UI Design Showcase &nbsp;·&nbsp; 5 Templates &nbsp;·&nbsp; Click any card to open the template
+        <footer>UI Design Showcase &nbsp;·&nbsp; 11 Templates &nbsp;·&nbsp; Click any card to open the template
         </footer>
     </div>
 
     <script>
         const templates = [
+            { file: 'saas-floating-platform.html', title: 'SaaS – Floating Platform', icon: '🛸', tag: 'SaaS', desc: 'A dark hero where the content beautifully floats above a glowing, rotating 3D platform stage.', stripe: '#050505,#ffffff' },
+            { file: 'saas-infinite-horizon.html', title: 'SaaS – Infinite Horizon', icon: '🌅', tag: 'SaaS', desc: 'A deeply expansive, futuristic layout with a glowing horizon line that uniquely illuminates the Deltha typography from below.', stripe: '#040810,#38bdf8' },
+            { file: 'saas-cinematic-depth.html', title: 'SaaS – Cinematic Depth', icon: '🎬', tag: 'SaaS', desc: 'A deeply atmospheric hero with deep purples, heavy bloom blur lighting, floating particles, and film grain.', stripe: '#030008,#8f60ff' },
+            { file: 'saas-split-enterprise.html', title: 'SaaS – Split Enterprise', icon: '⚡', tag: 'SaaS', desc: 'A clean 50/50 split layout. Massive Deltha headline on the left and a floating 3D abstract visual dashboard on the right.', stripe: '#060608,#5e6ad2' },
+            { file: 'saas-massive-central.html', title: 'SaaS – Massive Central', icon: '🌐', tag: 'SaaS', desc: 'A stunning hero layout focused entirely on a large central 3D-like hemisphere object with Deltha typography.', stripe: '#000000,#ffffff' },
+            { file: 'saas-dark-spotlight.html', title: 'SaaS – Dark Spotlight', icon: '🔦', tag: 'SaaS', desc: 'Dark theme hero with massive Deltha typography, a dramatic top-center spotlight, and subtle glowing texture.', stripe: '#333333,#ffffff' },
             { file: 'school-institutional.html', title: 'School – Institutional', icon: '🏛️', tag: 'School', desc: 'Clean institutional UI with white background, navy accents, notice board, and structured layout. Best for CBSE/ICSE schools.', stripe: '#0f2a5c,#1a54b5' },
             { file: 'school-dashboard-portal.html', title: 'School – Dashboard Portal', icon: '📊', tag: 'School', desc: 'Card-based student portal with sidebar navigation, homework, attendance, timetable and fee cards.', stripe: '#3b82f6,#6366f1' },
             { file: 'school-minimal-hero.html', title: 'School – Minimal Hero', icon: '📢', tag: 'School', desc: 'Large bold typography hero — "Admissions Open 2026" with clear CTA, marquee, and clean sections below.', stripe: '#0a1628,#1a4fd8' },
@@ -511,6 +517,7 @@
 
         const tagColors = {
             'School': '#1a54b5',
+            'SaaS': '#aaaaaa',
         };
 
         const grid = document.getElementById('grid');

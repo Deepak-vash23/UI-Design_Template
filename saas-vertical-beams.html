@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SaaS Vertical Light Beams Hero</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Local Fonts */
+        @font-face {
+            font-family: 'Deltha';
+            src: url('./fonts/Deltha.otf') format('opentype'),
+                url('./fonts/Deltha.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        :root {
+            --bg-color: #030008;
+            --text-main: #ffffff;
+            --text-muted: #a49fc4;
+            --beam-color-1: #c482ff;
+            --beam-color-2: #8f60ff;
+            --beam-color-3: #562db3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        nav {
+            width: 100%;
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 50;
+            position: relative;
+        }
+
+        .logo {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: 0.15em;
+            color: var(--text-main);
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            opacity: 0.7;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        /* VERTICAL LIGHT BEAMS BACKGROUND */
+        .beams-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .beam {
+            position: absolute;
+            bottom: -10%;
+            width: 80px;
+            height: 120%;
+            background: linear-gradient(180deg, transparent 0%, rgba(196, 130, 255, 0.4) 50%, rgba(255, 255, 255, 0.8) 100%);
+            filter: blur(25px);
+            opacity: 0.6;
+            transform-origin: bottom center;
+            animation: riseBeam 8s infinite alternate ease-in-out;
+            mix-blend-mode: screen;
+        }
+
+        /* Staggered Beams with different colors and animations */
+        .beam-1 {
+            left: 20%;
+            width: 150px;
+            background: linear-gradient(180deg, transparent 0%, rgba(143, 96, 255, 0.5) 50%, rgba(200, 200, 255, 0.9) 100%);
+            animation-delay: -2s;
+            animation-duration: 9s;
+            filter: blur(30px);
+        }
+
+        .beam-2 {
+            left: 40%;
+            width: 60px;
+            background: linear-gradient(180deg, transparent 0%, rgba(196, 130, 255, 0.4) 50%, rgba(255, 255, 255, 0.8) 100%);
+            animation-delay: -5s;
+            animation-duration: 7s;
+        }
+
+        .beam-main {
+            left: 50%;
+            width: 200px;
+            transform: translateX(-50%);
+            background: linear-gradient(180deg, transparent 0%, rgba(196, 130, 255, 0.6) 50%, #ffffff 100%);
+            filter: blur(40px);
+            opacity: 0.8;
+            animation-duration: 10s;
+        }
+
+        .beam-3 {
+            right: 35%;
+            width: 90px;
+            background: linear-gradient(180deg, transparent 0%, rgba(86, 45, 179, 0.6) 50%, rgba(255, 255, 255, 0.7) 100%);
+            animation-delay: -3s;
+            animation-duration: 8s;
+            filter: blur(20px);
+        }
+
+        .beam-4 {
+            right: 15%;
+            width: 120px;
+            background: linear-gradient(180deg, transparent 0%, rgba(143, 96, 255, 0.4) 50%, rgba(200, 200, 255, 0.8) 100%);
+            animation-delay: -7s;
+            animation-duration: 11s;
+            filter: blur(35px);
+        }
+
+        /* Floor glow to anchor the beams */
+        .floor-glow {
+            position: absolute;
+            bottom: -20vh;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150vw;
+            height: 40vh;
+            background: radial-gradient(ellipse at center, rgba(143, 96, 255, 0.4) 0%, transparent 60%);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* CONTENT */
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 0 20px 8vh;
+        }
+
+        .content-layer {
+            max-width: 800px;
+        }
+
+        .headline {
+            font-family: 'Deltha', 'Clash Display', sans-serif;
+            font-size: clamp(4rem, 10vw, 8rem);
+            font-weight: normal;
+            line-height: 0.9;
+            letter-spacing: -0.01em;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            text-transform: uppercase;
+            text-shadow: 0 10px 40px rgba(143, 96, 255, 0.6);
+
+            animation: slideUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .description {
+            font-size: clamp(1.1rem, 2vw, 1.35rem);
+            color: var(--text-muted);
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+
+            animation: slideUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.1rem 3rem;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            border-radius: 99px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(196, 130, 255, 0.2);
+
+            animation: slideUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .cta-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(196, 130, 255, 0.4);
+        }
+
+        /* Animations */
+        @keyframes riseBeam {
+            0% {
+                transform: scaleY(0.8) translateY(10%);
+                opacity: 0.4;
+            }
+
+            100% {
+                transform: scaleY(1.2) translateY(-5%);
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .beam-1,
+            .beam-4 {
+                display: none;
+            }
+
+            /* Simplify on mobile */
+            .beam-main {
+                width: 150vw;
+                filter: blur(60px);
+                opacity: 0.5;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Rising Vertical Energy Beams -->
+    <div class="beams-container">
+        <div class="beam beam-1"></div>
+        <div class="beam beam-2"></div>
+        <div class="beam beam-main"></div>
+        <div class="beam beam-3"></div>
+        <div class="beam beam-4"></div>
+        <div class="floor-glow"></div>
+    </div>
+
+    <nav>
+        <a href="#" class="logo">SYNAPSE</a>
+        <div class="nav-links">
+            <a href="#">Network</a>
+            <a href="#">Data Matrix</a>
+            <a href="#">Security</a>
+        </div>
+    </nav>
+
+    <main class="hero">
+        <div class="content-layer">
+            <h1 class="headline">Ascend</h1>
+            <p class="description">Routing infinite streams of data with unprecedented speed. The ultimate continuous
+                motion API for modern infrastructure.</p>
+            <a href="#" class="cta-button">Initialize Link</a>
+        </div>
+    </main>
+
+</body>
+
+</html>

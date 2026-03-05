@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SaaS Infinite Horizon Hero</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Local Fonts */
+        @font-face {
+            font-family: 'Deltha';
+            src: url('./fonts/Deltha.otf') format('opentype'),
+                url('./fonts/Deltha.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        :root {
+            --bg-color: #040810;
+            --text-main: #ffffff;
+            --text-muted: #8b9abf;
+            --horizon-glow: #38bdf8;
+            --horizon-glow-alt: #818cf8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        nav {
+            width: 100%;
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 50;
+            position: relative;
+        }
+
+        .logo {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: 0.1em;
+            color: var(--text-main);
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        /* HORIZON LAYERS */
+        .horizon-container {
+            position: absolute;
+            top: 55%;
+            left: 0;
+            width: 100%;
+            height: 45vh;
+            z-index: 1;
+            perspective: 1000px;
+        }
+
+        /* The thin infinite line */
+        .horizon-line {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200vw;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, var(--horizon-glow-alt) 20%, #ffffff 50%, var(--horizon-glow) 80%, transparent 100%);
+            box-shadow:
+                0 0 10px rgba(255, 255, 255, 0.8),
+                0 0 20px var(--horizon-glow),
+                0 0 40px var(--horizon-glow-alt),
+                0 0 80px var(--horizon-glow);
+            z-index: 2;
+        }
+
+        /* Ambient glow filling the bottom */
+        .horizon-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(56, 189, 248, 0.15) 0%, rgba(4, 8, 16, 0) 100%);
+            z-index: 1;
+        }
+
+        /* Perspective floor grid reflecting the horizon */
+        .horizon-grid {
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background-image:
+                linear-gradient(rgba(56, 189, 248, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(56, 189, 248, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            transform: rotateX(80deg);
+            transform-origin: top;
+            z-index: 0;
+            animation: moveGrid 15s linear infinite;
+        }
+
+        /* Upward illumination effect (lighting the text from below) */
+        .upward-glow {
+            position: absolute;
+            bottom: 45vh;
+            /* Just above the horizon line */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80vw;
+            height: 40vh;
+            background: radial-gradient(ellipse at bottom, rgba(56, 189, 248, 0.2) 0%, transparent 60%);
+            z-index: 5;
+            pointer-events: none;
+            mix-blend-mode: screen;
+        }
+
+        /* CONTENT */
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            /* Push content towards horizon */
+            padding-bottom: 45vh;
+            /* Align with horizon */
+            position: relative;
+            z-index: 10;
+        }
+
+        .content-wrapper {
+            text-align: center;
+            max-width: 900px;
+            padding: 0 20px;
+            transform: translateY(40px);
+            /* Hangs just above the glowing line */
+        }
+
+        .headline {
+            font-family: 'Deltha', 'Clash Display', sans-serif;
+            font-size: clamp(3.5rem, 8vw, 7rem);
+            font-weight: normal;
+            line-height: 0.9;
+            letter-spacing: -0.01em;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            /* Text illuminated from below */
+            background: linear-gradient(0deg, #ffffff 10%, #60a5fa 50%, #1e3a8a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+
+            animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .sub-content {
+            /* Positioned below the horizon conceptually, appearing over the grid */
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            width: 100%;
+            max-width: 600px;
+            padding: 40px 20px 0;
+            z-index: 20;
+        }
+
+        .description {
+            font-size: clamp(1rem, 1.8vw, 1.2rem);
+            color: #dbeafe;
+            opacity: 0.8;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+
+            animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.1rem 3.5rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: #040810;
+            background: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2), inset 0 0 10px rgba(56, 189, 248, 0.2);
+            position: relative;
+            overflow: hidden;
+
+            animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(56, 189, 248, 0.6), inset 0 0 20px rgba(56, 189, 248, 0.4);
+            color: #0ea5e9;
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0) translateX(var(--tx, 0));
+            }
+        }
+
+        @keyframes moveGrid {
+            0% {
+                transform: rotateX(80deg) translateY(0);
+            }
+
+            100% {
+                transform: rotateX(80deg) translateY(40px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .horizon-container {
+                top: 65%;
+                height: 35vh;
+            }
+
+            .hero {
+                padding-bottom: 35vh;
+            }
+
+            .sub-content {
+                top: 65%;
+                padding-top: 30px;
+            }
+
+            .sub-content {
+                transform: translateX(-50%);
+                --tx: -50%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="upward-glow"></div>
+
+    <div class="horizon-container">
+        <div class="horizon-line"></div>
+        <div class="horizon-glow"></div>
+        <div class="horizon-grid"></div>
+    </div>
+
+    <nav>
+        <a href="#" class="logo">AERIS</a>
+        <div class="nav-links">
+            <a href="#">Technology</a>
+            <a href="#">Ecosystem</a>
+            <a href="#">About</a>
+        </div>
+    </nav>
+
+    <main class="hero">
+        <div class="content-wrapper">
+            <h1 class="headline">Boundless</h1>
+        </div>
+    </main>
+
+    <div class="sub-content">
+        <p class="description">Look beyond the edge. An infinite, expansive infrastructure designed to carry your vision
+            into the future.</p>
+        <a href="#" class="cta-button">Explore</a>
+    </div>
+
+</body>
+
+</html>

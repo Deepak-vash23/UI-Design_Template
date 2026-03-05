@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SaaS Dark Spotlight Hero</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Fontshare for secondary powerful display font fallback -->
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap" rel="stylesheet">
+    <style>
+        /* Local Fonts */
+        @font-face {
+            font-family: 'Deltha';
+            src: url('./fonts/Deltha.otf') format('opentype'),
+                url('./fonts/Deltha.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        :root {
+            --bg-color: #000000;
+            --text-main: #ffffff;
+            --text-muted: #a1a1aa;
+            --spotlight: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 0) 55%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Ambient and dramatic lighting */
+        .spotlight {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150vw;
+            height: 120vh;
+            background: var(--spotlight);
+            pointer-events: none;
+            z-index: 1;
+            mix-blend-mode: screen;
+        }
+
+        /* Texture layer */
+        .grain {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 2;
+            opacity: 0.05;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Subtle glowing orb for more depth behind the text */
+        .glow {
+            position: absolute;
+            top: 15%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70vw;
+            height: 40vh;
+            background: rgba(255, 255, 255, 0.06);
+            filter: blur(120px);
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        nav {
+            position: relative;
+            z-index: 20;
+            width: 100%;
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: fadeIn 1s ease 0.6s forwards;
+            opacity: 0;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: -0.02em;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo::before {
+            content: '';
+            display: block;
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .hero-section {
+            z-index: 10;
+            text-align: center;
+            max-width: 1200px;
+            width: 100%;
+            margin: auto;
+            padding: 2rem 20px 8rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+        }
+
+        /* Massive Typography with Custom / Fallback Fonts */
+        /* Using the requested Deltha font. Fallbacks provided. */
+        .headline {
+            font-family: 'Deltha', 'Clash Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: clamp(4.5rem, 14vw, 11rem);
+            font-weight: 700;
+            line-height: 0.85;
+            letter-spacing: -0.05em;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            /* Shading to give a cinematic massive feel */
+            background: linear-gradient(180deg, #ffffff 10%, #666666 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            /* Animation */
+            animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(60px);
+            position: relative;
+        }
+
+        .subheading {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            color: var(--text-muted);
+            max-width: 580px;
+            margin: 0 auto 3rem auto;
+            line-height: 1.6;
+            animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        /* CTA Button Container for Halo Effect */
+        .cta-container {
+            animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+            opacity: 0;
+            transform: translateY(40px);
+            position: relative;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.125rem 2.75rem;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #000;
+            background: #fff;
+            border: none;
+            border-radius: 99px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.15);
+        }
+
+        .cta-button:hover {
+            transform: scale(1.04);
+            background: #f4f4f5;
+            box-shadow: 0 0 50px rgba(255, 255, 255, 0.25);
+        }
+
+        .cta-button:active {
+            transform: scale(0.97);
+        }
+
+        /* Halo Outline effect on hover */
+        .cta-container::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: calc(100% + 12px);
+            height: calc(100% + 12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 100px;
+            z-index: 1;
+            pointer-events: none;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .cta-container:hover::after {
+            width: calc(100% + 24px);
+            height: calc(100% + 24px);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(60px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1.5rem 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .spotlight {
+                width: 200vw;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Cinematic lighting and texture elements -->
+    <div class="spotlight"></div>
+    <div class="glow"></div>
+    <div class="grain"></div>
+
+    <nav>
+        <a href="#" class="logo">LUX</a>
+        <div class="nav-links">
+            <a href="#">Products</a>
+            <a href="#">Solutions</a>
+            <a href="#">Company</a>
+        </div>
+    </nav>
+
+    <main class="hero-section">
+        <h1 class="headline">REDEFINE</h1>
+        <p class="subheading">Step into the future of digital experiences with a minimal, uncompromised performance
+            architecture. Scale beyond limits.</p>
+        <div class="cta-container">
+            <a href="#" class="cta-button">Get Started</a>
+        </div>
+    </main>
+
+</body>
+
+</html>
