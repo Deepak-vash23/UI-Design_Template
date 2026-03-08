@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SaaS Aurora Beam Hero</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Deltha';
+            src: url('./fonts/Deltha.otf') format('opentype'),
+                url('./fonts/Deltha.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #030008;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        nav {
+            width: 100%;
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 50;
+            position: relative;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: 0.15em;
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: #a49fc4;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        /* AURORA BEAMS */
+        .aurora-container {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .aurora-beam {
+            position: absolute;
+            bottom: -5%;
+            border-radius: 50%;
+            mix-blend-mode: screen;
+            animation: aurora linear infinite alternate;
+        }
+
+        /* Each beam is a tall very soft, wide ellipse growing from the bottom */
+        .ab-1 {
+            left: 5%;
+            width: 25vw;
+            height: 110vh;
+            background: radial-gradient(ellipse at bottom,
+                    rgba(130, 60, 220, 0.5) 0%,
+                    rgba(90, 30, 180, 0.2) 40%,
+                    transparent 70%);
+            filter: blur(60px);
+            animation-duration: 11s;
+            animation-delay: 0s;
+            transform-origin: bottom center;
+        }
+
+        .ab-2 {
+            left: 25%;
+            width: 30vw;
+            height: 90vh;
+            background: radial-gradient(ellipse at bottom,
+                    rgba(180, 100, 255, 0.4) 0%,
+                    rgba(130, 60, 220, 0.2) 40%,
+                    transparent 70%);
+            filter: blur(80px);
+            animation-duration: 14s;
+            animation-delay: -4s;
+            transform-origin: bottom center;
+        }
+
+        .ab-3 {
+            left: 45%;
+            width: 20vw;
+            height: 120vh;
+            background: radial-gradient(ellipse at bottom,
+                    rgba(200, 130, 255, 0.5) 0%,
+                    rgba(160, 90, 230, 0.25) 40%,
+                    transparent 70%);
+            filter: blur(50px);
+            animation-duration: 9s;
+            animation-delay: -2s;
+            transform-origin: bottom center;
+        }
+
+        .ab-4 {
+            left: 62%;
+            width: 28vw;
+            height: 100vh;
+            background: radial-gradient(ellipse at bottom,
+                    rgba(110, 50, 200, 0.4) 0%,
+                    rgba(80, 20, 160, 0.15) 40%,
+                    transparent 70%);
+            filter: blur(90px);
+            animation-duration: 16s;
+            animation-delay: -7s;
+            transform-origin: bottom center;
+        }
+
+        .ab-5 {
+            right: 3%;
+            width: 22vw;
+            height: 95vh;
+            background: radial-gradient(ellipse at bottom,
+                    rgba(160, 80, 240, 0.4) 0%,
+                    rgba(120, 50, 200, 0.2) 50%,
+                    transparent 75%);
+            filter: blur(65px);
+            animation-duration: 12s;
+            animation-delay: -5s;
+            transform-origin: bottom center;
+        }
+
+        /* Ground glow anchoring the beams */
+        .ground-glow {
+            position: absolute;
+            bottom: -10vh;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120vw;
+            height: 30vh;
+            background: radial-gradient(ellipse at center,
+                    rgba(143, 60, 255, 0.3) 0%,
+                    transparent 60%);
+            filter: blur(40px);
+            z-index: 2;
+        }
+
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .content-layer {
+            max-width: 800px;
+        }
+
+        .headline {
+            font-family: 'Deltha', 'Clash Display', sans-serif;
+            font-size: clamp(4rem, 9vw, 8rem);
+            font-weight: normal;
+            line-height: 0.85;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+            color: #fff;
+            text-transform: uppercase;
+            text-shadow: 0 0 60px rgba(180, 100, 255, 0.5);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .description {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            color: #a49fc4;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: up 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: up 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.1rem 2.8rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            border-radius: 99px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: rgba(160, 80, 240, 0.2);
+            color: #fff;
+            border: 1px solid rgba(160, 80, 240, 0.7);
+            box-shadow: 0 0 25px rgba(160, 80, 240, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-primary:hover {
+            background: rgba(160, 80, 240, 0.35);
+            box-shadow: 0 0 40px rgba(160, 80, 240, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes up {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes aurora {
+            0% {
+                transform: scaleX(0.9) skewX(-5deg);
+                opacity: 0.6;
+            }
+
+            50% {
+                transform: scaleX(1.1) skewX(3deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scaleX(0.95) skewX(-2deg);
+                opacity: 0.7;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .cta-group {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .ab-1,
+            .ab-4 {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Aurora Beam Background -->
+    <div class="aurora-container">
+        <div class="ground-glow"></div>
+        <div class="aurora-beam ab-1"></div>
+        <div class="aurora-beam ab-2"></div>
+        <div class="aurora-beam ab-3"></div>
+        <div class="aurora-beam ab-4"></div>
+        <div class="aurora-beam ab-5"></div>
+    </div>
+
+    <nav>
+        <a href="#" class="logo">AURORA</a>
+        <div class="nav-links">
+            <a href="#">Vision</a>
+            <a href="#">Pipeline</a>
+            <a href="#">Launch</a>
+        </div>
+    </nav>
+
+    <main class="hero">
+        <div class="content-layer">
+            <h1 class="headline">Illuminate</h1>
+            <p class="description">Soft aurora beams rising from the horizon. An atmospheric interface built for calm,
+                clarity, and futuristic ambition.</p>
+            <div class="cta-group">
+                <a href="#" class="btn btn-primary">Begin Journey</a>
+                <a href="#" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SaaS Data Stream Hero</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Local Fonts */
+        @font-face {
+            font-family: 'Deltha';
+            src: url('./fonts/Deltha.otf') format('opentype'),
+                url('./fonts/Deltha.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        :root {
+            --bg-color: #010408;
+            --text-main: #ffffff;
+            --text-muted: #8c9fb6;
+            --grid-line: rgba(255, 255, 255, 0.03);
+            --stream-color-1: #3b82f6;
+            /* Blueish data flow */
+            --stream-color-2: #818cf8;
+            /* Purplish data flow */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Ambient Sub-glow */
+        body::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 60%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        nav {
+            width: 100%;
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 50;
+            position: relative;
+        }
+
+        .logo {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: 0.1em;
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo svg {
+            color: var(--stream-color-1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        /* DATA STREAM BACKGROUND */
+        .data-grid {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            pointer-events: none;
+            background-image: linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 80px 100%;
+            /* Vertical grid lines only */
+        }
+
+        .streams-container {
+            position: absolute;
+            inset: 0;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .stream {
+            position: absolute;
+            top: -200px;
+            width: 2px;
+            height: 150px;
+            background: linear-gradient(to bottom, transparent, var(--stream-color-1) 80%, #ffffff);
+            box-shadow: 0 0 10px var(--stream-color-1), 0 0 20px var(--stream-color-2);
+            border-radius: 10px;
+            opacity: 0;
+            animation: flowDown linear infinite;
+        }
+
+        .stream-1 {
+            left: 10%;
+            animation-duration: 3s;
+            animation-delay: 0s;
+            height: 100px;
+        }
+
+        .stream-2 {
+            left: 25%;
+            animation-duration: 4s;
+            animation-delay: 1.5s;
+            height: 180px;
+            background: linear-gradient(to bottom, transparent, var(--stream-color-2) 80%, #ffffff);
+            box-shadow: 0 0 10px var(--stream-color-2), 0 0 20px var(--stream-color-1);
+        }
+
+        .stream-3 {
+            left: 45%;
+            animation-duration: 2.5s;
+            animation-delay: 0.5s;
+            height: 120px;
+        }
+
+        .stream-4 {
+            left: 60%;
+            animation-duration: 5s;
+            animation-delay: 2s;
+            height: 200px;
+        }
+
+        .stream-5 {
+            left: 80%;
+            animation-duration: 3.5s;
+            animation-delay: 1s;
+            height: 150px;
+            background: linear-gradient(to bottom, transparent, var(--stream-color-2) 80%, #ffffff);
+            box-shadow: 0 0 10px var(--stream-color-2), 0 0 20px var(--stream-color-1);
+        }
+
+        .stream-6 {
+            left: 90%;
+            animation-duration: 4.5s;
+            animation-delay: 2.5s;
+            height: 110px;
+        }
+
+        /* CONTENT */
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .content-layer {
+            max-width: 800px;
+        }
+
+        .headline {
+            font-family: 'Deltha', 'Clash Display', sans-serif;
+            font-size: clamp(3.5rem, 8vw, 7.5rem);
+            font-weight: normal;
+            line-height: 0.9;
+            letter-spacing: -0.01em;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            text-transform: uppercase;
+            text-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+
+            animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(20px) scale(0.98);
+        }
+
+        .description {
+            font-size: clamp(1.1rem, 1.8vw, 1.3rem);
+            color: var(--text-muted);
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+
+            animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+
+            animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.1rem 2.8rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            border-radius: 4px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: rgba(59, 130, 246, 0.1);
+            color: #ffffff;
+            border: 1px solid var(--stream-color-1);
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.2);
+            backdrop-filter: blur(5px);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-primary:hover {
+            background: rgba(59, 130, 246, 0.2);
+            box-shadow: 0 0 35px rgba(59, 130, 246, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Animations */
+        @keyframes flowDown {
+            0% {
+                transform: translateY(0);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(120vh);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .cta-group {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .data-grid {
+                background-size: 40px 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Background Data Grid & Streams -->
+    <div class="data-grid"></div>
+    <div class="streams-container">
+        <div class="stream stream-1"></div>
+        <div class="stream stream-2"></div>
+        <div class="stream stream-3"></div>
+        <div class="stream stream-4"></div>
+        <div class="stream stream-5"></div>
+        <div class="stream stream-6"></div>
+    </div>
+
+    <nav>
+        <a href="#" class="logo">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 22h14a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-2 2v4"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <path d="M2 15h10"></path>
+                <path d="M9 18l3-3-3-3"></path>
+            </svg>
+            STREAMLINE
+        </a>
+        <div class="nav-links">
+            <a href="#">Platform</a>
+            <a href="#">Data Flow</a>
+            <a href="#">Connect</a>
+        </div>
+    </nav>
+
+    <main class="hero">
+        <div class="content-layer">
+            <h1 class="headline">Velocity</h1>
+            <p class="description">Unleash the full potential of your infrastructure with high-fidelity data pipelines
+                moving at the speed of thought.</p>
+            <div class="cta-group">
+                <a href="#" class="btn btn-primary">Start Sync</a>
+                <a href="#" class="btn btn-secondary">Documentation</a>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>

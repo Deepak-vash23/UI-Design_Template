@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SaaS Concentric Rings Hero</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Local Fonts */
+        @font-face {
+            font-family: 'Deltha';
+            src: url('./fonts/Deltha.otf') format('opentype'),
+                url('./fonts/Deltha.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        :root {
+            --bg-color: #030108;
+            --text-main: #ffffff;
+            --text-muted: #9c92b3;
+            --ring-color: rgba(143, 96, 255, 0.4);
+            --ring-glow: #8f60ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        nav {
+            width: 100%;
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 50;
+            position: relative;
+        }
+
+        .logo {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: 0.1em;
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--ring-glow);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--ring-glow);
+            animation: pulse 2s infinite alternate;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        /* CONCENTRIC RINGS BACKGROUND */
+        .rings-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100vw;
+            height: 100vw;
+            /* Keep it square to maintain perfect circles */
+            min-width: 1000px;
+            min-height: 1000px;
+            z-index: 1;
+            pointer-events: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid var(--ring-color);
+            box-shadow:
+                inset 0 0 20px rgba(143, 96, 255, 0.1),
+                0 0 30px rgba(143, 96, 255, 0.1);
+            opacity: 0;
+            transform: scale(0.1);
+            animation: expandRing 8s linear infinite;
+        }
+
+        /* Staggered rings */
+        .ring-1 {
+            width: 20%;
+            height: 20%;
+            animation-delay: 0s;
+            border-width: 2px;
+        }
+
+        .ring-2 {
+            width: 40%;
+            height: 40%;
+            animation-delay: 2s;
+            border-width: 1px;
+            filter: blur(1px);
+        }
+
+        .ring-3 {
+            width: 60%;
+            height: 60%;
+            animation-delay: 4s;
+            border-width: 1px;
+            filter: blur(2px);
+        }
+
+        .ring-4 {
+            width: 80%;
+            height: 80%;
+            animation-delay: 6s;
+            border-width: 0.5px;
+            filter: blur(4px);
+        }
+
+        .ring-5 {
+            width: 100%;
+            height: 100%;
+            animation-delay: 8s;
+            border-width: 0.5px;
+            filter: blur(6px);
+        }
+
+        /* Central Glow Core */
+        .core-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 30vw;
+            height: 30vw;
+            background: radial-gradient(circle at center, rgba(143, 96, 255, 0.15) 0%, transparent 70%);
+            z-index: 2;
+            pointer-events: none;
+            mix-blend-mode: screen;
+        }
+
+        /* CONTENT */
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .content-layer {
+            max-width: 800px;
+        }
+
+        .headline {
+            font-family: 'Deltha', 'Clash Display', sans-serif;
+            font-size: clamp(3.5rem, 8vw, 7rem);
+            font-weight: normal;
+            line-height: 0.9;
+            letter-spacing: -0.01em;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            text-transform: uppercase;
+            text-shadow: 0 0 40px rgba(143, 96, 255, 0.6);
+
+            animation: zoomIn 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        .description {
+            font-size: clamp(1.1rem, 1.8vw, 1.3rem);
+            color: var(--text-muted);
+            line-height: 1.6;
+            max-width: 580px;
+            margin: 0 auto 3rem;
+
+            animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+
+            animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.7s forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.1rem 2.8rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            border-radius: 99px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: rgba(143, 96, 255, 0.2);
+            color: #ffffff;
+            border: 1px solid var(--ring-glow);
+            box-shadow: 0 0 20px rgba(143, 96, 255, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .btn-primary:hover {
+            background: rgba(143, 96, 255, 0.4);
+            box-shadow: 0 0 30px rgba(143, 96, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Animations */
+        @keyframes expandRing {
+            0% {
+                transform: scale(0.1);
+                opacity: 0;
+                border-width: 3px;
+            }
+
+            10% {
+                opacity: 0.8;
+            }
+
+            80% {
+                opacity: 0.2;
+            }
+
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+                border-width: 0.2px;
+            }
+        }
+
+        @keyframes pulse {
+            from {
+                opacity: 0.5;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        @keyframes zoomIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .cta-group {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Animated Concentric Rings Background -->
+    <div class="rings-container">
+        <div class="ring ring-1"></div>
+        <div class="ring ring-2"></div>
+        <div class="ring ring-3"></div>
+        <div class="ring ring-4"></div>
+        <div class="ring ring-5"></div>
+    </div>
+
+    <div class="core-glow"></div>
+
+    <nav>
+        <a href="#" class="logo">
+            <span class="logo-dot"></span>
+            RADAR
+        </a>
+        <div class="nav-links">
+            <a href="#">Signals</a>
+            <a href="#">Integration</a>
+            <a href="#">Network</a>
+        </div>
+    </nav>
+
+    <main class="hero">
+        <div class="content-layer">
+            <h1 class="headline">Broadcast</h1>
+            <p class="description">Amplify your signal across the entire network. Unprecedented reach and clarity for
+                modern data propagation.</p>
+            <div class="cta-group">
+                <a href="#" class="btn btn-primary">Transmit Signal</a>
+                <a href="#" class="btn btn-secondary">View Demo</a>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>

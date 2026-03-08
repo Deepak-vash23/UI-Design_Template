@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SaaS Dark Monolith Hero</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Local Fonts */
+        @font-face {
+            font-family: 'Deltha';
+            src: url('./fonts/Deltha.otf') format('opentype'),
+                url('./fonts/Deltha.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        :root {
+            --bg-color: #020203;
+            /* Extremely deep almost black */
+            --text-main: #ffffff;
+            --text-muted: #8b8b99;
+            --monolith-edge: rgba(147, 112, 219, 0.4);
+            /* Soft purple edge */
+            --monolith-glow: rgba(147, 112, 219, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        nav {
+            width: 100%;
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 50;
+            position: relative;
+        }
+
+        .logo {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: 0.15em;
+            color: var(--text-main);
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        /* BACKGROUND SCENE: Monolith & Fog */
+        .scene-container {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+        }
+
+        /* Ambient subtle fog */
+        .fog {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 60vh;
+            background: linear-gradient(to top, rgba(147, 112, 219, 0.1), transparent);
+            filter: blur(40px);
+            z-index: 2;
+        }
+
+        .fog-2 {
+            position: absolute;
+            bottom: -10vh;
+            width: 150%;
+            height: 50vh;
+            background: radial-gradient(ellipse at center, rgba(147, 112, 219, 0.2), transparent 70%);
+            filter: blur(60px);
+            z-index: 4;
+            /* In front of monolith base */
+        }
+
+        /* The Massive Vertical Monolith */
+        .monolith {
+            position: absolute;
+            bottom: -10vh;
+            /* Anchored low */
+            width: clamp(200px, 30vw, 400px);
+            height: 120vh;
+            background: linear-gradient(135deg, #0a0a0d 0%, #000000 100%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            /* Purple edge lighting highlights */
+            box-shadow:
+                inset 2px 0 10px var(--monolith-edge),
+                inset -2px 0 10px var(--monolith-edge),
+                0 0 80px var(--monolith-glow);
+            z-index: 3;
+            transform: translateY(20px);
+            animation: riseMonolith 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Content */
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .content-layer {
+            max-width: 800px;
+        }
+
+        .headline {
+            font-family: 'Deltha', 'Clash Display', sans-serif;
+            font-size: clamp(4rem, 10vw, 8.5rem);
+            font-weight: normal;
+            line-height: 0.85;
+            letter-spacing: -0.02em;
+            margin-bottom: 2rem;
+            color: #ffffff;
+            text-transform: uppercase;
+            text-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+
+            animation: slideUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .description {
+            font-size: clamp(1.1rem, 2vw, 1.35rem);
+            color: var(--text-muted);
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+
+            animation: slideUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.7s forwards;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+
+            animation: slideUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.1rem 3rem;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            border-radius: 4px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #ffffff;
+            color: #000000;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            background: #e0e0e0;
+            box-shadow: 0 0 50px rgba(255, 255, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #ffffff;
+        }
+
+        /* Animations */
+        @keyframes riseMonolith {
+            from {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .cta-group {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .monolith {
+                width: 60vw;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Monolith Background Scene -->
+    <div class="scene-container">
+        <div class="fog"></div>
+        <div class="monolith"></div>
+        <div class="fog-2"></div>
+    </div>
+
+    <nav>
+        <a href="#" class="logo">VERTEX</a>
+        <div class="nav-links">
+            <a href="#">Product</a>
+            <a href="#">Security</a>
+            <a href="#">Pricing</a>
+        </div>
+    </nav>
+
+    <main class="hero">
+        <div class="content-layer">
+            <h1 class="headline">Monumental</h1>
+            <p class="description">Establish ultimate authority over your infrastructure. A monolithic approach to
+                stability and performance scaling.</p>
+            <div class="cta-group">
+                <a href="#" class="btn btn-primary">Establish Link</a>
+                <a href="#" class="btn btn-secondary">Discover</a>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#d4af35",
+                        "background-light": "#f8f7f6",
+                        "background-dark": "#0a0a0a", // Deeper matte black for ultra-luxury
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #0a0a0a;
+            color: #f8f7f6;
+        }
+        .luxury-gradient {
+            background: linear-gradient(180deg, rgba(10,10,10,0) 0%, rgba(10,10,10,0.8) 100%);
+        }
+        .gold-border {
+            border-color: rgba(212, 175, 53, 0.2);
+        }
+    </style>
+</head>
+<body class="font-display">
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-background-dark group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-white/5 px-6 md:px-20 py-6 sticky top-0 z-50 bg-background-dark/90 backdrop-blur-md">
+<div class="flex items-center gap-12">
+<div class="flex items-center gap-3 text-primary">
+<div class="size-6">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M24 0.757355L47.2426 24L24 47.2426L0.757355 24L24 0.757355ZM21 35.7574V12.2426L9.24264 24L21 35.7574Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-white text-xl font-extrabold leading-tight tracking-[0.2em]">AURUM</h2>
+</div>
+<div class="hidden lg:flex items-center gap-10">
+<a class="text-white/70 hover:text-primary text-xs font-bold uppercase tracking-widest transition-colors" href="#">Collections</a>
+<a class="text-white/70 hover:text-primary text-xs font-bold uppercase tracking-widest transition-colors" href="#">High Jewelry</a>
+<a class="text-white/70 hover:text-primary text-xs font-bold uppercase tracking-widest transition-colors" href="#">Horology</a>
+<a class="text-white/70 hover:text-primary text-xs font-bold uppercase tracking-widest transition-colors" href="#">Bespoke</a>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<div class="hidden md:flex items-center border-b border-white/20 pb-1">
+<span class="material-symbols-outlined text-white/50 text-xl">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-xs uppercase tracking-widest placeholder:text-white/30 w-32" placeholder="SEARCH" type="text"/>
+</div>
+<div class="flex gap-4">
+<button class="text-white/80 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">shopping_bag</span>
+</button>
+<button class="text-white/80 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">person</span>
+</button>
+<button class="lg:hidden text-white/80">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-1">
+<!-- Hero Section -->
+<section class="relative h-[90vh] w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 scale-105" data-alt="Close up of a luxury diamond watch on black background" style='background-image: linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.8) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAcTxc9yAqo02hxNAEueoq8kWk3Tk94IenPkdCXj1s0YuXIXIjpriP3uxKmg6fpJcnDlL7Cs_g4eCmuBhh2wPvrkrOSsV-yx-HrrLDkgI0da7lhccawXYbPpEmiHAFG_MX7566Z9SSlDy3UlpgJ9j-DKhBTTP6oNBDijR9WOeS1WyrUzvobTKU7cYu8qDMzUksVPrwyScY2Ll0oenE7RMiU9lxjYuPJDUWO5qd_e4OSzR0hWgTvIPR_v1TvVU0cccVHTwk4CNt8yLHG");'>
+</div>
+<div class="relative h-full flex flex-col items-center justify-center text-center px-4">
+<div class="space-y-6 max-w-4xl">
+<span class="text-primary text-xs font-bold uppercase tracking-[0.5em] block">Autumn / Winter 2024</span>
+<h1 class="text-white text-5xl md:text-8xl font-extralight leading-none tracking-tight">
+                            STEALTH <span class="font-black italic">WEALTH</span>
+</h1>
+<p class="text-white/60 text-lg md:text-xl font-light max-w-2xl mx-auto leading-relaxed">
+                            Uncompromising precision meets high-fashion. Discover the Obsidian Diamond series: silence that speaks volumes.
+                        </p>
+<div class="pt-8">
+<button class="group relative px-12 py-4 bg-primary text-background-dark font-bold uppercase tracking-widest overflow-hidden transition-all hover:bg-white">
+<span class="relative z-10">Enter the Vault</span>
+</button>
+</div>
+</div>
+</div>
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce opacity-40">
+<span class="text-[10px] uppercase tracking-[0.3em]">Scroll</span>
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</section>
+<!-- New Arrivals Grid -->
+<section class="max-w-[1400px] mx-auto py-24 px-6">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+<div>
+<h2 class="text-primary text-xs font-bold uppercase tracking-[0.4em] mb-4">The Selection</h2>
+<h3 class="text-4xl md:text-5xl font-extralight text-white">NEW ARRIVALS</h3>
+</div>
+<a class="text-white/60 hover:text-primary text-xs font-bold uppercase tracking-widest flex items-center gap-2 transition-colors" href="#">
+                        View all Collections <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Item 1 -->
+<div class="group cursor-pointer">
+<div class="aspect-[3/4] overflow-hidden bg-neutral-900 mb-6 relative">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Luxury diamond necklace on velvet display" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAqEOQCknNo2hxSiO31A_XcigxakYppyPpVv-NRKGTcYpyNKaJ-o1rsX4FH6WMVAshmd0yDV8BTAiStHbjEwoBLNG7jBTdPdDPwjDSqLCCRYr9-LTeye7EO6NKmy75UqrgFcFsEj5MFNTdanLt1gAmCEWn8aZDzLMQPOHN2yhRkDUEmFMp8bejE7oSYK3MdlfBIdCD0EADDJBpk-cOX82qA9eQ6eQoF3don4r9BZhClreLEbKLHL6LVdngpqQ07DrBvB0juneILmZGV");'></div>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h4 class="text-white text-lg font-medium tracking-wide">The Midnight Carat</h4>
+<p class="text-white/40 text-sm mt-1">Black Gold &amp; Rare Onyx</p>
+</div>
+<span class="text-primary font-light">$42,500</span>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="group cursor-pointer">
+<div class="aspect-[3/4] overflow-hidden bg-neutral-900 mb-6 relative">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Champagne gold bracelet with diamonds" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAnuL8wUR6fB_G4zPjBc2yW6-zqLlAC9YgbiCXM8WCroxc46b5Lo2MtoepmXXFwvFkv-sYV1W562MR5NGQRkzVXShtJDh3IGmsKGS2B4KIXJj2r6BkU5TtTarmjZqNZQq4kq572qQzrkz-O9yAYg7hWt8brho9BhsgtKeb4J21ETgRKi1DuFZmCt6LQ5rJxnoGakNY3bQVuEceNhr6j6IFBIZv84hZ-hRj_-6LtziJQONRnyn_uP2pRxUqhCdZDj_KysbSMKLkYgyM2");'></div>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h4 class="text-white text-lg font-medium tracking-wide">Champagne Links</h4>
+<p class="text-white/40 text-sm mt-1">Brushed 24k Gold</p>
+</div>
+<span class="text-primary font-light">$18,900</span>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="group cursor-pointer">
+<div class="aspect-[3/4] overflow-hidden bg-neutral-900 mb-6 relative">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Artistic ring with prism diamond" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD29Ru3ir5zkm7Hl9T9u-mzgynGRuvNt_Cr1goTqaUoQSudi35WBYK4lYAIuzMQmAlNjdfxevMgXN96r7YNwb0yHWqHHpkIVXU2cqtkOYYd2aPBMh74RdrZvFWbYkoG8gcCR0jjrdnXo-3BgSC_GbCGC1sO8Ctk_HX4oJp_cu5dJiZclZLz_xOteOl2bsZnTOmwghYEt_POjP4pxjhsw60oHc2idfnDY9XqYgZtwQ15jbHzepyIfpAt6E3aRwkOiDUXE2ceCbmbQYzn");'></div>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h4 class="text-white text-lg font-medium tracking-wide">Ethereal Prism</h4>
+<p class="text-white/40 text-sm mt-1">Limited Release Series</p>
+</div>
+<span class="text-primary font-light">$24,000</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Membership Section -->
+<section class="py-24 bg-neutral-900/30 border-y border-white/5">
+<div class="max-w-[1200px] mx-auto px-6">
+<div class="flex flex-col md:flex-row items-center gap-16">
+<div class="w-full md:w-1/2 aspect-video bg-neutral-800 relative overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center opacity-70" data-alt="Private luxury lounge for VIP members" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAbHimWtOe-hQjH6trdUNdFTBSbeuyoHTbx7JVolSpkxK_1FGOmXAeVKUFCkSCG31uPTz5MA3IBBFWP2WXUqkvKwsOThD521NH9zoO0phYTcm0QGdWeNgsp0aVoKd7QDY6DyQ4G_5Q90-oDsy8Rn7i7Xs1UjXLcwe6pSphzYpYipdPqmbkDlgn_hoOqDdMecdyS4PKHnFyj34o34yrstv4go-tV-u3B_1ZAK7437kVKPqw2l18-6QzWX66io8f8Tuik89pJ_T2PavOz");'></div>
+<div class="absolute inset-0 luxury-gradient"></div>
+</div>
+<div class="w-full md:w-1/2 space-y-8">
+<div>
+<h2 class="text-primary text-xs font-bold uppercase tracking-[0.4em] mb-4">Elite Status</h2>
+<h3 class="text-4xl font-extralight text-white leading-tight">THE INNER CIRCLE</h3>
+</div>
+<p class="text-white/60 text-lg font-light leading-relaxed">
+                                An exclusive membership for the world's most discerning collectors. Access private viewings, bespoke commissions, and global concierge services that define modern opulence.
+                            </p>
+<div class="space-y-4">
+<div class="flex items-center gap-4 text-white/80">
+<span class="material-symbols-outlined text-primary">verified</span>
+<span class="text-sm tracking-wide uppercase">Priority Access to Limited Releases</span>
+</div>
+<div class="flex items-center gap-4 text-white/80">
+<span class="material-symbols-outlined text-primary">draw</span>
+<span class="text-sm tracking-wide uppercase">Personal Design Consultation</span>
+</div>
+<div class="flex items-center gap-4 text-white/80">
+<span class="material-symbols-outlined text-primary">event</span>
+<span class="text-sm tracking-wide uppercase">Invitation to Private Galas</span>
+</div>
+</div>
+<button class="px-10 py-4 border border-primary text-primary hover:bg-primary hover:text-background-dark transition-all duration-300 font-bold uppercase tracking-widest text-xs">
+                                Apply for Membership
+                            </button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-background-dark border-t border-white/5 pt-20 pb-10 px-6 md:px-20">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+<div class="col-span-1 md:col-span-1">
+<div class="flex items-center gap-3 text-primary mb-8">
+<div class="size-5">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M24 0.757355L47.2426 24L24 47.2426L0.757355 24L24 0.757355ZM21 35.7574V12.2426L9.24264 24L21 35.7574Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-white text-lg font-extrabold tracking-[0.2em]">AURUM</h2>
+</div>
+<p class="text-white/40 text-sm leading-relaxed max-w-xs">
+                        Crafting silence and sophistication since 1924. The world's premier destination for stealth wealth luxury.
+                    </p>
+</div>
+<div>
+<h5 class="text-white text-xs font-bold uppercase tracking-[0.2em] mb-6">Maison</h5>
+<ul class="space-y-4 text-white/40 text-xs uppercase tracking-widest">
+<li><a class="hover:text-primary transition-colors" href="#">History</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Craftsmanship</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Sustainability</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Careers</a></li>
+</ul>
+</div>
+<div>
+<h5 class="text-white text-xs font-bold uppercase tracking-[0.2em] mb-6">Services</h5>
+<ul class="space-y-4 text-white/40 text-xs uppercase tracking-widest">
+<li><a class="hover:text-primary transition-colors" href="#">Contact Us</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Care Guide</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Resale</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Financing</a></li>
+</ul>
+</div>
+<div>
+<h5 class="text-white text-xs font-bold uppercase tracking-[0.2em] mb-6">Legal</h5>
+<ul class="space-y-4 text-white/40 text-xs uppercase tracking-widest">
+<li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Terms of Use</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Ethical Sourcing</a></li>
+</ul>
+</div>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-center border-t border-white/5 pt-10 gap-6">
+<p class="text-white/20 text-[10px] uppercase tracking-widest">© 2024 AURUM MAISON. ALL RIGHTS RESERVED.</p>
+<div class="flex gap-8 text-white/40">
+<a class="hover:text-primary transition-colors text-xs uppercase tracking-widest" href="#">Instagram</a>
+<a class="hover:text-primary transition-colors text-xs uppercase tracking-widest" href="#">LinkedIn</a>
+<a class="hover:text-primary transition-colors text-xs uppercase tracking-widest" href="#">Vogue</a>
+</div>
+</div>
+</footer>
+</div>
+</div>
+</body></html>

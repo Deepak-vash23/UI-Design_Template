@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SaaS Dark Portal Hero</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap" rel="stylesheet">
+
+    <style>
+        @font-face {
+            font-family: 'Deltha';
+            src: url('./fonts/Deltha.otf') format('opentype'),
+                url('./fonts/Deltha.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        :root {
+            --bg-color: #050010;
+            --text-main: #ffffff;
+            --text-muted: #a49fc4;
+            --portal-core: rgba(143, 96, 255, 0.8);
+            --portal-mid: rgba(100, 60, 200, 0.3);
+            --portal-outer: rgba(50, 20, 100, 0);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        nav {
+            width: 100%;
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 50;
+            position: relative;
+        }
+
+        .logo {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: 0.15em;
+            color: var(--text-main);
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        /* PORTAL BACKGROUND */
+        .portal-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Outer ambient - large diffused glow envelope */
+        .portal-ambient {
+            position: absolute;
+            width: 90vw;
+            height: 90vw;
+            max-width: 1000px;
+            max-height: 1000px;
+            border-radius: 50%;
+            background: radial-gradient(circle at center,
+                    rgba(143, 96, 255, 0.15) 0%,
+                    rgba(100, 60, 200, 0.08) 35%,
+                    transparent 70%);
+            animation: ambientPulse 8s ease-in-out infinite alternate;
+        }
+
+        /* The actual circular portal ring stack */
+        .portal {
+            position: relative;
+            width: clamp(300px, 55vw, 700px);
+            height: clamp(300px, 55vw, 700px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Each ring layer (6 layers for depth illusion) */
+        .portal-ring {
+            position: absolute;
+            border-radius: 50%;
+            border-style: solid;
+            border-color: transparent;
+        }
+
+        .ring-layer-1 {
+            inset: 0;
+            border-width: 2px;
+            border-color: rgba(143, 96, 255, 0.9);
+            box-shadow:
+                0 0 20px rgba(143, 96, 255, 0.6),
+                inset 0 0 20px rgba(143, 96, 255, 0.2);
+        }
+
+        .ring-layer-2 {
+            inset: 12px;
+            border-width: 1px;
+            border-color: rgba(130, 80, 255, 0.5);
+            box-shadow: 0 0 15px rgba(130, 80, 255, 0.3);
+        }
+
+        .ring-layer-3 {
+            inset: 25px;
+            border-width: 1px;
+            border-color: rgba(110, 60, 220, 0.35);
+            box-shadow: 0 0 10px rgba(110, 60, 220, 0.2);
+        }
+
+        .ring-layer-4 {
+            inset: 40px;
+            border-width: 0.5px;
+            border-color: rgba(90, 40, 180, 0.2);
+        }
+
+        .ring-layer-5 {
+            inset: 60px;
+            border-width: 0.5px;
+            border-color: rgba(70, 20, 140, 0.12);
+        }
+
+        /* The inner dark mist / core of the portal */
+        .portal-core {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle at center,
+                    rgba(30, 10, 70, 0.95) 0%,
+                    rgba(20, 5, 50, 0.8) 50%,
+                    transparent 80%);
+        }
+
+        /* Hero Content */
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .content-layer {
+            max-width: 750px;
+        }
+
+        .headline {
+            font-family: 'Deltha', 'Clash Display', sans-serif;
+            font-size: clamp(3.5rem, 8vw, 7rem);
+            font-weight: normal;
+            line-height: 0.85;
+            letter-spacing: -0.01em;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            text-transform: uppercase;
+            text-shadow: 0 0 40px rgba(143, 96, 255, 0.7);
+            animation: appear 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+        }
+
+        .description {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            color: var(--text-muted);
+            line-height: 1.6;
+            max-width: 550px;
+            margin: 0 auto 3rem;
+            animation: appear 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+            opacity: 0;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            animation: appear 1s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+            opacity: 0;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.1rem 2.8rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            border-radius: 99px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: rgba(143, 96, 255, 0.2);
+            color: #fff;
+            border: 1px solid rgba(143, 96, 255, 0.8);
+            box-shadow: 0 0 25px rgba(143, 96, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-primary:hover {
+            background: rgba(143, 96, 255, 0.35);
+            box-shadow: 0 0 40px rgba(143, 96, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes ambientPulse {
+            0% {
+                transform: scale(0.95);
+                opacity: 0.7;
+            }
+
+            100% {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+        }
+
+        @keyframes appear {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .cta-group {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Glowing Portal Background -->
+    <div class="portal-container">
+        <div class="portal-ambient"></div>
+        <div class="portal">
+            <div class="portal-core"></div>
+            <div class="portal-ring ring-layer-5"></div>
+            <div class="portal-ring ring-layer-4"></div>
+            <div class="portal-ring ring-layer-3"></div>
+            <div class="portal-ring ring-layer-2"></div>
+            <div class="portal-ring ring-layer-1"></div>
+        </div>
+    </div>
+
+    <nav>
+        <a href="#" class="logo">NEXUS</a>
+        <div class="nav-links">
+            <a href="#">Gateway</a>
+            <a href="#">Networks</a>
+            <a href="#">Explore</a>
+        </div>
+    </nav>
+
+    <main class="hero">
+        <div class="content-layer">
+            <h1 class="headline">Enter</h1>
+            <p class="description">Step through the gateway to next-generation infrastructure. The portal to infinite
+                scalability opens now.</p>
+            <div class="cta-group">
+                <a href="#" class="btn btn-primary">Open Portal</a>
+                <a href="#" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>

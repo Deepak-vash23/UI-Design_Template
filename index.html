@@ -469,11 +469,11 @@
             <p>A curated collection of UI design templates. Click any card to open the live template.</p>
             <div class="stats-bar">
                 <div class="stat">
-                    <div class="stat-num">11</div>
+                    <div class="stat-num">19</div>
                     <div class="stat-label">Templates</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-num">11</div>
+                    <div class="stat-num">19</div>
                     <div class="stat-label">Styles</div>
                 </div>
                 <div class="stat">
@@ -490,18 +490,26 @@
             </div>
         </div>
 
-        <div class="result-count" id="result-count">Showing all 11 templates</div>
+        <div class="result-count" id="result-count">Showing all 19 templates</div>
 
         <div class="grid-container">
             <div class="grid" id="grid"></div>
         </div>
 
-        <footer>UI Design Showcase &nbsp;·&nbsp; 11 Templates &nbsp;·&nbsp; Click any card to open the template
+        <footer>UI Design Showcase &nbsp;·&nbsp; 22 Templates &nbsp;·&nbsp; Click any card to open the template
         </footer>
     </div>
 
     <script>
         const templates = [
+            { file: 'saas-aurora-beam.html', title: 'SaaS – Aurora Beam', icon: '🌌', tag: 'SaaS', desc: 'Calm and futuristic hero featuring multiple large aurora-inspired vertical light beams rising softly from the bottom.', stripe: '#030008,#a050f0' },
+            { file: 'saas-shadow-geometry.html', title: 'SaaS – Shadow Geometry', icon: '🔷', tag: 'SaaS', desc: 'Bold oversized geometric shapes cast deep dramatic shadows, creating a powerful brutalist composition behind the Deltha typography.', stripe: '#070709,#ffffff' },
+            { file: 'saas-digital-grid.html', title: 'SaaS – Digital Grid Floor', icon: '🔲', tag: 'SaaS', desc: 'High-tech dark hero with an animated perspective purple grid floor plane rising from the bottom of the screen.', stripe: '#030108,#8f60ff' },
+            { file: 'saas-light-corridor.html', title: 'SaaS – Light Corridor', icon: '🚪', tag: 'SaaS', desc: 'Cinematic depth hero using nested perspective frames and glowing edge strip lights converging toward the Deltha headline.', stripe: '#040407,#8caeff' },
+            { file: 'saas-dark-portal.html', title: 'SaaS – Dark Portal', icon: '⚪', tag: 'SaaS', desc: 'Cinematic gateway hero with a deeply layered glowing circular portal radiating purple light and mysterious depth.', stripe: '#050010,#8f60ff' },
+            { file: 'saas-data-stream.html', title: 'SaaS – Data Stream', icon: '⬇️', tag: 'SaaS', desc: 'Futuristic data flow aesthetic with a sleek vertical grid and glowing animated data streams travelling downwards.', stripe: '#010408,#3b82f6' },
+            { file: 'saas-concentric-rings.html', title: 'SaaS – Concentric Rings', icon: '📡', tag: 'SaaS', desc: 'A hypnotic dark hero featuring large glowing concentric rings expanding outward, creating a feeling of energy waves.', stripe: '#030108,#8f60ff' },
+            { file: 'saas-dark-monolith.html', title: 'SaaS – Dark Monolith', icon: '🪨', tag: 'SaaS', desc: 'A deeply authoritative dark hero featuring a massive central monolith block with subtle purple edge lighting and ambient fog.', stripe: '#020203,#9370db' },
             { file: 'saas-floating-platform.html', title: 'SaaS – Floating Platform', icon: '🛸', tag: 'SaaS', desc: 'A dark hero where the content beautifully floats above a glowing, rotating 3D platform stage.', stripe: '#050505,#ffffff' },
             { file: 'saas-infinite-horizon.html', title: 'SaaS – Infinite Horizon', icon: '🌅', tag: 'SaaS', desc: 'A deeply expansive, futuristic layout with a glowing horizon line that uniquely illuminates the Deltha typography from below.', stripe: '#040810,#38bdf8' },
             { file: 'saas-cinematic-depth.html', title: 'SaaS – Cinematic Depth', icon: '🎬', tag: 'SaaS', desc: 'A deeply atmospheric hero with deep purples, heavy bloom blur lighting, floating particles, and film grain.', stripe: '#030008,#8f60ff' },
@@ -513,6 +521,10 @@
             { file: 'school-minimal-hero.html', title: 'School – Minimal Hero', icon: '📢', tag: 'School', desc: 'Large bold typography hero — "Admissions Open 2026" with clear CTA, marquee, and clean sections below.', stripe: '#0a1628,#1a4fd8' },
             { file: 'school-magazine-editorial.html', title: 'School – Magazine', icon: '📰', tag: 'School', desc: 'Editorial newspaper-style layout with article grid, events, opinion quotes, and notice board sidebar.', stripe: '#111,#c0392b' },
             { file: 'school-nitins-design.html', title: 'Nitin\'s Design', icon: '☁️', tag: 'School', desc: 'Warm skin-toned background, bold simple text, easy-access options with graphics, achievements section — clear as blue sky.', stripe: '#f0d5b8,#4da8da' },
+            { file: 'demo.html', title: 'Jewelry Luxury design', icon: '☁️', tag: 'Jewelry', desc: 'Warm skin-toned background, bold simple text, easy-access options with graphics, achievements section — clear as blue sky.', stripe: '#f0d5b8,#4da8da' },
+            { file: 'jewelry_2.html', title: 'Jewelry Luxury design 2', icon: '☁️', tag: 'Jewelry', desc: 'Warm skin-toned background, bold simple text, easy-access options with graphics, achievements section — clear as blue sky.', stripe: '#f0d5b8,#4da8da' },
+            { file: 'jewelry_3.html', title: 'Jewelry Luxury design 2', icon: '☁️', tag: 'Jewelry', desc: 'Warm skin-toned background, bold simple text, easy-access options with graphics, achievements section — clear as blue sky.', stripe: '#f0d5b8,#4da8da' },
+            
         ];
 
         const tagColors = {

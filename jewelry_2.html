@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gilded Heritage | Royal High Jewelry</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;700;800&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#d4af35",
+                        "primary-dark": "#b8860b",
+                        "background-light": "#f8f7f6",
+                        "background-dark": "#0f0e0a",
+                        "surface-dark": "#1a1812",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .gold-gradient {
+            background: linear-gradient(45deg, #b8860b 0%, #d4af35 50%, #b8860b 100%);
+        }
+        .silk-texture {
+            background-image: radial-gradient(circle at 2px 2px, rgba(212, 175, 53, 0.05) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+        .border-gold {
+            border-image: linear-gradient(to right, transparent, #d4af35, transparent) 1;
+        }
+    </style>
+</head>
+<body class="bg-background-dark text-slate-100 font-display silk-texture">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 bg-background-dark/95 backdrop-blur-md border-b border-primary/20">
+<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<div class="flex items-center gap-12">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-3xl">verified_user</span>
+<h1 class="font-serif text-2xl tracking-widest text-primary uppercase font-bold">Gilded Heritage</h1>
+</div>
+<nav class="hidden lg:flex items-center gap-8 uppercase text-[11px] tracking-[0.2em] font-bold text-slate-300">
+<a class="hover:text-primary transition-colors" href="#">Collections</a>
+<a class="hover:text-primary transition-colors" href="#">Bespoke</a>
+<a class="hover:text-primary transition-colors" href="#">Heritage</a>
+<a class="hover:text-primary transition-colors" href="#">Archives</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex items-center bg-surface-dark border border-primary/20 rounded-full px-4 py-1.5">
+<span class="material-symbols-outlined text-primary text-xl">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm placeholder:text-slate-500 w-40" placeholder="Search Archives" type="text"/>
+</div>
+<button class="text-slate-300 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">shopping_bag</span>
+</button>
+<button class="text-slate-300 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">person</span>
+</button>
+</div>
+</div>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative h-[90vh] flex items-center overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Exquisite royal diamond necklace on a black velvet bust display" style="background-image: linear-gradient(to right, #0f0e0a 20%, transparent 60%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuA7DNx-oiETMOnoIBjPcdxErFlVagzPbv8VWiU_TYfWsem3BDL4Qs-gmEDNA1ezC1xUq2DmZXRPF5jt00a4Y-tqGbU5-6WSxoiATvqIlJIr529UUhDut_efcbyurD9JylDzXkh0yiCTrQWTdU_gUkE5SgxgKNRqPh0tutXXOCEcDpFo_QzOqNJwzNz8veRV3siLLoQvKLJIjvaMp0o9XLve0P4wpsbsahJnuEkWgS6HJ4gJcc0h-xRpS6IFFU6EJSthwWb_d5a7dETe');"></div>
+<div class="relative max-w-7xl mx-auto px-6 w-full z-10">
+<div class="max-w-2xl space-y-6">
+<div class="flex items-center gap-4">
+<div class="h-px w-12 bg-primary"></div>
+<span class="text-primary tracking-[0.3em] uppercase text-xs font-bold">Est. 1842 • Crown Jewelers</span>
+</div>
+<h2 class="font-serif text-6xl md:text-8xl text-slate-100 leading-tight">The Pinnacle of <br/><span class="italic text-primary">Royal Elegance</span></h2>
+<p class="text-slate-400 text-lg leading-relaxed max-w-lg font-light">
+                        Discover the Gilded Heritage Edition—an assembly of sovereign treasures meticulously crafted from the rarest stones and burnished 24k gold.
+                    </p>
+<div class="pt-8 flex items-center gap-6">
+<button class="bg-primary hover:bg-primary-dark text-background-dark px-10 py-4 font-bold uppercase tracking-widest text-xs transition-all flex items-center gap-2">
+                            Explore Collection <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+<button class="border border-primary/40 hover:border-primary text-primary px-10 py-4 font-bold uppercase tracking-widest text-xs transition-all">
+                            Private Viewing
+                        </button>
+</div>
+</div>
+</div>
+<!-- Decorative Gradient Overlay -->
+<div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-background-dark to-transparent"></div>
+</section>
+<!-- Divider -->
+<div class="flex justify-center items-center py-12 gap-4">
+<div class="h-px w-full max-w-xs bg-gradient-to-r from-transparent to-primary/40"></div>
+<span class="material-symbols-outlined text-primary opacity-60">hotel_class</span>
+<div class="h-px w-full max-w-xs bg-gradient-to-l from-transparent to-primary/40"></div>
+</div>
+<!-- Heritage Collections -->
+<section class="max-w-7xl mx-auto px-6 py-20">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+<div class="space-y-4">
+<h3 class="font-serif text-4xl text-slate-100">Heritage Collections</h3>
+<p class="text-slate-500 max-w-md">Each piece in our heritage vault carries the weight of history and the brilliance of unmatched craftsmanship.</p>
+</div>
+<a class="text-primary tracking-widest uppercase text-xs font-bold border-b border-primary/30 pb-1 hover:border-primary transition-colors" href="#">View All Masterpieces</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Product 1 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] overflow-hidden bg-surface-dark border border-primary/10">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Sovereign gold bangle with intricate carvings" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDt_CmU7h8Vm7072Apf8Ax5MEnv27OnFC-rojVTb6Pr1FaRtzzF6nGqp6Vt2yqpwqjXpYIGAMtTPZXauy5gpXMyDV2iiZUFKujZqzNueJkKV_l9YmsvPqgsl1oC6cqNibJ5eNK_y01T_g42l7ZU0dAnhW8cW0Mx07EyCzcb0uZWjqOeTLCLhZrM1fAiMgApt9OFKZckr2mUbM7ijJJnHK4ZM25KwUj4kOJ0dttjA-ZQYkl7igVRFWJPXPCbuZXVhW_ow6-rD7k66Lr-');"></div>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
+<div class="absolute top-4 right-4">
+<span class="bg-primary/90 text-background-dark text-[10px] font-black uppercase tracking-tighter px-2 py-1">Rare</span>
+</div>
+</div>
+<div class="mt-6 text-center space-y-1">
+<p class="text-primary text-[10px] tracking-[0.2em] uppercase font-bold">18K Burnished Gold</p>
+<h4 class="font-serif text-xl text-slate-100">The Sovereign Bangle</h4>
+<p class="text-slate-500 text-sm italic">Limited Edition Archive</p>
+<div class="pt-4 flex justify-center">
+<button class="text-primary text-xs uppercase tracking-widest font-bold opacity-0 group-hover:opacity-100 transition-opacity">Request Price</button>
+</div>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] overflow-hidden bg-surface-dark border border-primary/10 translate-y-8">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Ancient emerald diadem crown on display" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBwv__mA64Qzufa5LqYmJ8WcYvsDiZyH56j8GxyHDJyU6UvkRzOG_0FZqimGTUsC6bIVDub-6SmP1x_v7lHszNL42i4JYUiT82uE-JyOwOOSku-sc6xhkvHBs1SI5L6QHW3vIbARl-U-SBgEZncqr-29D1s0P3o1UMnXela9J-zZDGsbpPdttk1StEKtsewn40WwFRIoDyOkR4BPKN8kuIBu4Mt8dXzhw934BNGZG3RMDfNIj_Jb5mzf3b3g0WIkVCYrTnzAKE_TbDm');"></div>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
+</div>
+<div class="mt-14 text-center space-y-1">
+<p class="text-primary text-[10px] tracking-[0.2em] uppercase font-bold">Colombian Emeralds</p>
+<h4 class="font-serif text-xl text-slate-100">Ancestral Diadem</h4>
+<p class="text-slate-500 text-sm italic">Sovereign Collection</p>
+<div class="pt-4 flex justify-center">
+<button class="text-primary text-xs uppercase tracking-widest font-bold opacity-0 group-hover:opacity-100 transition-opacity">Request Price</button>
+</div>
+</div>
+</div>
+<!-- Product 3 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] overflow-hidden bg-surface-dark border border-primary/10">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Heritage gold signet ring with engraved crest" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDLmjXxSZKRW0nnB_CPNPL1wrlP6a1gaEFIFqIw9_bhOSTmLFuBbcNwuG8ZbsfLoishLUMh8F-7qSYJrZkSKzIYd4fFIOhKKRYM4MxgErxi5aRP5qqk7tDOyCXoDXp5MWXXCl-YYkD78dD5OY7Hl-rwj_drVSz5-Y7qCbnz4eXJnN3NewenpCcun8ozcGrYMmv2bD1XJXkZiCfsJGigEkkJpVMwiqEnpXuT6ojQmiyTuKVeLtOg-k3LN3LbNLJrKnOG2OXaCvRE2ixt');"></div>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
+</div>
+<div class="mt-6 text-center space-y-1">
+<p class="text-primary text-[10px] tracking-[0.2em] uppercase font-bold">Hand-Engraved Heritage Gold</p>
+<h4 class="font-serif text-xl text-slate-100">Legacy Signet</h4>
+<p class="text-slate-500 text-sm italic">House of Gilded</p>
+<div class="pt-4 flex justify-center">
+<button class="text-primary text-xs uppercase tracking-widest font-bold opacity-0 group-hover:opacity-100 transition-opacity">Request Price</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bespoke Commissions Section -->
+<section class="mt-32 relative py-32 overflow-hidden">
+<!-- Background Texture -->
+<div class="absolute inset-0 bg-surface-dark opacity-50 silk-texture"></div>
+<div class="absolute inset-0 bg-gradient-to-b from-background-dark via-transparent to-background-dark"></div>
+<div class="max-w-5xl mx-auto px-6 relative z-10 text-center border-y border-gold py-24">
+<div class="flex justify-center mb-8">
+<span class="material-symbols-outlined text-primary text-5xl">auto_fix_high</span>
+</div>
+<h3 class="font-serif text-5xl text-slate-100 mb-6">Bespoke Royal Commissions</h3>
+<p class="text-slate-400 text-lg max-w-2xl mx-auto leading-relaxed mb-10">
+                    Collaborate with our master goldsmiths to manifest a one-of-a-kind heirloom tailored to your dynasty's legacy. From initial sketch to the final polish of a 10-carat center stone, we serve the vision of royalty.
+                </p>
+<div class="flex flex-col sm:flex-row justify-center gap-6">
+<button class="bg-primary hover:bg-primary-dark text-background-dark px-12 py-4 font-bold uppercase tracking-widest text-xs transition-all">
+                        Request Consultation
+                    </button>
+<button class="text-primary px-12 py-4 font-bold uppercase tracking-widest text-xs border border-primary/20 hover:border-primary transition-all">
+                        The Craftsmanship Process
+                    </button>
+</div>
+</div>
+</section>
+<!-- Archive Detail Section -->
+<section class="max-w-7xl mx-auto px-6 py-32 flex flex-col md:flex-row items-center gap-20">
+<div class="flex-1 space-y-8">
+<span class="text-primary tracking-[0.3em] uppercase text-xs font-bold">Historical Archive No. 042</span>
+<h3 class="font-serif text-5xl text-slate-100">Preserving the <br/><span class="italic">Art of Gold</span></h3>
+<p class="text-slate-400 leading-relaxed text-lg">
+                    Our master artisans employ techniques passed down through generations. Using only ethically sourced 24-karat gold and conflict-free diamonds, we bridge the gap between ancient heritage and modern luxury.
+                </p>
+<div class="grid grid-cols-2 gap-8 pt-6">
+<div>
+<p class="text-2xl font-serif text-primary">1842</p>
+<p class="text-slate-500 text-xs uppercase tracking-widest mt-1">Founding Year</p>
+</div>
+<div>
+<p class="text-2xl font-serif text-primary">Exclusive</p>
+<p class="text-slate-500 text-xs uppercase tracking-widest mt-1">Limited Production</p>
+</div>
+</div>
+</div>
+<div class="flex-1 relative">
+<div class="relative z-10 border-8 border-surface-dark shadow-2xl overflow-hidden aspect-square">
+<div class="absolute inset-0 bg-cover bg-center hover:scale-105 transition-transform duration-[2s]" data-alt="Goldsmith masterfully engraving a piece of jewelry" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCSuhEwAjsffka6Rz28LGYQeXjOmShGZMldOQtyK0WN-2xMl4sjukxeHRAHq_we99gxVXIUlTh4LODU_c1B2J_54GcEdauFBAYXQ3CicAtAV-z-AHPHZsCEQO06Oa70KHqlOpcsXBM4bHVuVY3IXNaKKUWNGF80p8GNHuIjPn2ykYIBQBrbHizs1CXEGkzvlf1z5_AIjrf_MN8y8NZvuMVKFGnbjmL6MAD47OWc5fCUccQCj2TQ6mD3i8kKeRdvyHeUUucBYkNhfuPo');"></div>
+</div>
+<!-- Decorative Gold Frame Element -->
+<div class="absolute -top-6 -right-6 w-full h-full border border-primary/20 -z-10"></div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-dark border-t border-primary/10 pt-24 pb-12">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+<div class="col-span-1 md:col-span-1 space-y-6">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-2xl">verified_user</span>
+<h4 class="font-serif text-lg tracking-widest text-primary uppercase font-bold">Gilded Heritage</h4>
+</div>
+<p class="text-slate-500 text-sm leading-relaxed">
+                        Curators of historical brilliance and manufacturers of sovereign elegance since 1842.
+                    </p>
+</div>
+<div>
+<h5 class="text-slate-100 text-xs uppercase tracking-widest font-bold mb-6">Collections</h5>
+<ul class="space-y-4 text-slate-500 text-sm">
+<li><a class="hover:text-primary transition-colors" href="#">Sovereign Bangles</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Ancestral Diadems</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Royal Signets</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Bridal Heritage</a></li>
+</ul>
+</div>
+<div>
+<h5 class="text-slate-100 text-xs uppercase tracking-widest font-bold mb-6">Experience</h5>
+<ul class="space-y-4 text-slate-500 text-sm">
+<li><a class="hover:text-primary transition-colors" href="#">The Atelier</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Bespoke Process</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Private Viewings</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Care &amp; Security</a></li>
+</ul>
+</div>
+<div>
+<h5 class="text-slate-100 text-xs uppercase tracking-widest font-bold mb-6">Inquiries</h5>
+<p class="text-slate-500 text-sm mb-4">Subscribe to receive exclusive archive previews.</p>
+<div class="flex border-b border-primary/30 pb-2">
+<input class="bg-transparent border-none focus:ring-0 text-sm text-slate-300 w-full placeholder:text-slate-600" placeholder="Email Address" type="email"/>
+<button class="text-primary hover:translate-x-1 transition-transform">
+<span class="material-symbols-outlined">east</span>
+</button>
+</div>
+</div>
+</div>
+<div class="pt-8 border-t border-primary/5 flex flex-col md:row justify-between items-center gap-6">
+<p class="text-slate-600 text-[10px] uppercase tracking-[0.2em]">© 2024 Gilded Heritage Edition. All Rights Reserved.</p>
+<div class="flex gap-8">
+<a class="text-slate-600 hover:text-primary transition-colors text-xs" href="#">Privacy</a>
+<a class="text-slate-600 hover:text-primary transition-colors text-xs" href="#">Terms</a>
+<a class="text-slate-600 hover:text-primary transition-colors text-xs" href="#">Accessibility</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>
