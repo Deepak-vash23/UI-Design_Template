@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORIANA — Luxury Gold Jewelry</title>
+    <meta name="description"
+        content="ORIANA — Where gold becomes art. Luxury gold accent jewelry for the discerning collector.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #0d0b08;
+            --bg2: #13110c;
+            --surface: #1a1710;
+            --surface2: #211e14;
+            --surface3: #2a2618;
+            --gold: #D4AF37;
+            --gold-bright: #f0d060;
+            --gold-deep: #a88420;
+            --gold-rose: #e8c87a;
+            --gold-glow: rgba(212, 175, 55, 0.12);
+            --gold-glow-mid: rgba(212, 175, 55, 0.22);
+            --gold-glow-strong: rgba(212, 175, 55, 0.4);
+            --text: #f5efe3;
+            --text-soft: #c8bfab;
+            --text-muted: #7a7262;
+            --text-dim: #4a4438;
+            --border-gold: rgba(212, 175, 55, 0.12);
+            --border-gold-mid: rgba(212, 175, 55, 0.25);
+            --serif: 'Playfair Display', Georgia, serif;
+            --body: 'Cormorant Garamond', Georgia, serif;
+            --sans: 'Inter', sans-serif;
+            --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--body);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ===== GOLD SHIMMER BACKGROUND ===== */
+        .gold-shimmer-bg {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .shimmer-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            animation: floatOrb 20s ease-in-out infinite alternate;
+        }
+
+        .shimmer-orb-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.08), transparent 70%);
+            top: -100px;
+            right: -100px;
+        }
+
+        .shimmer-orb-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(232, 200, 122, 0.06), transparent 70%);
+            bottom: 10%;
+            left: -80px;
+            animation-delay: -8s;
+        }
+
+        .shimmer-orb-3 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.05), transparent 70%);
+            top: 50%;
+            left: 40%;
+            animation-delay: -14s;
+        }
+
+        @keyframes floatOrb {
+            from {
+                transform: translate(0, 0) scale(1);
+            }
+
+            to {
+                transform: translate(30px, -20px) scale(1.1);
+            }
+        }
+
+        /* ===== GOLD ACCENT LINE TOP ===== */
+        .gold-top-line {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), var(--gold-bright), var(--gold), transparent);
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(13, 11, 8, 0.92);
+            backdrop-filter: blur(24px);
+            border-bottom: 1px solid var(--border-gold);
+        }
+
+        .nav-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 60px;
+            height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 48px;
+        }
+
+        .nav-logo {
+            font-family: var(--serif);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--gold);
+            text-decoration: none;
+            letter-spacing: 0.2em;
+            position: relative;
+        }
+
+        .nav-logo::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 36px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: var(--sans);
+            font-size: 0.68rem;
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            text-decoration: none;
+            position: relative;
+            padding-bottom: 4px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: all 0.4s var(--ease);
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-btn {
+            font-family: var(--sans);
+            font-size: 0.6rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--bg);
+            background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+            padding: 10px 24px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .nav-btn:hover {
+            box-shadow: 0 4px 20px var(--gold-glow-mid);
+            transform: translateY(-1px);
+        }
+
+        .nav-icon {
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-icon:hover {
+            color: var(--gold);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .hero-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-text {
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--gold-glow);
+            border: 1px solid var(--border-gold-mid);
+            padding: 6px 18px;
+            margin-bottom: 28px;
+            font-family: var(--sans);
+            font-size: 0.58rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .hero-badge::before {
+            content: '◆';
+            font-size: 0.45rem;
+        }
+
+        .hero-title {
+            font-family: var(--serif);
+            font-size: clamp(3rem, 5.5vw, 5rem);
+            font-weight: 400;
+            line-height: 1.08;
+            margin-bottom: 24px;
+        }
+
+        .hero-title .gold-text {
+            background: linear-gradient(135deg, var(--gold-deep), var(--gold), var(--gold-bright), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-title em {
+            font-style: italic;
+        }
+
+        .hero-desc {
+            font-family: var(--body);
+            font-size: 1.15rem;
+            color: var(--text-soft);
+            line-height: 1.8;
+            max-width: 500px;
+            margin-bottom: 40px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 56px;
+        }
+
+        .btn-gold {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--sans);
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--bg);
+            background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+            padding: 18px 44px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-gold::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .btn-gold:hover::before {
+            left: 100%;
+        }
+
+        .btn-gold:hover {
+            box-shadow: 0 8px 40px var(--gold-glow-strong);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline-gold {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--sans);
+            font-size: 0.65rem;
+            font-weight: 400;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            background: transparent;
+            padding: 18px 44px;
+            border: 1px solid var(--border-gold-mid);
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-outline-gold:hover {
+            border-color: var(--gold);
+            box-shadow: 0 0 30px var(--gold-glow);
+            background: var(--gold-glow);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 48px;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-num {
+            font-family: var(--serif);
+            font-size: 2rem;
+            font-weight: 600;
+            background: linear-gradient(to right, var(--gold), var(--gold-bright));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-stat-label {
+            font-family: var(--sans);
+            font-size: 0.55rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-top: 4px;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-img-wrapper {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border-gold-mid);
+        }
+
+        .hero-img-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            background: linear-gradient(135deg, var(--gold) 0%, transparent 30%, transparent 70%, var(--gold) 100%);
+            opacity: 0.3;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .hero-img-wrapper img {
+            width: 100%;
+            display: block;
+            animation: heroSlow 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes heroSlow {
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.06);
+            }
+        }
+
+        .hero-img-tag {
+            position: absolute;
+            bottom: 24px;
+            right: 24px;
+            background: rgba(13, 11, 8, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-gold);
+            padding: 12px 20px;
+            z-index: 3;
+        }
+
+        .hero-img-tag p {
+            font-family: var(--sans);
+            font-size: 0.5rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .hero-img-tag h4 {
+            font-family: var(--serif);
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .hero-floating-diamond {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 60px;
+            height: 60px;
+            border: 1px solid var(--border-gold-mid);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            background: var(--surface);
+            z-index: 3;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* ===== SECTION COMMONS ===== */
+        section {
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-pad {
+            padding: 120px 60px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .section-tag {
+            font-family: var(--sans);
+            font-size: 0.58rem;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 14px;
+            display: block;
+        }
+
+        .section-title {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 400;
+        }
+
+        .section-title .gold-text {
+            background: linear-gradient(135deg, var(--gold-deep), var(--gold), var(--gold-bright));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gold-accent-line {
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold-deep), var(--gold-bright));
+            margin: 20px auto;
+        }
+
+        .section-desc {
+            font-family: var(--body);
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            max-width: 480px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ===== SIGNATURE PIECES (3 CARDS WITH GOLD BORDERS) ===== */
+        .signatures {
+            background: var(--bg2);
+        }
+
+        .sig-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .sig-card {
+            position: relative;
+            background: var(--surface);
+            border: 1px solid var(--border-gold);
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.5s var(--ease);
+        }
+
+        .sig-card::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            background: linear-gradient(135deg, var(--gold), transparent 40%, transparent 60%, var(--gold-bright));
+            opacity: 0;
+            z-index: 0;
+            transition: opacity 0.5s;
+        }
+
+        .sig-card:hover::before {
+            opacity: 0.5;
+        }
+
+        .sig-card::after {
+            content: '';
+            position: absolute;
+            inset: 1px;
+            background: var(--surface);
+            z-index: 0;
+        }
+
+        .sig-card:hover {
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.1);
+            transform: translateY(-6px);
+        }
+
+        .sig-card-inner {
+            position: relative;
+            z-index: 1;
+        }
+
+        .sig-img {
+            width: 100%;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+        }
+
+        .sig-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s var(--ease);
+        }
+
+        .sig-card:hover .sig-img img {
+            transform: scale(1.07);
+        }
+
+        .sig-info {
+            padding: 24px;
+            text-align: center;
+        }
+
+        .sig-category {
+            font-family: var(--sans);
+            font-size: 0.5rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+
+        .sig-name {
+            font-family: var(--serif);
+            font-size: 1.15rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .sig-price {
+            font-family: var(--body);
+            font-size: 1.1rem;
+            color: var(--gold-rose);
+            margin-bottom: 16px;
+        }
+
+        .sig-btn {
+            font-family: var(--sans);
+            font-size: 0.55rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--gold);
+            border: 1px solid var(--border-gold);
+            background: transparent;
+            padding: 10px 28px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .sig-btn:hover {
+            background: var(--gold-glow);
+            border-color: var(--gold);
+        }
+
+        /* ===== GOLD BANNER ===== */
+        .gold-banner {
+            background: linear-gradient(135deg, var(--gold-deep), var(--gold), var(--gold-bright), var(--gold));
+            padding: 60px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gold-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(45deg,
+                    transparent,
+                    transparent 40px,
+                    rgba(255, 255, 255, 0.03) 40px,
+                    rgba(255, 255, 255, 0.03) 80px);
+        }
+
+        .gold-banner h2 {
+            font-family: var(--serif);
+            font-size: clamp(1.6rem, 3vw, 2.4rem);
+            font-weight: 400;
+            color: var(--bg);
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        .gold-banner p {
+            font-family: var(--body);
+            font-size: 1.1rem;
+            color: rgba(13, 11, 8, 0.6);
+            margin-bottom: 28px;
+            position: relative;
+        }
+
+        .btn-dark {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--sans);
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--gold);
+            background: var(--bg);
+            padding: 16px 40px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .btn-dark:hover {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* ===== CRAFTSMANSHIP ===== */
+        .craft {
+            background: var(--bg);
+        }
+
+        .craft-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .craft-img {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .craft-img img {
+            width: 100%;
+            display: block;
+            transition: transform 0.8s var(--ease);
+        }
+
+        .craft-img:hover img {
+            transform: scale(1.04);
+        }
+
+        .craft-gold-frame {
+            position: absolute;
+            inset: 16px;
+            border: 1px solid var(--border-gold-mid);
+            pointer-events: none;
+        }
+
+        .craft-text h2 {
+            font-family: var(--serif);
+            font-size: 2.4rem;
+            font-weight: 400;
+            line-height: 1.25;
+            margin-bottom: 24px;
+        }
+
+        .craft-text h2 .gold-text {
+            background: linear-gradient(135deg, var(--gold-deep), var(--gold), var(--gold-bright));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .craft-text p {
+            font-family: var(--body);
+            font-size: 1.05rem;
+            color: var(--text-soft);
+            line-height: 1.8;
+            margin-bottom: 14px;
+        }
+
+        .craft-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 36px;
+        }
+
+        .craft-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 16px;
+            background: var(--surface);
+            border: 1px solid var(--border-gold);
+            transition: border-color 0.3s;
+        }
+
+        .craft-feature:hover {
+            border-color: var(--gold);
+        }
+
+        .craft-feature-icon {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .craft-feature h4 {
+            font-family: var(--sans);
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 4px;
+        }
+
+        .craft-feature p {
+            font-family: var(--body);
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonials {
+            background: var(--bg2);
+        }
+
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .test-card {
+            background: var(--surface);
+            border: 1px solid var(--border-gold);
+            padding: 36px 28px;
+            transition: all 0.4s;
+            position: relative;
+        }
+
+        .test-card::before {
+            content: '"';
+            font-family: var(--serif);
+            font-size: 4rem;
+            color: var(--gold);
+            opacity: 0.2;
+            position: absolute;
+            top: 12px;
+            left: 20px;
+            line-height: 1;
+        }
+
+        .test-card:hover {
+            border-color: var(--gold);
+            box-shadow: 0 12px 40px var(--gold-glow);
+        }
+
+        .test-stars {
+            color: var(--gold);
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            margin-bottom: 18px;
+        }
+
+        .test-text {
+            font-family: var(--body);
+            font-size: 1.05rem;
+            font-style: italic;
+            color: var(--text-soft);
+            line-height: 1.75;
+            margin-bottom: 24px;
+        }
+
+        .test-author {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .test-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold-deep), var(--gold));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--serif);
+            font-size: 1rem;
+            color: var(--bg);
+            flex-shrink: 0;
+        }
+
+        .test-author-info h4 {
+            font-family: var(--sans);
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .test-author-info p {
+            font-family: var(--body);
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            margin-top: 2px;
+        }
+
+        /* ===== NEWSLETTER ===== */
+        .newsletter {
+            background: var(--surface);
+            border-top: 1px solid var(--border-gold);
+            border-bottom: 1px solid var(--border-gold);
+        }
+
+        .news-inner {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .news-inner h2 {
+            font-family: var(--serif);
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 12px;
+        }
+
+        .news-inner p {
+            font-family: var(--body);
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+        }
+
+        .news-form {
+            display: flex;
+            gap: 0;
+            border: 1px solid var(--border-gold-mid);
+        }
+
+        .news-form input {
+            flex: 1;
+            padding: 16px 20px;
+            background: transparent;
+            border: none;
+            font-family: var(--body);
+            font-size: 1rem;
+            color: var(--text);
+            outline: none;
+        }
+
+        .news-form input::placeholder {
+            color: var(--text-dim);
+        }
+
+        .news-form button {
+            padding: 16px 32px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+            border: none;
+            font-family: var(--sans);
+            font-size: 0.6rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--bg);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .news-form button:hover {
+            box-shadow: 0 4px 20px var(--gold-glow-mid);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--bg);
+            padding: 80px 60px 36px;
+        }
+
+        .footer-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand h3 {
+            font-family: var(--serif);
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.15em;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand p {
+            font-family: var(--body);
+            font-size: 1rem;
+            color: var(--text-dim);
+            line-height: 1.7;
+        }
+
+        .footer-col h4 {
+            font-family: var(--sans);
+            font-size: 0.55rem;
+            font-weight: 500;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .footer-col a {
+            display: block;
+            font-family: var(--body);
+            font-size: 0.95rem;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 12px;
+            transition: color 0.3s;
+        }
+
+        .footer-col a:hover {
+            color: var(--gold);
+        }
+
+        .footer-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-gold-mid), transparent);
+            max-width: 1300px;
+            margin: 0 auto 28px;
+        }
+
+        .footer-bottom {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .footer-bottom p {
+            font-family: var(--sans);
+            font-size: 0.6rem;
+            color: var(--text-dim);
+            letter-spacing: 0.08em;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-social a {
+            font-family: var(--sans);
+            font-size: 0.6rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-social a:hover {
+            color: var(--gold);
+        }
+
+        /* ===== SCROLL REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .nav-inner {
+                padding: 0 30px;
+            }
+
+            .section-pad {
+                padding: 80px 30px;
+            }
+
+            .hero-inner {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 40px 30px;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 60px 0;
+            }
+
+            .sig-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .craft-inner {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .test-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr 1fr;
+                gap: 36px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .nav-btn {
+                display: none;
+            }
+
+            .section-pad {
+                padding: 60px 20px;
+            }
+
+            .sig-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .craft-features {
+                grid-template-columns: 1fr;
+            }
+
+            .gold-banner {
+                padding: 40px 20px;
+            }
+
+            .news-form {
+                flex-direction: column;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+            }
+
+            .hero-stats {
+                gap: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Gold Shimmer Background -->
+    <div class="gold-shimmer-bg">
+        <div class="shimmer-orb shimmer-orb-1"></div>
+        <div class="shimmer-orb shimmer-orb-2"></div>
+        <div class="shimmer-orb shimmer-orb-3"></div>
+    </div>
+
+    <!-- Gold Accent Top Line -->
+    <div class="gold-top-line"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-inner">
+            <div class="nav-left">
+                <a href="#" class="nav-logo">ORIANA</a>
+                <ul class="nav-links">
+                    <li><a href="#collections">Collections</a></li>
+                    <li><a href="#craft">Craftsmanship</a></li>
+                    <li><a href="#testimonials">Reviews</a></li>
+                </ul>
+            </div>
+            <div class="nav-right">
+                <span class="nav-icon">🔍</span>
+                <span class="nav-icon">♡</span>
+                <a href="#" class="nav-btn">Book Appointment</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="hero-text reveal">
+                <div class="hero-badge">Luxury Gold Collection</div>
+                <h1 class="hero-title">
+                    Where <span class="gold-text">Gold</span><br>
+                    Becomes <em>Art</em>
+                </h1>
+                <p class="hero-desc">Experience the radiance of pure gold, shaped by master artisans into extraordinary
+                    pieces that transcend time and define elegance.</p>
+                <div class="hero-actions">
+                    <a href="#collections" class="btn-gold">Explore Collection</a>
+                    <a href="#craft" class="btn-outline-gold">Our Craft</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-num">24K</div>
+                        <div class="hero-stat-label">Pure Gold</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-num">183</div>
+                        <div class="hero-stat-label">Years Legacy</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-num">5★</div>
+                        <div class="hero-stat-label">Rated</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image reveal">
+                <div class="hero-floating-diamond">💎</div>
+                <div class="hero-img-wrapper">
+                    <img src="images/jewelry_hero_dark.png" alt="Luxury Gold Jewelry">
+                    <div class="hero-img-tag">
+                        <p>Featured</p>
+                        <h4>Royal Sovereign Set</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Signature Pieces -->
+    <section id="collections" class="signatures section-pad">
+        <div class="section-header reveal">
+            <span class="section-tag">Signature Pieces</span>
+            <h2 class="section-title">The <span class="gold-text">Gold</span> Collection</h2>
+            <div class="gold-accent-line"></div>
+            <p class="section-desc">Each piece is a testament to the beauty of gold — sculpted, polished, and perfected
+                by our master artisans.</p>
+        </div>
+        <div class="sig-grid">
+            <div class="sig-card reveal">
+                <div class="sig-card-inner">
+                    <div class="sig-img">
+                        <img src="images/jewelry_product_ring.png" alt="Imperial Diamond Ring">
+                    </div>
+                    <div class="sig-info">
+                        <p class="sig-category">Rings</p>
+                        <h3 class="sig-name">Imperial Diamond</h3>
+                        <p class="sig-price">$14,800</p>
+                        <button class="sig-btn">View Details</button>
+                    </div>
+                </div>
+            </div>
+            <div class="sig-card reveal">
+                <div class="sig-card-inner">
+                    <div class="sig-img">
+                        <img src="images/jewelry_product_necklace.png" alt="Empress Emerald Necklace">
+                    </div>
+                    <div class="sig-info">
+                        <p class="sig-category">Necklaces</p>
+                        <h3 class="sig-name">Empress Emerald</h3>
+                        <p class="sig-price">$32,500</p>
+                        <button class="sig-btn">View Details</button>
+                    </div>
+                </div>
+            </div>
+            <div class="sig-card reveal">
+                <div class="sig-card-inner">
+                    <div class="sig-img">
+                        <img src="images/jewelry_product_bracelet.png" alt="Dynasty Gold Bangle">
+                    </div>
+                    <div class="sig-info">
+                        <p class="sig-category">Bracelets</p>
+                        <h3 class="sig-name">Dynasty Bangle</h3>
+                        <p class="sig-price">$9,600</p>
+                        <button class="sig-btn">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gold Banner -->
+    <div class="gold-banner reveal">
+        <h2>The Gold Standard of Fine Jewelry</h2>
+        <p>Every ORIANA piece is forged from the purest gold, certified and hallmarked for absolute authenticity.</p>
+        <a href="#" class="btn-dark">Discover Our Process →</a>
+    </div>
+
+    <!-- Craftsmanship -->
+    <section id="craft" class="craft section-pad">
+        <div class="craft-inner">
+            <div class="craft-img reveal">
+                <img src="images/jewelry_craftsmanship.png" alt="Master artisan at work">
+                <div class="craft-gold-frame"></div>
+            </div>
+            <div class="craft-text reveal">
+                <span class="section-tag" style="text-align: left;">The Atelier</span>
+                <h2>Mastery in Every<br><span class="gold-text">Detail</span></h2>
+                <p>Our atelier in Geneva houses some of the world's most skilled goldsmiths, each one carrying decades
+                    of knowledge and an unwavering commitment to excellence.</p>
+                <p>From the initial sketch to the final setting, every step in the ORIANA process is guided by our
+                    founding principle: perfection is not a goal — it is the standard.</p>
+                <div class="craft-features">
+                    <div class="craft-feature">
+                        <span class="craft-feature-icon">🔥</span>
+                        <div>
+                            <h4>Hand Forged</h4>
+                            <p>Traditional goldsmithing techniques</p>
+                        </div>
+                    </div>
+                    <div class="craft-feature">
+                        <span class="craft-feature-icon">💎</span>
+                        <div>
+                            <h4>Ethically Sourced</h4>
+                            <p>Conflict-free certified gemstones</p>
+                        </div>
+                    </div>
+                    <div class="craft-feature">
+                        <span class="craft-feature-icon">🏆</span>
+                        <div>
+                            <h4>Certified Gold</h4>
+                            <p>Hallmarked 18K & 24K purity</p>
+                        </div>
+                    </div>
+                    <div class="craft-feature">
+                        <span class="craft-feature-icon">🛡️</span>
+                        <div>
+                            <h4>Lifetime Warranty</h4>
+                            <p>Complimentary care & servicing</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="testimonials section-pad">
+        <div class="section-header reveal">
+            <span class="section-tag">Client Stories</span>
+            <h2 class="section-title">Treasured <span class="gold-text">Moments</span></h2>
+            <div class="gold-accent-line"></div>
+        </div>
+        <div class="test-grid">
+            <div class="test-card reveal">
+                <div class="test-stars">★ ★ ★ ★ ★</div>
+                <p class="test-text">"The attention to detail is extraordinary. My ORIANA ring catches the light like
+                    nothing I've ever worn — it truly is wearable art."</p>
+                <div class="test-author">
+                    <div class="test-avatar">SL</div>
+                    <div class="test-author-info">
+                        <h4>Sarah Laurent</h4>
+                        <p>Paris, France</p>
+                    </div>
+                </div>
+            </div>
+            <div class="test-card reveal">
+                <div class="test-stars">★ ★ ★ ★ ★</div>
+                <p class="test-text">"From the private consultation to the delivery in that iconic gold box — every
+                    moment felt like pure luxury. ORIANA exceeds expectations."</p>
+                <div class="test-author">
+                    <div class="test-avatar">JR</div>
+                    <div class="test-author-info">
+                        <h4>James Rothwell</h4>
+                        <p>London, UK</p>
+                    </div>
+                </div>
+            </div>
+            <div class="test-card reveal">
+                <div class="test-stars">★ ★ ★ ★ ★</div>
+                <p class="test-text">"I commissioned a bespoke anniversary necklace. The result was beyond what I
+                    imagined — my wife was speechless. Thank you, ORIANA."</p>
+                <div class="test-author">
+                    <div class="test-avatar">AC</div>
+                    <div class="test-author-info">
+                        <h4>Aiden Chen</h4>
+                        <p>Singapore</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter section-pad">
+        <div class="news-inner reveal">
+            <span class="section-tag">The Inner Circle</span>
+            <h2>Join the ORIANA World</h2>
+            <p>Receive early access to new collections, exclusive invitations, and the latest from our atelier.</p>
+            <form class="news-form" onsubmit="event.preventDefault();">
+                <input type="email" placeholder="Your email address">
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <h3>ORIANA</h3>
+                <p>Where gold becomes art. Since 1843, ORIANA has set the standard for luxury gold jewelry — from our
+                    Geneva atelier to the world.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Collections</h4>
+                <a href="#">Imperial Rings</a>
+                <a href="#">Empress Necklaces</a>
+                <a href="#">Dynasty Bangles</a>
+                <a href="#">Celestial Earrings</a>
+                <a href="#">High Jewelry</a>
+            </div>
+            <div class="footer-col">
+                <h4>Maison</h4>
+                <a href="#">Our Heritage</a>
+                <a href="#">The Atelier</a>
+                <a href="#">Sustainability</a>
+                <a href="#">Careers</a>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <a href="#">Bespoke Creation</a>
+                <a href="#">Engraving</a>
+                <a href="#">Care & Repair</a>
+                <a href="#">Gift Registry</a>
+            </div>
+        </div>
+        <div class="footer-divider"></div>
+        <div class="footer-bottom">
+            <p>© 2026 ORIANA. All rights reserved.</p>
+            <div class="footer-social">
+                <a href="#">Instagram</a>
+                <a href="#">Pinterest</a>
+                <a href="#">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll reveal
+        const revealEls = document.querySelectorAll('.reveal');
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) e.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        revealEls.forEach(el => obs.observe(el));
+    </script>
+
+</body>
+
+</html>
