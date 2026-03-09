@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURUM — Luxury Fine Jewelry</title>
+    <meta name="description"
+        content="Discover timeless elegance. AURUM presents the finest handcrafted gold and diamond jewelry collections.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Cormorant:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #080808;
+            --bg-dark: #050505;
+            --surface: #111111;
+            --surface2: #1a1a1a;
+            --gold: #D4AF37;
+            --gold-light: #E8CC6E;
+            --gold-dark: #B8960C;
+            --gold-glow: rgba(212, 175, 55, 0.15);
+            --gold-glow-strong: rgba(212, 175, 55, 0.35);
+            --text: #f5f0e8;
+            --text-muted: #999185;
+            --text-dim: #5a5550;
+            --border: rgba(212, 175, 55, 0.15);
+            --serif: 'Playfair Display', Georgia, serif;
+            --body: 'Cormorant', serif;
+            --sans: 'Inter', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--body);
+            font-weight: 400;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ===== GOLD PARTICLE CANVAS ===== */
+        #particles {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 0 60px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(8, 8, 8, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: background 0.4s;
+        }
+
+        .nav-logo {
+            font-family: var(--serif);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: 0.25em;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: var(--sans);
+            font-size: 0.72rem;
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: width 0.4s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-icon {
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: color 0.3s;
+            font-size: 1.1rem;
+        }
+
+        .nav-icon:hover {
+            color: var(--gold);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.45;
+            animation: heroZoom 25s ease-in-out infinite alternate;
+        }
+
+        @keyframes heroZoom {
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.08);
+            }
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom,
+                    rgba(8, 8, 8, 0.6) 0%,
+                    rgba(8, 8, 8, 0.3) 40%,
+                    rgba(8, 8, 8, 0.7) 80%,
+                    rgba(8, 8, 8, 1) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 24px;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-tagline {
+            font-family: var(--sans);
+            font-size: 0.7rem;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 24px;
+        }
+
+        .hero-title {
+            font-family: var(--serif);
+            font-size: clamp(3rem, 7vw, 6rem);
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+
+        .hero-title em {
+            font-style: italic;
+            color: var(--gold);
+        }
+
+        .hero-subtitle {
+            font-family: var(--body);
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 480px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
+            letter-spacing: 0.03em;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--sans);
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--bg);
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            padding: 18px 48px;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px var(--gold-glow-strong);
+        }
+
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--sans);
+            font-size: 0.7rem;
+            font-weight: 400;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            background: transparent;
+            padding: 18px 48px;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--gold);
+            box-shadow: 0 0 30px var(--gold-glow);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            font-family: var(--sans);
+            font-size: 0.6rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 0.4;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+        }
+
+        /* ===== SECTION COMMONS ===== */
+        section {
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-pad {
+            padding: 120px 60px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-label {
+            font-family: var(--sans);
+            font-size: 0.65rem;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .section-title {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 400;
+            color: var(--text);
+            line-height: 1.2;
+        }
+
+        .gold-divider {
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 24px auto;
+        }
+
+        .section-desc {
+            font-family: var(--body);
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 500px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ===== FEATURED COLLECTIONS ===== */
+        .collections-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .collection-card {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 3/4;
+            cursor: pointer;
+            border: 1px solid var(--border);
+        }
+
+        .collection-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .collection-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .collection-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(5, 5, 5, 0.9) 0%, transparent 60%);
+            transition: opacity 0.3s;
+        }
+
+        .collection-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            z-index: 2;
+        }
+
+        .collection-tag {
+            font-family: var(--sans);
+            font-size: 0.55rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+
+        .collection-name {
+            font-family: var(--serif);
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .collection-link {
+            font-family: var(--sans);
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s;
+        }
+
+        .collection-card:hover .collection-link {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== BEST SELLERS ===== */
+        .bestsellers {
+            background: var(--bg-dark);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            cursor: pointer;
+            transition: border-color 0.4s, box-shadow 0.4s;
+        }
+
+        .product-card:hover {
+            border-color: var(--gold);
+            box-shadow: 0 0 40px var(--gold-glow);
+        }
+
+        .product-img {
+            width: 100%;
+            aspect-ratio: 1;
+            overflow: hidden;
+        }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .product-card:hover .product-img img {
+            transform: scale(1.06);
+        }
+
+        .product-info {
+            padding: 24px;
+            text-align: center;
+        }
+
+        .product-name {
+            font-family: var(--serif);
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+
+        .product-category {
+            font-family: var(--sans);
+            font-size: 0.6rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-bottom: 12px;
+        }
+
+        .product-price {
+            font-family: var(--body);
+            font-size: 1.1rem;
+            color: var(--gold);
+        }
+
+        /* ===== CRAFTSMANSHIP ===== */
+        .craft-section {
+            display: flex;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 80px;
+        }
+
+        .craft-image {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .craft-image img {
+            width: 100%;
+            display: block;
+            transition: transform 0.8s ease;
+        }
+
+        .craft-image:hover img {
+            transform: scale(1.04);
+        }
+
+        .craft-image::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            right: -1px;
+            width: 60px;
+            height: 60px;
+            border-top: 1px solid var(--gold);
+            border-right: 1px solid var(--gold);
+            z-index: 2;
+        }
+
+        .craft-image::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: -1px;
+            width: 60px;
+            height: 60px;
+            border-bottom: 1px solid var(--gold);
+            border-left: 1px solid var(--gold);
+            z-index: 2;
+        }
+
+        .craft-text {
+            flex: 1;
+        }
+
+        .craft-text .section-label {
+            text-align: left;
+        }
+
+        .craft-text h2 {
+            font-family: var(--serif);
+            font-size: 2.4rem;
+            font-weight: 400;
+            line-height: 1.3;
+            margin-bottom: 24px;
+        }
+
+        .craft-text p {
+            font-family: var(--body);
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .craft-stats {
+            display: flex;
+            gap: 48px;
+            margin-top: 40px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+        }
+
+        .craft-stat-num {
+            font-family: var(--serif);
+            font-size: 2rem;
+            color: var(--gold);
+        }
+
+        .craft-stat-label {
+            font-family: var(--sans);
+            font-size: 0.6rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-top: 4px;
+        }
+
+        /* ===== REVIEWS ===== */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .review-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 40px 32px;
+            text-align: center;
+            transition: border-color 0.4s, box-shadow 0.4s;
+        }
+
+        .review-card:hover {
+            border-color: rgba(212, 175, 55, 0.4);
+            box-shadow: 0 0 50px var(--gold-glow);
+        }
+
+        .review-stars {
+            color: var(--gold);
+            font-size: 0.85rem;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+        }
+
+        .review-text {
+            font-family: var(--body);
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .review-author {
+            font-family: var(--sans);
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text);
+        }
+
+        .review-role {
+            font-family: var(--body);
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            margin-top: 4px;
+        }
+
+        /* ===== STORE LOCATION ===== */
+        .store-section {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .store-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .store-details {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            margin-top: 48px;
+        }
+
+        .store-detail-item h4 {
+            font-family: var(--sans);
+            font-size: 0.6rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+
+        .store-detail-item p {
+            font-family: var(--body);
+            font-size: 1rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--bg-dark);
+            padding: 80px 60px 40px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand h3 {
+            font-family: var(--serif);
+            font-size: 1.4rem;
+            color: var(--gold);
+            letter-spacing: 0.2em;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand p {
+            font-family: var(--body);
+            color: var(--text-dim);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .footer-col h4 {
+            font-family: var(--sans);
+            font-size: 0.6rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .footer-col a {
+            display: block;
+            font-family: var(--body);
+            font-size: 0.95rem;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 12px;
+            transition: color 0.3s;
+        }
+
+        .footer-col a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-bottom p {
+            font-family: var(--sans);
+            font-size: 0.65rem;
+            color: var(--text-dim);
+            letter-spacing: 0.1em;
+        }
+
+        /* ===== SCROLL REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .navbar {
+                padding: 0 30px;
+            }
+
+            .section-pad {
+                padding: 80px 30px;
+            }
+
+            .collections-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .craft-section {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .navbar {
+                padding: 0 20px;
+            }
+
+            .section-pad {
+                padding: 60px 20px;
+            }
+
+            .collections-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .store-details {
+                flex-direction: column;
+                gap: 32px;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .craft-stats {
+                gap: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Gold Particles -->
+    <canvas id="particles"></canvas>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="#" class="nav-logo">AURUM</a>
+        <ul class="nav-links">
+            <li><a href="#collections">Collections</a></li>
+            <li><a href="#bestsellers">Best Sellers</a></li>
+            <li><a href="#craftsmanship">Craftsmanship</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#store">Visit Us</a></li>
+        </ul>
+        <div class="nav-right">
+            <span class="nav-icon">🔍</span>
+            <span class="nav-icon">♡</span>
+            <span class="nav-icon">👤</span>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-bg">
+            <img src="images/jewelry_hero_dark.png" alt="Luxury Jewelry Collection">
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-tagline">Established 1897</p>
+            <h1 class="hero-title">Timeless <em>Elegance</em></h1>
+            <p class="hero-subtitle">Discover our new collection — where centuries of artistry meet modern luxury in
+                every exquisite detail.</p>
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <a href="#collections" class="btn-primary">Explore Collection</a>
+                <a href="#craftsmanship" class="btn-outline">Our Story</a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Featured Collections -->
+    <section id="collections" class="section-pad">
+        <div class="section-header reveal">
+            <span class="section-label">Curated for You</span>
+            <h2 class="section-title">Featured Collections</h2>
+            <div class="gold-divider"></div>
+            <p class="section-desc">Each collection is a narrative of unmatched beauty, crafted for those who value the
+                extraordinary.</p>
+        </div>
+        <div class="collections-grid">
+            <div class="collection-card reveal">
+                <img src="images/jewelry_product_ring.png" alt="Sovereign Ring Collection">
+                <div class="collection-info">
+                    <p class="collection-tag">New Season</p>
+                    <h3 class="collection-name">The Sovereign Ring</h3>
+                    <span class="collection-link">Explore →</span>
+                </div>
+            </div>
+            <div class="collection-card reveal">
+                <img src="images/jewelry_product_necklace.png" alt="Heritage Necklace">
+                <div class="collection-info">
+                    <p class="collection-tag">Iconic</p>
+                    <h3 class="collection-name">Heritage Emerald</h3>
+                    <span class="collection-link">Explore →</span>
+                </div>
+            </div>
+            <div class="collection-card reveal">
+                <img src="images/jewelry_product_bracelet.png" alt="Royal Bracelet Collection">
+                <div class="collection-info">
+                    <p class="collection-tag">Limited Edition</p>
+                    <h3 class="collection-name">Royal Bangle</h3>
+                    <span class="collection-link">Explore →</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Best Sellers -->
+    <section id="bestsellers" class="bestsellers section-pad">
+        <div class="section-header reveal">
+            <span class="section-label">Most Coveted</span>
+            <h2 class="section-title">Best Sellers</h2>
+            <div class="gold-divider"></div>
+        </div>
+        <div class="products-grid">
+            <div class="product-card reveal">
+                <div class="product-img">
+                    <img src="images/jewelry_product_ring.png" alt="Diamond Eternity Ring">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Diamond Eternity Ring</h3>
+                    <p class="product-category">Rings</p>
+                    <p class="product-price">$12,500</p>
+                </div>
+            </div>
+            <div class="product-card reveal">
+                <div class="product-img">
+                    <img src="images/jewelry_product_necklace.png" alt="Emerald Cascade Necklace">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Emerald Cascade</h3>
+                    <p class="product-category">Necklaces</p>
+                    <p class="product-price">$28,900</p>
+                </div>
+            </div>
+            <div class="product-card reveal">
+                <div class="product-img">
+                    <img src="images/jewelry_product_bracelet.png" alt="Golden Heritage Bangle">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Heritage Bangle</h3>
+                    <p class="product-category">Bracelets</p>
+                    <p class="product-price">$8,750</p>
+                </div>
+            </div>
+            <div class="product-card reveal">
+                <div class="product-img">
+                    <img src="images/jewelry_product_earrings.png" alt="Celestial Drop Earrings">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Celestial Drops</h3>
+                    <p class="product-category">Earrings</p>
+                    <p class="product-price">$6,200</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Craftsmanship -->
+    <section id="craftsmanship" class="section-pad">
+        <div class="craft-section reveal">
+            <div class="craft-image">
+                <img src="images/jewelry_craftsmanship.png" alt="Artisan crafting jewelry">
+            </div>
+            <div class="craft-text">
+                <span class="section-label">The Art Behind</span>
+                <h2>Centuries of<br>Craftsmanship</h2>
+                <p>Every AURUM piece begins as a sketch in our Parisian atelier, where master artisans with decades of
+                    experience transform raw gold and gemstones into wearable art.</p>
+                <p>Using techniques passed down through five generations, we ensure every facet, every setting, every
+                    curve reflects perfection.</p>
+                <div class="craft-stats">
+                    <div>
+                        <div class="craft-stat-num">127</div>
+                        <div class="craft-stat-label">Years of Heritage</div>
+                    </div>
+                    <div>
+                        <div class="craft-stat-num">48</div>
+                        <div class="craft-stat-label">Master Artisans</div>
+                    </div>
+                    <div>
+                        <div class="craft-stat-num">200+</div>
+                        <div class="craft-stat-label">Hours per Piece</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews -->
+    <section id="reviews" class="section-pad" style="background: var(--bg-dark);">
+        <div class="section-header reveal">
+            <span class="section-label">Testimonials</span>
+            <h2 class="section-title">What Our Clients Say</h2>
+            <div class="gold-divider"></div>
+        </div>
+        <div class="reviews-grid">
+            <div class="review-card reveal">
+                <div class="review-stars">★ ★ ★ ★ ★</div>
+                <p class="review-text">"The craftsmanship is unlike anything I've ever seen. My engagement ring from
+                    AURUM is a true masterpiece that takes my breath away every single day."</p>
+                <p class="review-author">Sophia Laurent</p>
+                <p class="review-role">Paris, France</p>
+            </div>
+            <div class="review-card reveal">
+                <div class="review-stars">★ ★ ★ ★ ★</div>
+                <p class="review-text">"From the private consultation to the final unveiling, every moment was pure
+                    luxury. AURUM understands what exclusive truly means."</p>
+                <p class="review-author">Isabella Montgomery</p>
+                <p class="review-role">London, UK</p>
+            </div>
+            <div class="review-card reveal">
+                <div class="review-stars">★ ★ ★ ★ ★</div>
+                <p class="review-text">"I commissioned a bespoke necklace for our anniversary. The attention to detail
+                    and the beauty of the finished piece exceeded all expectations."</p>
+                <p class="review-author">Alexander Chen</p>
+                <p class="review-role">New York, USA</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Store Location -->
+    <section id="store" class="store-section section-pad">
+        <div class="store-inner reveal">
+            <span class="section-label">Visit Our Maison</span>
+            <h2 class="section-title">The AURUM Experience</h2>
+            <div class="gold-divider"></div>
+            <p class="section-desc">Step into our flagship boutique and discover the world of AURUM — where every visit
+                is a private affair.</p>
+            <div class="store-details">
+                <div class="store-detail-item">
+                    <h4>Address</h4>
+                    <p>23 Place Vendôme<br>75001 Paris, France</p>
+                </div>
+                <div class="store-detail-item">
+                    <h4>Hours</h4>
+                    <p>Monday – Saturday<br>10:00 AM – 7:00 PM</p>
+                </div>
+                <div class="store-detail-item">
+                    <h4>Private Appointments</h4>
+                    <p>Available by request<br>+33 1 42 60 00 00</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <h3>AURUM</h3>
+                <p>Curators of timeless elegance since 1897. Every piece tells a story of heritage, passion, and
+                    uncompromising artistry.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Collections</h4>
+                <a href="#">Rings</a>
+                <a href="#">Necklaces</a>
+                <a href="#">Bracelets</a>
+                <a href="#">Earrings</a>
+                <a href="#">High Jewelry</a>
+            </div>
+            <div class="footer-col">
+                <h4>Maison</h4>
+                <a href="#">Our Heritage</a>
+                <a href="#">Craftsmanship</a>
+                <a href="#">Sustainability</a>
+                <a href="#">Careers</a>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <a href="#">Bespoke</a>
+                <a href="#">Engraving</a>
+                <a href="#">Care & Repair</a>
+                <a href="#">Gift Cards</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 AURUM. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // ===== GOLD PARTICLE EFFECT =====
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 1.5 + 0.3;
+                this.speedY = -(Math.random() * 0.3 + 0.05);
+                this.speedX = (Math.random() - 0.5) * 0.2;
+                this.opacity = Math.random() * 0.4 + 0.1;
+                this.fadeSpeed = Math.random() * 0.003 + 0.001;
+            }
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX;
+                this.opacity -= this.fadeSpeed;
+                if (this.opacity <= 0 || this.y < 0) {
+                    this.reset();
+                    this.y = canvas.height + 10;
+                    this.opacity = Math.random() * 0.4 + 0.1;
+                }
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(212, 175, 55, ${this.opacity})`;
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < 60; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        // ===== SCROLL REVEAL =====
+        const revealElements = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        revealElements.forEach(el => observer.observe(el));
+
+        // ===== NAVBAR BG CHANGE =====
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.navbar');
+            if (window.scrollY > 80) {
+                nav.style.background = 'rgba(8,8,8,0.97)';
+            } else {
+                nav.style.background = 'rgba(8,8,8,0.85)';
+            }
+        });
+    </script>
+
+</body>
+
+</html>
